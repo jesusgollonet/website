@@ -1,9 +1,10 @@
 import Head from 'next/head';
 import styles from '../styles/Home.module.css';
+import Layout from '../components/layout';
 
 export default function About() {
     return (
-        <div className={styles.container}>
+        <Layout>
             <h1>About</h1>
             <p>
                 Hey! I'm Jesús Gollonet. I am a Tech Director at Resn Amsterdam.
@@ -31,6 +32,6 @@ export default function About() {
                 code than I'd like to, mostly javascript / node.js these days. I
                 live in iterm, zsh, tmux, vim.
             </p>
-        </div>
+        </Layout>
     );
 }
