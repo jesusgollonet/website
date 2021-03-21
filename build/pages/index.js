@@ -29,7 +29,7 @@ export default function Home({ allPostsData }) {
                 <h2>Blog</h2>
                 <ul>
                     {allPostsData.map((p) => (
-                        <li className={styles.post}>
+                        <li className={styles.post} key={p.id}>
                             {p.title}{' '}
                             <time dateTime={p.date}>{p.niceDate}</time>{' '}
                         </li>

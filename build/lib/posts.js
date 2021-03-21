@@ -4,9 +4,10 @@ import matter from 'gray-matter';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-function parsePostFile(p) {
+function parsePostFile(id, p) {
     const postData = matter(p).data;
     return {
+        id,
         title: postData.title,
         niceDate: new Date(postData.date).toLocaleDateString('en-US', {
             year: 'numeric',
@@ -24,7 +25,7 @@ export async function getSortedPostsData() {
     for await (let fileName of fileList) {
         const filePath = path.join(postsDirectory, fileName);
         const fileContents = await readFile(filePath);
-        postsData.push(parsePostFile(fileContents));
+        postsData.push(parsePostFile(fileName, fileContents));
     }
     return postsData;
 }
