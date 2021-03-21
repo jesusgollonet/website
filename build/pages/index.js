@@ -2,8 +2,18 @@ import Head from 'next/head';
 import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import Layout from '../components/layout';
+import { getSortedPostsData } from '../lib/posts';
 
-export default function Home() {
+export async function getStaticProps() {
+    const allPostsData = await getSortedPostsData();
+    return {
+        props: {
+            allPostsData,
+        },
+    };
+}
+
+export default function Home({ allPostsData }) {
     return (
         <Layout>
             <Head>
@@ -16,15 +26,15 @@ export default function Home() {
                 <p>I'm currently building this website.</p>
             </main>
             <section>
-                <div className={styles.post}>
-                    <h3>Post latest</h3>
-                </div>
-                <div className={styles.post}>
-                    <h3>Post latest</h3>
-                </div>
-                <div className={styles.post}>
-                    <h3>Post latest</h3>
-                </div>
+                <h2>Blog</h2>
+                <ul>
+                    {allPostsData.map((p) => (
+                        <li className={styles.post}>
+                            {p.title}{' '}
+                            <time dateTime={p.date}>{p.niceDate}</time>{' '}
+                        </li>
+                    ))}
+                </ul>
             </section>
             <ul>
                 <li>
