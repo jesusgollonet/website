@@ -1,14 +1,21 @@
 import { readdir, readFile } from 'fs/promises';
 import path from 'path';
 import matter from 'gray-matter';
+import remark from 'remark';
+import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
 
-function parsePostFile(id, p) {
-    const postData = matter(p).data;
+async function parsePostFile(id, p) {
+    const parsedMatter = matter(p);
+    const postData = parsedMatter.data;
+    const processedContent = await remark()
+        .use(html)
+        .process(parsedMatter.content);
     return {
         id,
         title: postData.title,
+        contentHtml: processedContent.toString(),
         niceDate: new Date(postData.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
@@ -38,7 +45,7 @@ export async function getPostData(id) {
 
     const filePath = path.join(postsDirectory, postFile);
     const fileContents = await readFile(filePath);
-    const postData = matter(fileContents).data;
+    const postData = await parsePostFile(id, fileContents);
 
     return {
         id,
@@ -53,7 +60,7 @@ export async function getSortedPostsData() {
     for await (let fileName of fileList) {
         const filePath = path.join(postsDirectory, fileName);
         const fileContents = await readFile(filePath);
-        postsData.push(parsePostFile(fileName, fileContents));
+        postsData.push(await parsePostFile(fileName, fileContents));
     }
     return postsData;
 }

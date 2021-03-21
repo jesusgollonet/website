@@ -2,11 +2,12 @@ import { getAllPostIds, getPostData } from '../../lib/posts';
 import Layout from '../../components/layout.js';
 
 export default function Post({ postData }) {
-    console.log(postData);
+    console.log(postData.contentHtml);
     return (
         <Layout>
             <h1>{postData.title}</h1>
-            <p>{postData.date}</p>
+            <p>{postData.niceDate}</p>
+            <div dangerouslySetInnerHTML={{ __html: postData.contentHtml }} />
         </Layout>
     );
 }
@@ -19,8 +20,8 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }) {
-    console.log(params);
     const postData = await getPostData(params.id);
+    console.log(postData);
     return {
         props: {
             postData,
