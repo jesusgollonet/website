@@ -15,7 +15,7 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
     return (
-        <Layout>
+        <Layout home>
             <Head>
                 <title>Jesus Gollonet</title>
                 <link rel="icon" href="/favicon.ico" />
@@ -30,7 +30,13 @@ export default function Home({ allPostsData }) {
                 <ul>
                     {allPostsData.map((p) => (
                         <li className={styles.post} key={p.id}>
-                            {p.title}{' '}
+                            <Link
+                                href={`/posts/${p.id
+                                    .split('_')[1]
+                                    .replace(/\.md$/, '')}`}
+                            >
+                                <a>{p.title}</a>
+                            </Link>{' '}
                             <time dateTime={p.date}>{p.niceDate}</time>{' '}
                         </li>
                     ))}
