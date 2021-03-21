@@ -1,0 +1,42 @@
+#!/bin/bash
+
+set -e
+
+echo "bin/new-post"
+
+main() {
+  local post_name=$*
+  local dashed_post_name
+  local short_date file_name posts_dir file_path
+  posts_dir=build/posts/
+  dashed_post_name="$(
+    local IFS=-
+    echo "$*"
+  )"
+  short_date=$(date +"%Y-%m-%d")
+  long_date=$(date +"%Y-%m-%dT%H:%M:%SZ")
+
+  if [[ ${#post_name} -gt 0 ]]; then
+    file_name="${short_date}_${dashed_post_name}.md"
+  else
+    file_name="$short_date.md"
+  fi
+
+  file_path="$posts_dir$file_name"
+
+  if [ ! -f "$file_path" ]; then
+    touch "$file_path"
+    cat <<EOF >"$file_path"
+---
+title: '$post_name'
+date: '$long_date'
+draft: true
+---
+
+EOF
+  fi
+
+  vi +6 "$posts_dir$file_name"
+}
+
+main "${@?You need to add a title}"
