@@ -1,3 +1,4 @@
+import { getAllPostIds, getPostData } from '../../lib/posts';
 import Layout from '../../components/layout.js';
 
 export default function Post({ postData }) {
@@ -5,7 +6,6 @@ export default function Post({ postData }) {
     return (
         <Layout>
             <h1>{postData.title}</h1>
-
             <p>{postData.date}</p>
         </Layout>
     );
@@ -13,38 +13,17 @@ export default function Post({ postData }) {
 
 export async function getStaticPaths() {
     return {
-        paths: [
-            {
-                params: {
-                    id: 'a',
-                },
-            },
-            {
-                params: {
-                    id: 'b',
-                },
-            },
-        ],
+        paths: await getAllPostIds(),
         fallback: false,
     };
 }
-export async function getInitialProps(params) {
-    return {
-        props: {
-            title: 'a',
-            niceDate: '12 march 77',
-            content: 'aaaa',
-        },
-    };
-}
 
-export async function getStaticProps(params) {
+export async function getStaticProps({ params }) {
+    console.log(params);
+    const postData = await getPostData(params.id);
     return {
         props: {
-            postData: {
-                date: 'abc',
-                title: 'alskdjf',
-            },
+            postData,
         },
     };
 }

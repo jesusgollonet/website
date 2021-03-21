@@ -18,6 +18,34 @@ function parsePostFile(id, p) {
     };
 }
 
+export async function getAllPostIds() {
+    const fileList = await readdir(postsDirectory);
+
+    return fileList.map((fileName) => {
+        return {
+            params: {
+                id: fileName.split('_')[1].replace(/\.md$/, ''),
+            },
+        };
+    });
+}
+
+export async function getPostData(id) {
+    const fileList = await readdir(postsDirectory);
+    // TODO: since we're including datetime in filename but only matching on title
+    // this is brittle, as there could be 2 different files with the same title. Fix
+    const postFile = fileList.find((f) => f.includes(id));
+
+    const filePath = path.join(postsDirectory, postFile);
+    const fileContents = await readFile(filePath);
+    const postData = matter(fileContents).data;
+
+    return {
+        id,
+        ...postData,
+    };
+}
+
 export async function getSortedPostsData() {
     const fileList = await readdir(postsDirectory);
 
