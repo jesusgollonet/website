@@ -23,14 +23,17 @@ export default function Home({ allPostsData }) {
             </Head>
 
             <main className={styles.main}>
-                <Image
-                    src="/images/profile.jpg"
-                    height={150}
-                    width={150}
-                    alt="Jesus Gollonet"
-                />
-                <h1>Hey! I'm Jesus Gollonet</h1>
-                <p>I'm currently building this website.</p>
+                <header className={styles.header}>
+                    <Image
+                        src="/images/profile.jpg"
+                        height={150}
+                        width={150}
+                        alt="Jesus Gollonet"
+                        className={styles.profile}
+                    />
+                    <h1>Hey! I'm Jesus Gollonet</h1>
+                    <p>I'm currently building this website.</p>
+                </header>
             </main>
             <section>
                 <h2>Blog</h2>
