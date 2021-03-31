@@ -16,6 +16,7 @@ async function parsePostFile(id, p) {
         id,
         title: postData.title,
         contentHtml: processedContent.toString(),
+        // TODO this is a view concern
         niceDate: new Date(postData.date).toLocaleDateString('en-US', {
             year: 'numeric',
             month: 'long',
@@ -62,5 +63,9 @@ export async function getSortedPostsData() {
         const fileContents = await readFile(filePath);
         postsData.push(await parsePostFile(fileName, fileContents));
     }
-    return postsData;
+
+    return postsData.sort((a, b) => {
+        console.log(a.date, b.date);
+        return new Date(a.date) >= new Date(b.date) ? -1 : 1;
+    });
 }
