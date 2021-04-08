@@ -1,9 +1,14 @@
 .profile {
     border-radius: 50%;
 }
+
 .header {
     display: flex;
     flex-direction: column;
     align-items: center;
     text-align: center;
+}
+
+.blogList li {
+    margin-bottom: 2em;
 }

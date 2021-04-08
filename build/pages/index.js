@@ -31,13 +31,29 @@ export default function Home({ allPostsData }) {
                         alt="Jesus Gollonet"
                         className={styles.profile}
                     />
-                    <h1>Hey! I'm Jesus Gollonet</h1>
-                    <p>I'm currently building this website.</p>
+                    <h1>Jesus Gollonet</h1>
+                    <p>
+                        I do back-end architecture, infrastructure and
+                        development for creative digital experiences.{' '}
+                    </p>
+                    <p>
+                        I have worked on global campaigns for Adidas, Google,
+                        Spotify, Nordstrom and many other brands.{' '}
+                    </p>
+                    <p>
+                        {' '}
+                        Contact me via{' '}
+                        <a href="mailto:me@jesusgollonet.com">email</a>,{' '}
+                        <a href="https://twitter.com/jesusgollonet">twitter</a>{' '}
+                        or <a href="linkedin">linkedin</a>{' '}
+                    </p>
                 </header>
             </main>
+
+            {/*
             <section>
                 <h2>Blog</h2>
-                <ul>
+                <ul className={styles.blogList}>
                     {allPostsData.map((p) => (
                         <li className={styles.post} key={p.id}>
                             <Link
@@ -52,14 +68,7 @@ export default function Home({ allPostsData }) {
                     ))}
                 </ul>
             </section>
-            <ul>
-                <li>
-                    <Link href="/about">
-                        <a>About</a>
-                    </Link>
-                </li>
-            </ul>
-
+*/}
             <footer className={styles.footer}></footer>
         </Layout>
     );
