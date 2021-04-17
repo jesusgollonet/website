@@ -1,6 +1,5 @@
 import Head from 'next/head';
 import Link from 'next/link';
-import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Layout from '../components/layout';
 import { getSortedPostsData } from '../lib/posts';
@@ -24,7 +23,7 @@ export default function Home({ allPostsData }) {
 
             <main className={styles.main}>
                 <header className={styles.header}>
-                    <Image
+                    <img
                         src="/images/profile.jpg"
                         height={150}
                         width={150}
