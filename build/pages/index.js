@@ -35,19 +35,10 @@ export default function Home({ allPostsData }) {
                         Back-end architecture, infrastructure and development
                         for creative digital experiences.{' '}
                     </p>
-                    <p>
-                        {' '}
-                        Contact me via{' '}
-                        <a href="mailto:me@jesusgollonet.com">email</a>,{' '}
-                        <a href="https://twitter.com/jesusgollonet">twitter</a>{' '}
-                        or <a href="linkedin">linkedin</a>{' '}
-                    </p>
                 </header>
             </main>
-
             {/*
             <section>
-                <h2>Blog</h2>
                 <ul className={styles.blogList}>
                     {allPostsData.map((p) => (
                         <li className={styles.post} key={p.id}>
@@ -63,7 +54,17 @@ export default function Home({ allPostsData }) {
                     ))}
                 </ul>
             </section>
-*/}
+
+            */}
+            <section className={styles.contact}>
+                <p>
+                    {' '}
+                    Contact me via{' '}
+                    <a href="mailto:me@jesusgollonet.com">email</a>,{' '}
+                    <a href="https://twitter.com/jesusgollonet">twitter</a> or{' '}
+                    <a href="linkedin">linkedin</a>{' '}
+                </p>
+            </section>
             <footer className={styles.footer}></footer>
         </Layout>
     );

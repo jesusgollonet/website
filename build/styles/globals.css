@@ -23,3 +23,8 @@ img {
     max-width: 100%;
     display: block;
 }
+
+/*main,*/
+section {
+    margin-bottom: 2em;
+}
