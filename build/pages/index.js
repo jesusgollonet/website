@@ -62,7 +62,9 @@ export default function Home({ allPostsData }) {
                     Contact me via{' '}
                     <a href="mailto:me@jesusgollonet.com">email</a>,{' '}
                     <a href="https://twitter.com/jesusgollonet">twitter</a> or{' '}
-                    <a href="linkedin">linkedin</a>{' '}
+                    <a href="https://www.linkedin.com/in/jesusgollonet/">
+                        linkedin
+                    </a>{' '}
                 </p>
             </section>
             <footer className={styles.footer}></footer>
