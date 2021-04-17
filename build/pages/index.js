@@ -32,12 +32,8 @@ export default function Home({ allPostsData }) {
                     />
                     <h1>Jesus Gollonet</h1>
                     <p>
-                        I do back-end architecture, infrastructure and
-                        development for creative digital experiences.{' '}
-                    </p>
-                    <p>
-                        I have worked on global campaigns for Adidas, Google,
-                        Spotify, Nordstrom and many other brands.{' '}
+                        Back-end architecture, infrastructure and development
+                        for creative digital experiences.{' '}
                     </p>
                     <p>
                         {' '}
