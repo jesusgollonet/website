@@ -25,8 +25,8 @@ export default function Home({ allPostsData }) {
                 <header className={styles.header}>
                     <img
                         src="/images/profile.jpg"
-                        height={150}
-                        width={150}
+                        height={100}
+                        width={100}
                         alt="Jesus Gollonet"
                         className={styles.profile}
                     />
