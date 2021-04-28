@@ -33,7 +33,16 @@ export default function Home({ allPostsData }) {
                     <h1>Jesus Gollonet</h1>
                     <p>
                         Back-end architecture, infrastructure and development
-                        for creative digital experiences.{' '}
+                        for creative digital experiences.
+                    </p>
+                    <p>
+                        Currently rebuilding this site. In the meantime, learn
+                        more <Link href="/about">about me</Link>, or check my{' '}
+                        <a href="https://twitter.com/jesusgollonet">Twitter</a>{' '}
+                        or{' '}
+                        <a href="https://www.linkedin.com/in/jesusgollonet/">
+                            Linkedin
+                        </a>
                     </p>
                 </header>
             </main>
@@ -58,13 +67,7 @@ export default function Home({ allPostsData }) {
             */}
             <section className={styles.contact}>
                 <p>
-                    {' '}
-                    Contact me via{' '}
-                    <a href="mailto:me@jesusgollonet.com">email</a>,{' '}
-                    <a href="https://twitter.com/jesusgollonet">twitter</a> or{' '}
-                    <a href="https://www.linkedin.com/in/jesusgollonet/">
-                        linkedin
-                    </a>{' '}
+                    <a href="mailto:me@jesusgollonet.com">Get in touch</a>
                 </p>
             </section>
             <footer className={styles.footer}></footer>
