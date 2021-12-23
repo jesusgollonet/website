@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set -e
+
+echo "bin/run"
+
+main() {
+  (cd build && npm run dev)
+}
+
+main
