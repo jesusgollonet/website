@@ -8,9 +8,9 @@ export default function About() {
             <h1>About</h1>
             <p>
                 Hey! I'm Jesús Gollonet. I am a Tech Director at{' '}
-                <a href="https://resn.co.nz">Resn Amsterdam</a>. My work
-                involves architecting our experiences, implementing and managing
-                backend systems, being the main point of contact for technical
+                <a href="https://dogstudio.co">Dogstudio</a>. My work involves
+                architecting our experiences, implementing and managing backend
+                systems, being the main point of contact for technical
                 communication with clients and vendors, and improving and, um,
                 operating operations.
             </p>
