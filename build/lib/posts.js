@@ -5,13 +5,14 @@ import remark from 'remark';
 import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
-
+// This function is doing premature formatting.
 async function parsePostFile(id, p) {
     const parsedMatter = matter(p);
     const postData = parsedMatter.data;
     const processedContent = await remark()
         .use(html)
         .process(parsedMatter.content);
+    console.log(postData);
     return {
         id,
         title: postData.title,
@@ -65,7 +66,11 @@ export async function getSortedPostsData() {
     }
 
     return postsData.sort((a, b) => {
-        console.log(a.date, b.date);
         return new Date(a.date) >= new Date(b.date) ? -1 : 1;
     });
+}
+
+// testing testing setup
+export function sum(a, b) {
+    return a + b;
 }
