@@ -5,26 +5,26 @@ import remark from 'remark';
 import html from 'remark-html';
 
 const postsDirectory = path.join(process.cwd(), 'posts');
-// This function is doing premature formatting.
+// given a post file, it returns a {id, frontMatter, contentHtml} object
 async function parsePostFile(id, p) {
     const parsedMatter = matter(p);
     const postData = parsedMatter.data;
     const processedContent = await remark()
         .use(html)
         .process(parsedMatter.content);
-    console.log(postData);
     return {
         id,
-        title: postData.title,
+        meta: parsedMatter.data,
         contentHtml: processedContent.toString(),
-        // TODO this is a view concern
-        niceDate: new Date(postData.date).toLocaleDateString('en-US', {
-            year: 'numeric',
-            month: 'long',
-            day: 'numeric',
-        }),
-        date: postData.date,
     };
+}
+
+export function niceDate(d) {
+    return new Date(d).toLocaleDateString('en-US', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric',
+    });
 }
 
 export async function getAllPostIds() {
@@ -49,6 +49,7 @@ export async function getPostData(id) {
     const fileContents = await readFile(filePath);
     const postData = await parsePostFile(id, fileContents);
 
+    postData.niceDate = niceDate(postData.meta.date);
     return {
         id,
         ...postData,
@@ -57,20 +58,16 @@ export async function getPostData(id) {
 
 export async function getSortedPostsData() {
     const fileList = await readdir(postsDirectory);
-
     const postsData = [];
     for await (let fileName of fileList) {
         const filePath = path.join(postsDirectory, fileName);
         const fileContents = await readFile(filePath);
-        postsData.push(await parsePostFile(fileName, fileContents));
+        const postData = await parsePostFile(fileName, fileContents);
+        postData.niceDate = niceDate(postData.meta.date);
+        postsData.push(postData);
     }
 
     return postsData.sort((a, b) => {
-        return new Date(a.date) >= new Date(b.date) ? -1 : 1;
+        return new Date(a.meta.date) >= new Date(b.meta.date) ? -1 : 1;
     });
-}
-
-// testing testing setup
-export function sum(a, b) {
-    return a + b;
 }

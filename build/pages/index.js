@@ -46,25 +46,24 @@ export default function Home({ allPostsData }) {
                     </p>
                 </header>
             </main>
-            {/*
-            <section>
-                <ul className={styles.blogList}>
-                    {allPostsData.map((p) => (
-                        <li className={styles.post} key={p.id}>
-                            <Link
-                                href={`/posts/${p.id
-                                    .split('_')[1]
-                                    .replace(/\.md$/, '')}`}
-                            >
-                                <a>{p.title}</a>
-                            </Link>{' '}
-                            <time dateTime={p.date}>{p.niceDate}</time>{' '}
-                        </li>
-                    ))}
-                </ul>
-            </section>
-
-            */}
+            {
+                <section>
+                    <ul className={styles.blogList}>
+                        {allPostsData.map((p) => (
+                            <li className={styles.post} key={p.id}>
+                                <Link
+                                    href={`/posts/${p.id
+                                        .split('_')[1]
+                                        .replace(/\.md$/, '')}`}
+                                >
+                                    <a>{p.meta.title}</a>
+                                </Link>{' '}
+                                <time dateTime={p.meta.date}>{p.niceDate}</time>{' '}
+                            </li>
+                        ))}
+                    </ul>
+                </section>
+            }
             <section className={styles.contact}>
                 <p>
                     <a href="mailto:me@jesusgollonet.com">Get in touch</a>
