@@ -1,4 +1,6 @@
 import Layout from "../components/layout";
+import styles from "../components/layout.module.css";
+import Link from "next/link";
 
 export default function About() {
   return (
@@ -29,6 +31,9 @@ export default function About() {
         than I&apos;d like to, mostly javascript / node.js these days. I live in
         iterm, zsh, tmux, vim.
       </p>
+        <div className={styles.backToHome}>
+            <Link href="/">← Home</Link>
+        </div>
     </Layout>
   );
 }

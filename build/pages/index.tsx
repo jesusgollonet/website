@@ -15,9 +15,9 @@ export async function getStaticProps() {
 
 export default function Home({ allPostsData }) {
   return (
-    <Layout home>
+    <Layout>
       <Head>
-        <title>Jesus Gollonet</title>
+        <title>__Jesus Gollonet</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
