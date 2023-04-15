@@ -1,5 +1,5 @@
 import { getAllPostIds, getPostData } from "../../lib/posts";
-import Layout from "../../components/layout.js";
+import Layout from "../../components/layout";
 
 export default function Post({ postData }) {
   return (
