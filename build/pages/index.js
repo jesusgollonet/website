@@ -51,7 +51,7 @@ export default function Home({ allPostsData }) {
                 <Link
                   href={`/posts/${p.id.split("_")[1].replace(/\.md$/, "")}`}
                 >
-                  <a>{p.meta.title}</a>
+                  {p.meta.title}
                 </Link>{" "}
                 <time dateTime={p.meta.date}>{p.niceDate}</time>{" "}
               </li>
