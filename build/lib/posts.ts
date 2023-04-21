@@ -4,22 +4,47 @@ import matter from "gray-matter";
 import remark from "remark";
 import html from "remark-html";
 
+export interface PostData {
+  title: string;
+  niceDate: string;
+  contentHtml: string;
+}
+
+interface PostFile {
+  fileName: string;
+  meta: Object;
+  contentHtml: string;
+}
+
 const postsDirectory = path.join(process.cwd(), "posts");
 // given a post file, it returns a {id, frontMatter, contentHtml} object
-async function parsePostFile(id, p) {
+async function parsePostFile(fileName, p): Promise<PostFile> {
   const parsedMatter = matter(p);
-  const postData = parsedMatter.data;
   const processedContent = await remark()
     .use(html)
     .process(parsedMatter.content);
   return {
-    id,
+    fileName,
     meta: parsedMatter.data,
     contentHtml: processedContent.toString(),
   };
 }
 
-export function niceDate(d) {
+export const parsePostsDirectory = async (
+  postsDirectory: string
+): Promise<PostFile[]> => {
+  const fileList = await readdir(postsDirectory);
+  const postsData = [];
+  for await (let fileName of fileList) {
+    const filePath = path.join(postsDirectory, fileName);
+    const fileContents = await readFile(filePath);
+    const postData = await parsePostFile(fileName, fileContents);
+    postsData.push(postData);
+  }
+  return postsData;
+};
+
+export function niceDate(d: Date): string {
   return new Date(d).toLocaleDateString("en-US", {
     year: "numeric",
     month: "long",
@@ -39,34 +64,26 @@ export async function getAllPostIds() {
   });
 }
 
-export async function getPostData(id) {
+export async function getPostData(fileName) {
   const fileList = await readdir(postsDirectory);
   // TODO: since we're including datetime in filename but only matching on title
   // this is brittle, as there could be 2 different files with the same title. Fix
-  const postFile = fileList.find((f) => f.includes(id));
+  const postFile = fileList.find((f) => f.includes(fileName));
 
   const filePath = path.join(postsDirectory, postFile);
   const fileContents = await readFile(filePath);
-  const postData = await parsePostFile(id, fileContents);
+  const postData = await parsePostFile(fileName, fileContents);
 
   postData.niceDate = niceDate(postData.meta.date);
   return {
-    id,
+    fileName,
     ...postData,
   };
 }
 
 export async function getSortedPostsData() {
-  const fileList = await readdir(postsDirectory);
-  const postsData = [];
-  for await (let fileName of fileList) {
-    const filePath = path.join(postsDirectory, fileName);
-    const fileContents = await readFile(filePath);
-    const postData = await parsePostFile(fileName, fileContents);
-    postData.niceDate = niceDate(postData.meta.date);
-    postsData.push(postData);
-  }
-
+  const postsData = await parsePostsDirectory(postsDirectory);
+  console.log(postsData);
   return postsData.sort((a, b) => {
     return new Date(a.meta.date) >= new Date(b.meta.date) ? -1 : 1;
   });

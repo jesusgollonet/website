@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import Layout from "../components/layout";
-import { getSortedPostsData } from "../lib/posts";
+import { getSortedPostsData, parsePostsDirectory } from "../lib/posts";
 
 export async function getStaticProps() {
   const allPostsData = await getSortedPostsData();
@@ -47,9 +47,9 @@ export default function Home({ allPostsData }) {
         <section>
           <ul className={styles.blogList}>
             {allPostsData.map((p) => (
-              <li className={styles.post} key={p.id}>
+              <li className={styles.post} key={p.fileName}>
                 <Link
-                  href={`/posts/${p.id.split("_")[1].replace(/\.md$/, "")}`}
+                  href={`/posts/${p.fileName.split("_")[1].replace(/\.md$/, "")}`}
                 >
                   {p.meta.title}
                 </Link>{" "}
