@@ -5,19 +5,19 @@ import Layout from "../components/layout";
 import { getSortedPostsData, parsePostsDirectory } from "../lib/posts";
 
 export async function getStaticProps() {
-  const allPostsData = await getSortedPostsData();
-  return {
-    props: {
-      allPostsData,
-    },
-  };
+    const allPostsData = await getSortedPostsData();
+    return {
+        props: {
+            allPostsData:allPostsData.filter(p => p.draft !== true),
+        },
+    };
 }
 
 export default function Home({ allPostsData }) {
   return (
     <Layout>
       <Head>
-        <title>__Jesus Gollonet</title>
+        <title>Jesus Gollonet</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -47,13 +47,14 @@ export default function Home({ allPostsData }) {
         <section>
           <ul className={styles.blogList}>
             {allPostsData.map((p) => (
+
               <li className={styles.post} key={p.fileName}>
                 <Link
                   href={`/posts/${p.fileName.split("_")[1].replace(/\.md$/, "")}`}
                 >
-                  {p.meta.title}
+                  {p.title} 
                 </Link>{" "}
-                <time dateTime={p.meta.date}>{p.niceDate}</time>{" "}
+                <time dateTime={p.date}>{p.niceDate}</time>{" "}
               </li>
             ))}
           </ul>

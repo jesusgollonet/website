@@ -1,7 +1,7 @@
 ---
 title: 'a vim toggle'
 date: '2021-03-31T07:57:50Z'
-draft: true
+draft: false
 ---
 
 I open and close vim many times in my daily work. As a spoiled vim user, I try
