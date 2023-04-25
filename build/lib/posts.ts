@@ -4,10 +4,10 @@ import matter from "gray-matter";
 import remark from "remark";
 import html from "remark-html";
 
-interface PostFile {
+export interface PostFile {
   fileName: string;
   title: string;
-  date: Date;
+  date: string;
   niceDate: string;
   draft: boolean;
   contentHtml: string;

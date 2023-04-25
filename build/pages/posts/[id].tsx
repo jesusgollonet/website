@@ -1,9 +1,9 @@
-import { getAllPostIds, getPostData, PostData } from "../../lib/posts";
+import { getAllPostIds, getPostData, PostFile } from "../../lib/posts";
 import Layout from "../../components/layout";
 
 // meta title
 // date string
-export default function Post({ postData }: { postData: PostData }) {
+export default function Post({ postData }: { postData: PostFile }) {
     return (
         <Layout>
             <h1>{postData.title}</h1>
@@ -24,7 +24,7 @@ export async function getStaticPaths() {
     };
 }
 
-export async function getStaticProps({ params }) {
+export async function getStaticProps({ params }:{params:{id:string}}) {
     const postData = await getPostData(params.id);
     return {
         props: {

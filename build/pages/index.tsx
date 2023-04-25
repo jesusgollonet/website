@@ -2,7 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import Layout from "../components/layout";
-import { getSortedPostsData, parsePostsDirectory } from "../lib/posts";
+import { getSortedPostsData, parsePostsDirectory, PostFile } from "../lib/posts";
 
 export async function getStaticProps() {
     const allPostsData = await getSortedPostsData();
@@ -13,7 +13,7 @@ export async function getStaticProps() {
     };
 }
 
-export default function Home({ allPostsData }) {
+export default function Home({ allPostsData }: { allPostsData: PostFile[]}) {
   return (
     <Layout>
       <Head>
