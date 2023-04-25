@@ -8,7 +8,7 @@ export default function About() {
       <h1>About</h1>
       <p>
         Hey! I&apos;m Jesús Gollonet. I am a Tech Director at{" "}
-        <a href="https://dogstudio.co">Dogstudio</a>. My work involves
+        <a href="https://northkingdom.com">North Kingdom</a>. My work involves
         architecting our experiences, implementing and managing backend systems,
         being the main point of contact for technical communication with clients
         and vendors, and improving and, um, operating operations.
@@ -28,7 +28,7 @@ export default function About() {
       </p>
       <p>
         I work remotely from Málaga in the south of Spain. I write less code
-        than I&apos;d like to, mostly javascript / node.js these days. I live in
+        than I&apos;d like to, mostly typescript / node.js these days. I live in
         iterm, zsh, tmux, vim.
       </p>
         <div className={styles.backToHome}>
