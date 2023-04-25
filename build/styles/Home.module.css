@@ -15,6 +15,9 @@
   margin: 0.4em;
 }
 
+ul.blogList {
+  text-align: center;
+}
 .blogList li {
   margin-bottom: 1em;
 }
