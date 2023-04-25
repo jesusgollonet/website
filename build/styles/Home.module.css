@@ -1,15 +1,20 @@
 .profile {
-    border-radius: 50%;
+  border-radius: 50%;
 }
 
 .header,
 .contact {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.contact li {
+  display: inline;
+  margin: 0.4em;
 }
 
 .blogList li {
-    margin-bottom: 1em;
+  margin-bottom: 1em;
 }
