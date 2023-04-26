@@ -1,11 +1,21 @@
 import styles from "./layout.module.css";
+import Link from "next/link";
 
-// I don't really understand the type signature here
-//https://stackoverflow.com/questions/64722861/what-typescript-type-should-react-children-be-set-to
-export default function Layout({ children }: React.PropsWithChildren<{}>) {
-  return (
-    <div className={styles.container}>
-      <div>{children}</div>
-    </div>
-  );
+export default function Layout({
+    children,
+    home,
+}: {
+    children: React.ReactNode;
+    home?: boolean;
+}) {
+    return (
+        <div className={styles.container}>
+            <div>{children}</div>
+            {!home && (
+                <div className={styles.backToHome}>
+                    <Link href="/">← Home</Link>
+                </div>
+            )}
+        </div>
+    );
 }
