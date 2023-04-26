@@ -23,7 +23,6 @@ async function parsePostFile(
   const processedContent = await remark()
     .use(html)
     .process(parsedMatter.content);
-  console.log(parsedMatter.data);
   return {
     fileName,
     title: parsedMatter.data.title,

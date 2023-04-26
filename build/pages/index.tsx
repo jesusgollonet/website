@@ -62,7 +62,7 @@ export default function Home({ allPostsData }: { allPostsData: PostFile[] }) {
             <section className={styles.contact}>
                 <ul>
                     <li>
-                        <Link href="/about">About me</Link>
+                        <Link href="/about">About</Link>
                     </li>
                     <li>
                         <a href="https://twitter.com/jesusgollonet">Twitter</a>
