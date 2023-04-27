@@ -31,9 +31,6 @@ export default function About() {
         than I&apos;d like to, mostly typescript / node.js these days. I live in
         iterm, zsh, tmux, vim.
       </p>
-        <div className={styles.backToHome}>
-            <Link href="/">← Home</Link>
-        </div>
     </Layout>
   );
 }
