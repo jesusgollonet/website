@@ -1,7 +1,7 @@
 ---
 title: 'A typescript rabbit hole'
 date: '2023-04-30T13:08:14Z'
-draft: false
+draft: true
 ---
 
 Preface: I'm still inside the hole. There's no wisdom to be gained for
@@ -9,12 +9,13 @@ continuing. This is just a stake in the ground to come back to.
 
 All I wanted was to add footnotes.
 
-I use remark to parse markdown for the entries of this blog and I wanted to add
-a footnote. The plugin for supporting github flavored markdown (and therefore
-footnotes) was throwing a typescript error I didn't understand, so I created an
-empty project to figure out what was going on.
+I use [remark](https://github.com/remarkjs/remark) to parse markdown for the
+entries of this blog and I wanted to add a footnote. The plugin for supporting
+github flavored markdown (and therefore footnotes) was throwing a typescript
+error I didn't understand, so I created an empty project to figure out what was
+going on.
 
-A few iterations later, I switched over to micromark as a simpler alternative. I
+A few iterations later, having switched over to micromark as a simpler alternative. I
 boiled my minimal example down to this \*:
 
 ```typescript
@@ -26,7 +27,7 @@ Compiling and running (`tsc index.ts && node index.js`) throws an error :
 
 ReferenceError: exports is not defined in **ES module scope**. This file is being treated as an ES module because it has a '.js' file extension and 'package.json' contains "type": "module". To treat it as a CommonJS script, rename it to use the '.cjs' file extension.
 
-Ok so [micromark is ESM only](https://github.com/micromark/micromark#install)i,
+Ok so [micromark is ESM only](https://github.com/micromark/micromark#install),
 which means the source files already use import/export syntax. According to (my
 reading of) the typescript docs for [Ecmascript modules in
 Node.js](https://www.typescriptlang.org/docs/handbook/esm-node.html), I should
