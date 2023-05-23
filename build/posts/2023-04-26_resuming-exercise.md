@@ -27,6 +27,6 @@ I'll get back to strength and cardio.
 This is day 3. 🤞
 
 [^1]: Beth Lewis said something in [The Art of Stability](https://www.youtube.com/watch?v=t48iqNwS6PY) that stuck with me: 
-> Don't let your sport get in the way of your training. 
+    > Don't let your sport get in the way of your training. 
 
 
