@@ -14,7 +14,7 @@ project and some other life events. So it's been a couple of months off again.
 
 I have not completely stopped moving. I've been hitting the skatepark [on
 a BMX with my kids](https://www.instagram.com/p/CrftUXQIhgZ/) almost every week, but as I'm learning, the consistency
-and focus of an actual workout is the key to improving, especially well into your 40s \*.
+and focus of an actual workout is the key to improving, especially well into your 40s [^1].
 
 There's the part where you need to get motivated enough to start again, but even
 harder is the part where you need to re-adjust your expectations. You
@@ -26,7 +26,7 @@ I'll get back to strength and cardio.
 
 This is day 3. 🤞
 
-\* Beth Lewis said something in [The Art of Stability](https://www.youtube.com/watch?v=t48iqNwS6PY) that stuck with me: 
+[^1]: Beth Lewis said something in [The Art of Stability](https://www.youtube.com/watch?v=t48iqNwS6PY) that stuck with me: 
 > Don't let your sport get in the way of your training. 
 
 
