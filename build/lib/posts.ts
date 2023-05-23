@@ -2,6 +2,9 @@ import { readdir, readFile } from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
 import remark from "remark";
+import { micromark } from "micromark";
+import { gfm, gfmHtml } from "micromark-extension-gfm";
+
 import html from "remark-html";
 
 export interface PostFile {
@@ -20,9 +23,10 @@ async function parsePostFile(
   fileContents: Buffer
 ): Promise<PostFile> {
   const parsedMatter = matter(fileContents);
-  const processedContent = await remark()
-    .use(html)
-    .process(parsedMatter.content);
+  const processedContent = micromark(parsedMatter.content, {
+    extensions: [gfm()],
+    htmlExtensions: [gfmHtml()],
+  });
   return {
     fileName,
     title: parsedMatter.data.title,
