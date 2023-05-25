@@ -1,11 +1,8 @@
 import { readdir, readFile } from "fs/promises";
 import path from "path";
 import matter from "gray-matter";
-import remark from "remark";
 import { micromark } from "micromark";
 import { gfm, gfmHtml } from "micromark-extension-gfm";
-
-import html from "remark-html";
 
 export interface PostFile {
   fileName: string;
