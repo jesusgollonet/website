@@ -11,7 +11,7 @@ main() {
   posts_dir=build/posts/
   dashed_post_name="$(
     local IFS=-
-    echo "$*"
+    echo "$*" | tr '[:upper:]' '[:lower:]'
   )"
   short_date=$(date +"%Y-%m-%d")
   long_date=$(date +"%Y-%m-%dT%H:%M:%SZ")
