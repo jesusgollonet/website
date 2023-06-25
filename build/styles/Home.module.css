@@ -21,5 +21,15 @@ ul.blogList {
   text-align: center;
 }
 .blogList li {
-  margin-bottom: 1em;
+  margin-bottom: 0.5em;
+  display: grid;
+  grid-template-columns: auto 2fr;
+}
+
+.blogList li a {
+  text-align: left;
+}
+
+.blogList li time {
+  text-align: right;
 }
