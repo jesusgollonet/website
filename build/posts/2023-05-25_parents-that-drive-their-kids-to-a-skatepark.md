@@ -20,7 +20,7 @@ great thing (it's the reason why I'm even considering it at 46!), and I'm 100% a
 parent that drives his kids to the skatepark, but I love his point about
 skateboarding starting as a mode of transportation, and a way for kids that have
 nothing else to do or want to avoid their neighbourhood to have a tool to do
-that while pushng their creativity...
+that while pushing their creativity...
 
 The full interview is interesting, I enjoyed his non-negative take on kids
 perferring short instagram clips vs video parts (which I've often seen mourned
