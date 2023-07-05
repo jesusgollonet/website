@@ -36,8 +36,14 @@ export default function Home({ allPostsData }: { allPostsData: PostFile[] }) {
                     />
                     <h1>Jesus Gollonet</h1>
                     <p>
-                        Back-end architecture, infrastructure and development
-                        for creative digital experiences.
+                        Hey there! You might have landed here because I have
+                        recently started looking for new job opportunities.
+                        Check the <Link href="/about">about</Link> page until I
+                        get this site in shape.
+                    </p>
+                    <p>
+                       I also keep a very informal diary about whatever I
+                        happen to be thinking about 👇
                     </p>
                 </header>
             </main>
@@ -63,6 +69,9 @@ export default function Home({ allPostsData }: { allPostsData: PostFile[] }) {
                 <ul>
                     <li>
                         <Link href="/about">About</Link>
+                    </li>
+                    <li>
+                        <a href="https://github.com/jesusgollonet">Github</a>
                     </li>
                     <li>
                         <a href="https://twitter.com/jesusgollonet">Twitter</a>
