@@ -2,22 +2,7 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import Layout from "../components/layout";
-import {
-    getSortedPostsData,
-    parsePostsDirectory,
-    PostFile,
-} from "../lib/posts";
-
-export async function getStaticProps() {
-    const allPostsData = await getSortedPostsData();
-    return {
-        props: {
-            allPostsData: allPostsData.filter((p) => p.draft !== true),
-        },
-    };
-}
-
-export default function Home({ allPostsData }: { allPostsData: PostFile[] }) {
+export default function Home() {
     return (
         <Layout home>
             <Head>
@@ -42,29 +27,11 @@ export default function Home({ allPostsData }: { allPostsData: PostFile[] }) {
                         get this site in shape.
                     </p>
                     <p>
-                       I also keep a very informal diary about whatever I
-                        happen to be thinking about 👇
+                        I also keep a very informal <Link href="/diary">diary</Link> about whatever I
+                        happen to be thinking about.
                     </p>
                 </header>
             </main>
-            {
-                <section>
-                    <ul className={styles.blogList}>
-                        {allPostsData.map((p) => (
-                            <li className={styles.post} key={p.fileName}>
-                                <Link
-                                    href={`/posts/${p.fileName
-                                        .split("_")[1]
-                                        .replace(/\.md$/, "")}`}
-                                >
-                                    {p.title}
-                                </Link>{" "}
-                                <time dateTime={p.date}>{p.niceDate}</time>{" "}
-                            </li>
-                        ))}
-                    </ul>
-                </section>
-            }
             <section className={styles.contact}>
                 <ul>
                     <li>

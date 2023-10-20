@@ -17,22 +17,3 @@
   display: inline;
   margin: 0.4em;
 }
-
-ul.blogList {
-  padding: 0;
-  list-style: none;
-  text-align: center;
-}
-.blogList li {
-  margin-bottom: 0.5em;
-  display: grid;
-  grid-template-columns: auto 2fr;
-}
-
-.blogList li a {
-  text-align: left;
-}
-
-.blogList li time {
-  text-align: right;
-}
