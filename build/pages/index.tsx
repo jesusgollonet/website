@@ -28,10 +28,10 @@ export default function Home() {
             </main>
             <section>
                 Over the last 15 years I have contributed to digital projects in a wide variety of domains. A few recent / favorite examples include
-                <ul>
-                    <li>Leading the team and developing the backend of <Link href="https://www.northkingdom.com/case/masterclash">Masterclash</Link>, an educational video platform for Supercell's Clash of Clans.</li>
+                    <ul>
+                        <li>Leading the team and developing the backend of <Link href="https://www.northkingdom.com/case/masterclash">Masterclash</Link>, an educational video platform for Supercell&apos;s Clash of Clans.</li>
                     <li>Architecting and operating infrastructure for a series of online live events (remember those?) for <Link href="https://toast.resn.co.nz/#house-of-maserati">Maserati</Link>, <Link href="https://resn.co.nz/#!/work/vanmoof/">Vanmoof</Link> and others.</li>
-                    <li>Directing the technology for a <Link href="https://resn.co.nz/#!/work/brandcast-delivered/">personalized video platform for Google's Brandcast</Link> event</li>
+                    <li>Directing the technology for a <Link href="https://resn.co.nz/#!/work/brandcast-delivered/">personalized video platform for Google&apos;s Brandcast</Link> event</li>
                     <li>Developing the backend for interactive installations with <Link href="https://resn.co.nz/#!/work/speedfactory-activation/">Adidas SpeedFactory</Link></li>
                     <li>Developing an on-the-fly UGC video generation solution that leverages Front End techonologies to create high quality shareable videos, used in <Link href="https://resn.co.nz/#!/work/ripready/">Adidas Rip Ready</Link> and <Link href="https://resn.co.nz/#!/work/hpsoundincolor/">HP Sound in Color</Link></li>
                     <li>Building a <Link href="https://www.lbbonline.com/news/coca-cola-music-visual-identity-from-wk-amsterdam">generative visual identity for Coca Cola</Link> at Wieden + Kennedy Amsterdam.</li>
@@ -39,7 +39,7 @@ export default function Home() {
             </section>
             <section className={styles.contact}>
                 <p> Curious to know more? </p>
-                <p><Link href="mailto:me@jesusgollonet.com">Email</Link> or <Link href="https://www.linkedin.com/in/jesusgollonet/">LinkedIn</Link> me. Let's meet</p>
+                <p><Link href="mailto:me@jesusgollonet.com">Email</Link> or <Link href="https://www.linkedin.com/in/jesusgollonet/">LinkedIn</Link> me. Let&apos;s meet</p>
                 <ul>
                     <li>
                         <Link href="/about">About</Link>
