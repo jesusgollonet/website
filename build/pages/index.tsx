@@ -21,7 +21,7 @@ export default function Home() {
                     />
                     <h1>Jesus Gollonet</h1>
                     <p>
-                        Hey there! I’m Jesus Gollonet a Technical Director that helps digital agencies develop and deliver global creative campaigns for some of the most well known brands in the world.
+                        Hey there! I’m Jesus Gollonet a Technical Director that helps creative agencies develop and deliver global digital campaigns for some of the most well known brands in the world.
                     </p>
 
                 </header>
