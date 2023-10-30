@@ -20,25 +20,26 @@ export default function Home() {
                         className={styles.profile}
                     />
                     <h1>Jesus Gollonet</h1>
-                    <p>
-                        Hey there! I’m Jesus Gollonet a Technical Director that helps creative agencies develop and deliver global digital campaigns for some of the most well known brands in the world.
-                    </p>
-
                 </header>
             </main>
             <section>
-                Over the last 15 years I have contributed to digital projects in a wide variety of domains. A few recent / favorite examples include
+                    <p>
+                        Hey there! I’m a freelance technical director that helps creative agencies develop and deliver global digital campaigns for some of the most well known brands in the world.
+                    </p>
+                    <p>
+                        Over the last 15 years I have contributed to digital projects in a wide variety of domains. A few recent / favorite examples include
+                    </p>
                     <ul>
                         <li>Leading the team and developing the backend of <Link href="https://www.northkingdom.com/case/masterclash">Masterclash</Link>, an educational video platform for Supercell&apos;s Clash of Clans.</li>
-                    <li>Architecting and operating infrastructure for a series of online live events (remember those?) for <Link href="https://toast.resn.co.nz/#house-of-maserati">Maserati</Link>, <Link href="https://resn.co.nz/#!/work/vanmoof/">Vanmoof</Link> and others.</li>
-                    <li>Directing the technology for a <Link href="https://resn.co.nz/#!/work/brandcast-delivered/">personalized video platform for Google&apos;s Brandcast</Link> event</li>
-                    <li>Developing the backend for interactive installations with <Link href="https://resn.co.nz/#!/work/speedfactory-activation/">Adidas SpeedFactory</Link></li>
-                    <li>Developing an on-the-fly UGC video generation solution that leverages Front End techonologies to create high quality shareable videos, used in <Link href="https://resn.co.nz/#!/work/ripready/">Adidas Rip Ready</Link> and <Link href="https://resn.co.nz/#!/work/hpsoundincolor/">HP Sound in Color</Link></li>
-                    <li>Building a <Link href="https://www.lbbonline.com/news/coca-cola-music-visual-identity-from-wk-amsterdam">generative visual identity for Coca Cola</Link> at Wieden + Kennedy Amsterdam.</li>
+                        <li>Architecting and operating infrastructure for a series of online live events (remember those?) for <Link href="https://toast.resn.co.nz/#house-of-maserati">Maserati</Link>, <Link href="https://resn.co.nz/#!/work/vanmoof/">Vanmoof</Link> and others.</li>
+                        <li>Directing the development of a <Link href="https://resn.co.nz/#!/work/brandcast-delivered/">personalized video platform for Google&apos;s Brandcast</Link> event</li>
+                        <li>Developing the backend for data collection and asset generation of world travelling interactive installations for Adidas, including <Link href="https://resn.co.nz/#!/work/speedfactory-activation/">Speedfactory</Link> and <Link href="https://resn.co.nz/#!/work/kickcreator/">Kick Creator</Link>    </li>
+                        <li>Developing an on-the-fly UGC video generation solution that leverages Front End techonologies to create high quality shareable videos, used in <Link href="https://resn.co.nz/#!/work/ripready/">Adidas Rip Ready</Link> and <Link href="https://resn.co.nz/#!/work/hpsoundincolor/">HP Sound in Color</Link></li>
+                        <li>Building a <Link href="https://www.lbbonline.com/news/coca-cola-music-visual-identity-from-wk-amsterdam">generative visual identity for Coca Cola</Link> at Wieden + Kennedy Amsterdam.</li>
                 </ul>
             </section>
             <section className={styles.contact}>
-                <p> Curious to know more? </p>
+                <p> I&apos;m currently available, and would love to work with you</p>
                 <p><Link href="mailto:me@jesusgollonet.com">Email</Link> or <Link href="https://www.linkedin.com/in/jesusgollonet/">LinkedIn</Link> me. Let&apos;s meet</p>
                 <ul>
                     <li>
