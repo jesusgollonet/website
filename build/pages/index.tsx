@@ -21,18 +21,25 @@ export default function Home() {
                     />
                     <h1>Jesus Gollonet</h1>
                     <p>
-                        Hey there! You might have landed here because I have
-                        recently started looking for new job opportunities.
-                        Check the <Link href="/about">about</Link> page until I
-                        get this site in shape.
+                        Hey there! I’m Jesus Gollonet a Technical Director that helps digital agencies develop and deliver global creative campaigns for some of the most well known brands in the world.
                     </p>
-                    <p>
-                        I also keep a very informal <Link href="/diary">diary</Link> about whatever I
-                        happen to be thinking about.
-                    </p>
+
                 </header>
             </main>
+            <section>
+                Over the last 15 years I have contributed to digital projects in a wide variety of domains. A few recent / favorite examples include
+                <ul>
+                    <li>Leading the team and developing the backend of <Link href="https://www.northkingdom.com/case/masterclash">Masterclash</Link>, an educational video platform for Supercell's Clash of Clans.</li>
+                    <li>Architecting and operating infrastructure for a series of online live events (remember those?) for <Link href="https://toast.resn.co.nz/#house-of-maserati">Maserati</Link>, <Link href="https://resn.co.nz/#!/work/vanmoof/">Vanmoof</Link> and others.</li>
+                    <li>Directing the technology for a <Link href="https://resn.co.nz/#!/work/brandcast-delivered/">personalized video platform for Google's Brandcast</Link> event</li>
+                    <li>Developing the backend for interactive installations with <Link href="https://resn.co.nz/#!/work/speedfactory-activation/">Adidas SpeedFactory</Link></li>
+                    <li>Developing an on-the-fly UGC video generation solution that leverages Front End techonologies to create high quality shareable videos, used in <Link href="https://resn.co.nz/#!/work/ripready/">Adidas Rip Ready</Link> and <Link href="https://resn.co.nz/#!/work/hpsoundincolor/">HP Sound in Color</Link></li>
+                    <li>Building a <Link href="https://www.lbbonline.com/news/coca-cola-music-visual-identity-from-wk-amsterdam">generative visual identity for Coca Cola</Link> at Wieden + Kennedy Amsterdam.</li>
+                </ul>
+            </section>
             <section className={styles.contact}>
+                <p> Curious to know more? </p>
+                <p><Link href="mailto:me@jesusgollonet.com">Email</Link> or <Link href="https://www.linkedin.com/in/jesusgollonet/">LinkedIn</Link> me. Let's meet</p>
                 <ul>
                     <li>
                         <Link href="/about">About</Link>
@@ -50,13 +57,10 @@ export default function Home() {
                     </li>
                     <li>
                         <a href="https://www.linkedin.com/in/jesusgollonet/">
-                            Linkedin
+                            LinkedIn
                         </a>
                     </li>
                 </ul>
-                <p>
-                    <a href="mailto:me@jesusgollonet.com">Get in touch</a>
-                </p>
             </section>
             <footer className={styles.footer}></footer>
         </Layout>
