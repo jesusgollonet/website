@@ -6,11 +6,16 @@ on:
 env:
   BUCKET_NAME : "jesusgollonet.com"
   AWS_REGION : "us-east-1"
-# permission can be added at job level or workflow level    
 permissions:
-  id-token: write   # This is required for requesting the JWT
-  contents: read    # This is required for actions/checkout
+  id-token: write
+  contents: read
 jobs:
+  Build: 
+    runs-on: node-latest
+    steps:
+      - name: test
+        run: |
+          echo "hello"
   S3PackageUpload:
     runs-on: ubuntu-latest
     steps:
