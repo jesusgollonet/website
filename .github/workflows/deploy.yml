@@ -10,7 +10,7 @@ permissions:
   id-token: write
   contents: read
 jobs:
-  Build: 
+  build: 
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
@@ -23,11 +23,19 @@ jobs:
       - name: test
         run: |
           echo "hello"
-  S3PackageUpload:
+      - name: Upload output file
+        uses: actions/upload-artifact@v3
+        with:
+          name: dist 
+          path: dist 
+  upload:
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Git clone the repository
-        uses: actions/checkout@v4
+   - name: Download math result for job 2
+        uses: actions/download-artifact@v3
+        with:
+          name: dist
       - name: configure aws credentials
         uses: aws-actions/configure-aws-credentials@v3
         with:
@@ -37,4 +45,4 @@ jobs:
       # Upload a file to AWS s3
       - name:  Copy test file to s3
         run: |
-          aws s3 cp ./README.md s3://${{ env.BUCKET_NAME }}/
+          aws s3 sync dist s3://${{ env.BUCKET_NAME }}/testtest
