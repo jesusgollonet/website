@@ -6,6 +6,7 @@ on:
 env:
   BUCKET_NAME : "jesusgollonet.com"
   AWS_REGION : "us-east-1"
+  DISTRIBUTION_ID: "E39IIH4TWRD4TD"
 permissions:
   id-token: write
   contents: read
@@ -52,3 +53,7 @@ jobs:
       - name:  Copy test file to s3
         run: |
           aws s3 sync . s3://${{ env.BUCKET_NAME }}/testtest
+      - name: Clear cloudfront cache 
+        run: |
+          aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID }} --paths "/testtest/*" 
+
