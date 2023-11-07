@@ -1,6 +1,4 @@
-# Sample workflow to access AWS resources when workflow is tied to branch
-# The workflow Creates static website using aws s3
-name: AWS deploy workflow
+name: Deploy  
 on:
   push
 env:
@@ -50,10 +48,10 @@ jobs:
           role-session-name: github-deploy-session
           aws-region: ${{ env.AWS_REGION }}
       # Upload a file to AWS s3
-      - name:  Copy test file to s3
+      - name: Sync files to S3  
         run: |
-          aws s3 sync . s3://${{ env.BUCKET_NAME }}/testtest
+          aws s3 sync . s3://${{ env.BUCKET_NAME }}/
       - name: Clear cloudfront cache 
         run: |
-          aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID }} --paths "/testtest/*" 
+          aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID }} --paths "/*" 
 
