@@ -3,7 +3,7 @@
   "version": "0.1.0",
   "private": true,
   "bin": {
-    "_w": "./bin/index.js"
+    "jgb": "./bin/index.js"
   },
   "scripts": {
     "dev": "next dev",
