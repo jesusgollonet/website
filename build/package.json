@@ -1,34 +1,37 @@
 {
-    "name": "my-app",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build && next export",
-        "start": "next start"
-    },
-    "dependencies": {
-        "@types/mdast": "^3.0.11",
-        "@types/node": "^18.15.11",
-        "@types/react": "^18.0.35",
-        "gray-matter": "^4.0.2",
-        "micromark": "^3.1.0",
-        "micromark-extension-gfm": "^2.0.3",
-        "next": "^13.3.0",
-        "prismjs": "^1.29.0",
-        "react": "^18.2.0",
-        "react-dom": "^18.2.0",
-        "remark": "^13.0.0",
-        "remark-html": "^13.0.1"
-    },
-    "devDependencies": {
-        "@testing-library/jest-dom": "^5.16.3",
-        "@testing-library/react": "^12.1.4",
-        "@types/prismjs": "^1.26.0",
-        "eslint": "8.38.0",
-        "eslint-config-next": "13.3.0",
-        "eslint-config-prettier": "^8.8.0",
-        "jest": "^27.5.1",
-        "typescript": "5.0.4"
-    }
+  "name": "my-app",
+  "version": "0.1.0",
+  "private": true,
+  "bin": {
+    "_w": "./bin/index.js"
+  },
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build && next export",
+    "start": "next start"
+  },
+  "dependencies": {
+    "@types/mdast": "^3.0.11",
+    "@types/node": "^18.15.11",
+    "@types/react": "^18.0.35",
+    "gray-matter": "^4.0.2",
+    "micromark": "^3.1.0",
+    "micromark-extension-gfm": "^2.0.3",
+    "next": "^13.3.0",
+    "prismjs": "^1.29.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "remark": "^13.0.0",
+    "remark-html": "^13.0.1"
+  },
+  "devDependencies": {
+    "@testing-library/jest-dom": "^5.16.3",
+    "@testing-library/react": "^12.1.4",
+    "@types/prismjs": "^1.26.0",
+    "eslint": "8.38.0",
+    "eslint-config-next": "13.3.0",
+    "eslint-config-prettier": "^8.8.0",
+    "jest": "^27.5.1",
+    "typescript": "5.0.4"
+  }
 }

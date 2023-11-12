@@ -27,3 +27,10 @@ to ease friction when switching projects with different stacks.
 ```
 ./bin/build
 ```
+
+### POC CLI
+
+I'm trying to make the above a simple cli so i can call it from anywhere on my
+computer. Issue #27 
+
+Install it by running `npm i -g .` in the `build` folder and run it like `_w`
