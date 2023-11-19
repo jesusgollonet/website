@@ -1,11 +1,16 @@
 #!/usr/bin/env node
 // loads path from .jgbrc.json
-const homedir = require("os").homedir();
-const jgbPath = require(homedir + "/.jgbrc.json");
+//
+import { homedir } from "os";
+import fs from "node:fs/promises";
+
+const jgbPath = JSON.parse(
+  await fs.readFile(homedir() + "/.jgbrc.json", "utf8"),
+);
 
 // executes script in build folder
-const { exec } = require("child_process");
-const path = require("path");
+import { exec } from "child_process";
+import path from "path";
 
 const child = exec("yarn run dev", {
   cwd: path.join(jgbPath.path, "build"),
