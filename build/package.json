@@ -3,16 +3,12 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
-  "bin": {
-    "jgb": "./bin/index.js"
-  },
   "scripts": {
     "dev": "next dev",
     "build": "next build && next export",
     "start": "next start"
   },
   "dependencies": {
-    "@inquirer/editor": "^1.2.13",
     "@types/mdast": "^3.0.11",
     "@types/node": "^18.15.11",
     "@types/react": "^18.0.35",

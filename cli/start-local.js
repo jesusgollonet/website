@@ -1,6 +1,4 @@
-#!/usr/bin/env node
 // loads path from .jgbrc.json
-//
 import { homedir } from "os";
 import fs from "node:fs/promises";
 
