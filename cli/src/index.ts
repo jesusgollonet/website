@@ -1,21 +1,21 @@
 #!/usr/bin/env node
 
-import yargs from "yargs";
+import yargs, { Argv } from "yargs";
+import { openEditor } from "./commands/new-post";
+
 yargs
   .scriptName("jgw")
   .usage("$0 <cms> [args]")
   .command(
     "post [name]",
     "create new post",
-    (yargs) => {
+    (yargs: Argv) => {
       yargs.positional("name", {
         type: "string",
         default: "test",
         describe: "something something",
       });
     },
-    function (argv) {
-      console.log("name", argv.name, "welcome to yargs");
-    },
+    openEditor,
   )
   .help().argv;
