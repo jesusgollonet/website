@@ -1,9 +1,8 @@
 #!/usr/bin/env node
 
-console.log("hiyaa");
 import yargs from "yargs";
 yargs
-  .scriptName("jgb")
+  .scriptName("jgw")
   .usage("$0 <cms> [args]")
   .command(
     "post [name]",
