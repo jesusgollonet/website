@@ -7,15 +7,19 @@ yargs
   .scriptName("jgw")
   .usage("$0 <cms> [args]")
   .command(
-    "post [name]",
+    "post",
     "create new post",
     (yargs: Argv) => {
-      yargs.positional("name", {
-        type: "string",
-        default: "test",
-        describe: "something something",
-      });
+      yargs
+        .option("title", {
+          type: "string",
+          default: "new post",
+          describe: "Optional title of your new post",
+        })
+        .alias("t", "title");
     },
-    openEditor,
+    async function (argv) {
+      await openEditor(argv.title as string);
+    },
   )
   .help().argv;

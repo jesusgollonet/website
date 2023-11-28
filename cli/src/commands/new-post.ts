@@ -13,12 +13,12 @@ draft: true
 ---`;
 };
 
-export const openEditor = async () => {
+export const openEditor = async (postTitle?: string) => {
   const config = await loadConfig();
   const postsDirectory = `${config.path}/build/posts/`;
   const postContent = await editor({
     message: "Create a new post",
-    default: postMetadata("Enter post title", new Date().toISOString()),
+    default: postMetadata(postTitle || "untitled", new Date().toISOString()),
   });
   const parsedPost = matter(postContent);
   // TODO: validate post
