@@ -9,11 +9,15 @@ const new_post_1 = require("./commands/new-post");
 yargs_1.default
     .scriptName("jgw")
     .usage("$0 <cms> [args]")
-    .command("post [name]", "create new post", (yargs) => {
-    yargs.positional("name", {
+    .command("post", "create new post", (yargs) => {
+    yargs
+        .option("title", {
         type: "string",
-        default: "test",
-        describe: "something something",
-    });
-}, new_post_1.openEditor)
+        default: "new post",
+        describe: "Optional title of your new post",
+    })
+        .alias("t", "title");
+}, async function (argv) {
+    await (0, new_post_1.openEditor)(argv.title);
+})
     .help().argv;
