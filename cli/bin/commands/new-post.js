@@ -8,7 +8,7 @@ exports.openEditor = void 0;
 const editor_1 = __importDefault(require("@inquirer/editor"));
 const fs_1 = __importDefault(require("fs"));
 const gray_matter_1 = __importDefault(require("gray-matter"));
-const postsDirectory = "./posts/";
+const config_1 = require("../config");
 const postMetadata = (postName, postDate) => {
     return `---
 title: '${postName}'
@@ -16,10 +16,12 @@ date: '${postDate}'
 draft: true
 ---`;
 };
-const openEditor = async () => {
+const openEditor = async (postTitle) => {
+    const config = await (0, config_1.loadConfig)();
+    const postsDirectory = `${config.path}/build/posts/`;
     const postContent = await (0, editor_1.default)({
         message: "Create a new post",
-        default: postMetadata("Enter post title", new Date().toISOString()),
+        default: postMetadata(postTitle || "untitled", new Date().toISOString()),
     });
     const parsedPost = (0, gray_matter_1.default)(postContent);
     // TODO: validate post
