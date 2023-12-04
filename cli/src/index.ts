@@ -27,10 +27,17 @@ yargs
       .command(
         "list",
         "list all posts",
-        (yargs: Argv) => {},
+        (yargs: Argv) => {
+          yargs
+            .option("draft", {
+              type: "boolean",
+              default: false,
+              describe: "include drafts",
+            })
+            .alias("d", "draft");
+        },
         async function (argv) {
-          console.log("list all posts");
-          await listPosts();
+          await listPosts(argv.draft);
         },
       );
   })

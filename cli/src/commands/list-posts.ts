@@ -38,16 +38,17 @@ async function parsePostFile(
   };
 }
 
-export async function listPosts() {
+export async function listPosts(includeDrafts: boolean = false) {
   const config = await loadConfig();
   const postsDirectory = `${config.path}/build/posts/`;
   let files = await parsePostsDirectory(postsDirectory);
-  files = files
-    .filter((f) => f.draft == false)
-    .sort((a, b) => {
-      return new Date(a.date) >= new Date(b.date) ? -1 : 1;
-    });
-  console.log(files);
+  if (!includeDrafts) {
+    console.log("no drafts");
+    files = files.filter((f) => f.draft == false);
+  }
+  files = files.sort((a, b) => {
+    return new Date(a.date) >= new Date(b.date) ? -1 : 1;
+  });
 
   const now = new Date();
   files.forEach(async (file) => {
