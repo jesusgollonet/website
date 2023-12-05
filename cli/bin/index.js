@@ -36,5 +36,7 @@ yargs_1.default
         .demandCommand(1)
         .strictCommands();
 })
+    .demandCommand(1)
+    .strictCommands()
     .help()
     .alias("h", "help").argv;

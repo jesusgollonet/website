@@ -43,5 +43,7 @@ yargs
       .demandCommand(1)
       .strictCommands();
   })
+  .demandCommand(1)
+  .strictCommands()
   .help()
   .alias("h", "help").argv;
