@@ -6,7 +6,7 @@ import { listPosts } from "./commands/list-posts";
 
 yargs
   .scriptName("jgw")
-  .command("post", "jgw post <commands>", (yargs: Argv) => {
+  .command("post", "jgw post <subcommand>", (yargs: Argv) => {
     yargs
       .command(
         "new",
@@ -39,7 +39,9 @@ yargs
         async function (argv) {
           await listPosts(argv.draft as boolean);
         },
-      );
+      )
+      .demandCommand(1)
+      .strictCommands();
   })
   .help()
   .alias("h", "help").argv;

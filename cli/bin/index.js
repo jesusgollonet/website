@@ -9,7 +9,7 @@ const new_post_1 = require("./commands/new-post");
 const list_posts_1 = require("./commands/list-posts");
 yargs_1.default
     .scriptName("jgw")
-    .command("post", "jgw post <commands>", (yargs) => {
+    .command("post", "jgw post <subcommand>", (yargs) => {
     yargs
         .command("new", "create new post", (yargs) => {
         yargs
@@ -32,7 +32,9 @@ yargs_1.default
             .alias("d", "draft");
     }, async function (argv) {
         await (0, list_posts_1.listPosts)(argv.draft);
-    });
+    })
+        .demandCommand(1)
+        .strictCommands();
 })
     .help()
     .alias("h", "help").argv;
