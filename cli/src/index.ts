@@ -37,7 +37,7 @@ yargs
             .alias("d", "draft");
         },
         async function (argv) {
-          await listPosts(argv.draft);
+          await listPosts(argv.draft as boolean);
         },
       );
   })

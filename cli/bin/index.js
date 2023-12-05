@@ -6,18 +6,33 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const yargs_1 = __importDefault(require("yargs"));
 const new_post_1 = require("./commands/new-post");
+const list_posts_1 = require("./commands/list-posts");
 yargs_1.default
     .scriptName("jgw")
-    .usage("$0 <cms> [args]")
-    .command("post", "create new post", (yargs) => {
+    .command("post", "jgw post <commands>", (yargs) => {
     yargs
-        .option("title", {
-        type: "string",
-        default: "new post",
-        describe: "Optional title of your new post",
+        .command("new", "create new post", (yargs) => {
+        yargs
+            .option("title", {
+            type: "string",
+            default: "new post",
+            describe: "Optional title of your new post",
+        })
+            .alias("t", "title");
+    }, async function (argv) {
+        await (0, new_post_1.openEditor)(argv.title);
     })
-        .alias("t", "title");
-}, async function (argv) {
-    await (0, new_post_1.openEditor)(argv.title);
+        .command("list", "list all posts", (yargs) => {
+        yargs
+            .option("draft", {
+            type: "boolean",
+            default: false,
+            describe: "include drafts",
+        })
+            .alias("d", "draft");
+    }, async function (argv) {
+        await (0, list_posts_1.listPosts)(argv.draft);
+    });
 })
-    .help().argv;
+    .help()
+    .alias("h", "help").argv;
