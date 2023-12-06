@@ -3,6 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { micromark } from "micromark";
 import { gfm, gfmHtml } from "micromark-extension-gfm";
+import { niceDate } from "./helpers";
 
 export interface PostFile {
   fileName: string;
@@ -17,7 +18,7 @@ const postsDirectory = path.join(process.cwd(), "posts");
 // given a post file, it returns a {id, frontMatter, contentHtml} object
 async function parsePostFile(
   fileName: string,
-  fileContents: Buffer
+  fileContents: Buffer,
 ): Promise<PostFile> {
   const parsedMatter = matter(fileContents);
   const processedContent = micromark(parsedMatter.content, {
@@ -35,7 +36,7 @@ async function parsePostFile(
 }
 
 export const parsePostsDirectory = async (
-  postsDirectory: string
+  postsDirectory: string,
 ): Promise<PostFile[]> => {
   const fileList = await readdir(postsDirectory);
   const postsData = [];
@@ -47,14 +48,6 @@ export const parsePostsDirectory = async (
   }
   return postsData;
 };
-
-export function niceDate(d: Date): string {
-  return new Date(d).toLocaleDateString("en-US", {
-    year: "numeric",
-    month: "long",
-    day: "numeric",
-  });
-}
 
 export async function getAllPostIds() {
   const fileList = await readdir(postsDirectory);
