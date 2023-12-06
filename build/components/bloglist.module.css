@@ -15,4 +15,25 @@ ul.blogList {
 
 .blogList li time {
   text-align: right;
+  min-width: 7em;
+}
+
+.short {
+  display: none;
+}
+
+.long {
+  display: inline;
+}
+
+@media (max-width: 600px) {
+  .blogList li time {
+    min-width: 4em;
+  }
+  time .short {
+    display: inline;
+  }
+  time .long {
+    display: none;
+  }
 }

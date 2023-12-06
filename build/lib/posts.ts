@@ -3,13 +3,11 @@ import path from "path";
 import matter from "gray-matter";
 import { micromark } from "micromark";
 import { gfm, gfmHtml } from "micromark-extension-gfm";
-import { niceDate } from "./helpers";
 
 export interface PostFile {
   fileName: string;
   title: string;
   date: string;
-  niceDate: string;
   draft: boolean;
   contentHtml: string;
 }
@@ -29,7 +27,6 @@ async function parsePostFile(
     fileName,
     title: parsedMatter.data.title,
     date: parsedMatter.data.date,
-    niceDate: niceDate(parsedMatter.data.date),
     draft: parsedMatter.data.draft,
     contentHtml: processedContent.toString(),
   };
