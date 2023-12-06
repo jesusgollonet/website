@@ -1,6 +1,7 @@
 import Layout from "../components/layout";
 import styles from "../components/bloglist.module.css";
 import Link from "next/link";
+import { niceDate } from "../lib/helpers";
 import {
     getSortedPostsData,
     PostFile,
@@ -32,7 +33,10 @@ export default function Diary({ allPostsData }: { allPostsData: PostFile[] }) {
                                 >
                                     {p.title}
                                 </Link>{" "}
-                                <time dateTime={p.date}>{p.niceDate}</time>{" "}
+                            <time dateTime={p.date}>
+                                <span className={styles.long}>{ niceDate(p.date, 'long') }</span>
+                                <span className={styles.short}>{niceDate(p.date, 'short')}</span>
+                            </time>{" "}
                             </li>
                         ))}
                     </ul>
