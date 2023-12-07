@@ -1,8 +1,8 @@
 name: Deploy  
 on:
   push:
-    branches:
-      - main
+    #branches:
+      #- main
 env:
   BUCKET_NAME : "jesusgollonet.com"
   AWS_REGION : "us-east-1"
@@ -19,6 +19,18 @@ jobs:
         uses: actions/setup-node@v3
         with: 
           node-version: '20.x'
+      - name: Get yarn cache directory path
+        id: yarn-cache-dir-path
+        run: echo "dir=$(yarn cache dir)" >> $GITHUB_OUTPUT
+
+      - uses: actions/cache@v3
+        id: yarn-cache # use this to check for `cache-hit` (`steps.yarn-cache.outputs.cache-hit != 'true'`)
+        with:
+          path: ${{ steps.yarn-cache-dir-path.outputs.dir }}
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+
       - run: cd build && yarn install
       - run: ./bin/build 
       - name: Upload output file
@@ -26,25 +38,26 @@ jobs:
         with:
           name: out 
           path: build/out/
-  upload:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Download math result for job 2
-        uses: actions/download-artifact@v3
-        with:
-          name: out
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v3
-        with:
-          role-to-assume: arn:aws:iam::450393336780:role/jgb-website-deploy-github-oidc
-          role-session-name: github-deploy-session
-          aws-region: ${{ env.AWS_REGION }}
-      # Upload a file to AWS s3
-      - name: Sync files to S3  
-        run: |
-          aws s3 sync . s3://${{ env.BUCKET_NAME }}/
-      - name: Clear cloudfront cache 
-        run: |
-          aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID }} --paths "/*" 
+  #upload:
+    #needs: build
+    #runs-on: ubuntu-latest
+    #steps:
+
+      #- name: Download math result for job 2
+        #uses: actions/download-artifact@v3
+        #with:
+          #name: out
+      #- name: configure aws credentials
+        #uses: aws-actions/configure-aws-credentials@v3
+        #with:
+          #role-to-assume: arn:aws:iam::450393336780:role/jgb-website-deploy-github-oidc
+          #role-session-name: github-deploy-session
+          #aws-region: ${{ env.AWS_REGION }}
+      ## Upload a file to AWS s3
+      #- name: Sync files to S3  
+        #run: |
+          #aws s3 sync . s3://${{ env.BUCKET_NAME }}/
+      #- name: Clear cloudfront cache 
+        #run: |
+          #aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID }} --paths "/*" 
 
