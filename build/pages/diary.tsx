@@ -25,23 +25,29 @@ export default function Diary({ allPostsData }: { allPostsData: PostFile[] }) {
                 <section>
                     <ul className={styles.blogList}>
                         {allPostsData.map((p) => (
-                            <li className={styles.post} key={p.fileName}>
-                                <Link
-                                    href={`/posts/${p.fileName
-                                        .split("_")[1]
-                                        .replace(/\.md$/, "")}`}
-                                >
-                                    {p.title}
-                                </Link>{" "}
-                            <time dateTime={p.date}>
-                                <span className={styles.long}>{ niceDate(p.date, 'long') }</span>
-                                <span className={styles.short}>{niceDate(p.date, 'short')}</span>
-                            </time>{" "}
-                            </li>
+                            <DiaryLine p={p} key={p.fileName} />
                         ))}
                     </ul>
                 </section>
             }
         </Layout>
+    );
+}
+
+function DiaryLine({ p }: { p: PostFile }) {
+    return (
+        <li className={styles.post} key={p.fileName}>
+            <Link
+                href={`/posts/${p.fileName
+                        .split("_")[1]
+                        .replace(/\.md$/, "")}`}
+            >
+                {p.title}
+            </Link>{" "}
+            <time dateTime={p.date}>
+                <span className={styles.long}>{niceDate(p.date, 'long') }</span>
+                <span className={styles.short}>{niceDate(p.date, 'short')}</span>
+            </time>{" "}
+        </li>
     );
 }
