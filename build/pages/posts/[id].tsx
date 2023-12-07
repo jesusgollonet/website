@@ -3,6 +3,7 @@ import Layout from "../../components/layout";
 import { useEffect } from "react";
 import "prismjs/themes/prism-tomorrow.css";
 import Prism from "prismjs";
+import { niceDate } from "../../lib/helpers";
 
 export default function Post({
     postData,
@@ -15,7 +16,7 @@ export default function Post({
     return (
         <Layout>
             <h1>{postData.title}</h1>
-            <p>{postData.niceDate}</p>
+            <p>{niceDate(postData.date)}</p>
             <div
                 dangerouslySetInnerHTML={{
                     __html: postData.contentHtml,
