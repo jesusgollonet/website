@@ -7,6 +7,7 @@ import { gfm, gfmHtml } from "micromark-extension-gfm";
 export interface PostFile {
   fileName: string;
   title: string;
+  slug: string;
   date: string;
   draft: boolean;
   contentHtml: string;
@@ -26,6 +27,7 @@ async function parsePostFile(
   return {
     fileName,
     title: parsedMatter.data.title,
+    slug: `/posts/${fileName.split("_")[1].replace(/\.md$/, "")}`,
     date: parsedMatter.data.date,
     draft: parsedMatter.data.draft,
     contentHtml: processedContent.toString(),

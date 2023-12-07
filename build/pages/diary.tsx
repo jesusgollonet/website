@@ -38,9 +38,7 @@ function DiaryLine({ p }: { p: PostFile }) {
     return (
         <li className={styles.post} key={p.fileName}>
             <Link
-                href={`/posts/${p.fileName
-                        .split("_")[1]
-                        .replace(/\.md$/, "")}`}
+                href={ p.slug}
             >
                 {p.title}
             </Link>{" "}
