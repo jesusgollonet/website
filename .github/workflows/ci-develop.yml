@@ -1,8 +1,8 @@
-name: Deploy  
+name: CI Develop  
 on:
   push:
     branches:
-      - main
+      - develop
 env:
   BUCKET_NAME : "jesusgollonet.com"
   AWS_REGION : "us-east-1"
@@ -33,31 +33,3 @@ jobs:
 
       - run: cd build && yarn install
       - run: ./bin/build 
-      - name: Upload output file
-        uses: actions/upload-artifact@v3
-        with:
-          name: out 
-          path: build/out/
-  upload:
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-
-      - name: Download math result for job 2
-        uses: actions/download-artifact@v3
-        with:
-          name: out
-      - name: configure aws credentials
-        uses: aws-actions/configure-aws-credentials@v3
-        with:
-          role-to-assume: arn:aws:iam::450393336780:role/jgb-website-deploy-github-oidc
-          role-session-name: github-deploy-session
-          aws-region: ${{ env.AWS_REGION }}
-      # Upload a file to AWS s3
-      - name: Sync files to S3  
-        run: |
-          aws s3 sync . s3://${{ env.BUCKET_NAME }}/
-      - name: Clear cloudfront cache 
-        run: |
-          aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID }} --paths "/*" 
-
