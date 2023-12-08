@@ -24,10 +24,12 @@ async function parsePostFile(
     extensions: [gfm()],
     htmlExtensions: [gfmHtml()],
   });
+  console.log(fileName, fileName.split("_")[1]);
+  const slug = `/posts/${fileName.split("_")[1].replace(/\.md$/, "")}`;
   return {
     fileName,
     title: parsedMatter.data.title,
-    slug: `/posts/${fileName.split("_")[1].replace(/\.md$/, "")}`,
+    slug,
     date: parsedMatter.data.date,
     draft: parsedMatter.data.draft,
     contentHtml: processedContent.toString(),
@@ -60,17 +62,22 @@ export async function getAllPostIds() {
   });
 }
 
-export async function getPostData(fileName: string): Promise<PostFile> {
+// TODO: should we throw an error?
+export async function getPostData(postTitleId: string): Promise<PostFile> {
   const fileList = await readdir(postsDirectory);
   // TODO: since we're including datetime in filename but only matching on title
   // this is brittle, as there could be 2 different files with the same title. Fix
-  const postFile = fileList.find((f) => f.includes(fileName));
+  const postFile = fileList.find((f) => f.includes(postTitleId));
 
-  const filePath = path.join(postsDirectory, postFile!); // that bang is a non-null assertion operator
-  const fileContents = await readFile(filePath);
-  const postData = await parsePostFile(fileName, fileContents);
+  if (postFile === undefined) {
+    throw new Error(`No post found with id ${postTitleId}`);
+  } else {
+    const filePath = path.join(postsDirectory, postFile!); // that bang is a non-null assertion operator
+    const fileContents = await readFile(filePath);
+    const postData = await parsePostFile(postFile, fileContents);
 
-  return postData;
+    return postData;
+  }
 }
 
 export async function getSortedPostsData(): Promise<PostFile[]> {
