@@ -9,6 +9,7 @@ const new_post_1 = require("./commands/new-post");
 const list_posts_1 = require("./commands/list-posts");
 yargs_1.default
     .scriptName("jgw")
+    .usage("Usage: $0 <command> [options]")
     .command("post", "jgw post <subcommand>", (yargs) => {
     yargs
         .command("new", "create new post", (yargs) => {

@@ -6,6 +6,7 @@ import { listPosts } from "./commands/list-posts";
 
 yargs
   .scriptName("jgw")
+  .usage("Usage: $0 <command> [options]")
   .command("post", "jgw post <subcommand>", (yargs: Argv) => {
     yargs
       .command(
