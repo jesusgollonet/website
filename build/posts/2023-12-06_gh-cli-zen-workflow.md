@@ -17,6 +17,21 @@ has proven extremely helpful:
 
 - They serve as TODO list for me. Especially handy when applied on projects that
 I pick up every few weeks/months.
+e.g: 
+```bash
+gh issue list
+
+ID   TITLE                                                               LABELS  UPDATED
+#50  content: add /now page                                                      about 26 days ago
+#49  cli: prompt save or discard post after editing                              about 2 months ago
+#48  cli: check if server is running and optionally start                        about 3 months ago
+#47  investigate how to share lib/posts between cli and website                  about 3 months ago
+#46  fe: add syntax highlighting to inline code blocks                           about 3 months ago
+#45  fe: break down diary page into components                                   about 3 months ago
+#39  cli: load configuration from entrypoint instead of inside new-post          about 4 months ago
+#33  cli: list out features + mvp                                                about 4 months ago
+#21  Simple web editor                                                           about 10 months ago
+```
 - I can add extra context in the form of comments (e.g: when finding relevant
 links for a given topic).
 - They add a fun touch of gamification to my work.
