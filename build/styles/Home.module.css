@@ -4,10 +4,6 @@
 
 .header,
 .contact {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  text-align: left;
 }
 .header a {
   text-decoration: underline;
@@ -16,4 +12,36 @@
 .contact li {
   display: inline;
   margin: 0.4em;
+}
+
+.homeBody p {
+  margin: 1.5em 0;
+}
+
+.brandDrop {
+  /*padding: 0 0.2em;*/
+  /*margin: 0 0.1em;*/
+  background-color: #ffe6da;
+}
+
+.agencyDrop {
+  background-color: #e5f8e7;
+}
+
+.homeBody ul {
+  list-style: none;
+  margin-left: 0;
+  padding-left: 0;
+}
+
+.homeBody li {
+  margin: 0.2em 0;
+  padding-left: 1em;
+  text-indent: -1em;
+}
+
+.homeBody li:before {
+  content: ">";
+  color: #d5b5b5;
+  padding-right: 1.5em;
 }
