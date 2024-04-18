@@ -14,13 +14,13 @@ export default function Now() {
       <p>
         I&apos;m focusing back on interactive installations, kiosks, hardware
         devices with the lovely folks at Bora Bora. That has meant working a
-        significant amount on windows and vs-code, which is ok, but I'm still
-        painfully slow.
+        significant amount on windows and vs-code, which is ok, but I&apos;m
+        still painfully slow.
       </p>
       <p>
         The beginning of the year saw me with amazing energy, which has waned a
         bit due to some stress at work. I&apos;m journaling like a maniac in
-        roam, so at least I'm fully aware of what&apos; going on.
+        roam, so at least I&apos;m fully aware of what&apos; going on.
       </p>
       <p>
         I&apos;m back to the gym for 2 or 3 days a week, refocusing on strength
