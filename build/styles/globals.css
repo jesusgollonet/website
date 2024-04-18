@@ -45,3 +45,26 @@ blockquote {
 time {
   color: #b9b9b9;
 }
+
+a {
+  outline-color: transparent;
+  text-decoration: none;
+  padding: 2px 1px 0;
+}
+
+a:link {
+  color: #2727e0;
+}
+
+a:visited {
+  color: #7777d8;
+}
+
+a:focus,
+a:hover {
+  border-bottom: 1px solid;
+}
+
+a:active {
+  color: red;
+}

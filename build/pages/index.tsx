@@ -28,25 +28,19 @@ export default function Home() {
           based in Malaga, Spain.
         </p>
         <h2>Work</h2>
+        <p>
+          I have built, managed and delivered major digital campaigns and
+          innovative interactive installations for household brands like Adidas,{" "}
+          Google, HBO, Coca-Cola and many others, working with some of the best
+          creative agencies in the world (Resn, North Kingdom, Wieden + Kennedy,
+          Dogstudio),
+        </p>
         <p>I specialise in</p>
         <ul>
           <li>Leading development projects</li>
           <li>Architecting scalable solutions</li>
           <li>Deploying reliable cloud infrastructure</li>
         </ul>
-        <p>
-          I have built, managed and delivered major digital campaigns and
-          innovative interactive installations for household brands like{" "}
-          <span className={styles.brandDrop}>Adidas</span>,
-          <span className={styles.brandDrop}>Google</span>,
-          <span className={styles.brandDrop}>HBO</span>,
-          <span className={styles.brandDrop}>Coca-Cola</span> and many others,
-          working with some of the best agencies in the world (
-          <span className={styles.agencyDrop}>Resn</span>,
-          <span className={styles.agencyDrop}>North Kingdom</span>,
-          <span className={styles.agencyDrop}>Wieden + Kennedy</span>,
-          <span className={styles.agencyDrop}>Dogstudio</span>),
-        </p>
       </section>
       <section className={styles.homeBody}>
         <h2>Contact</h2>

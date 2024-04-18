@@ -2,7 +2,12 @@
   border-radius: 50%;
 }
 
-.header,
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: left;
+}
 .contact {
 }
 .header a {
@@ -16,16 +21,6 @@
 
 .homeBody p {
   margin: 1.5em 0;
-}
-
-.brandDrop {
-  /*padding: 0 0.2em;*/
-  /*margin: 0 0.1em;*/
-  background-color: #ffe6da;
-}
-
-.agencyDrop {
-  background-color: #e5f8e7;
 }
 
 .homeBody ul {
