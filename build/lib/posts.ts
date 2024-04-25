@@ -20,11 +20,19 @@ async function parsePostFile(
   fileContents: Buffer,
 ): Promise<PostFile> {
   const parsedMatter = matter(fileContents);
-  const processedContent = micromark(parsedMatter.content, {
+  // modify markdown image paths so we get rid of the ../public prefix in the url
+  // only do it inside of markdown image tags
+  const contentWithImagePathsRewritten = parsedMatter.content.replace(
+    /!\[.*\]\(.*\)/g,
+    (match) => {
+      const imagePath = match.match(/\((.*)\)/)![1];
+      return match.replace(imagePath, imagePath.replace("../public", ""));
+    },
+  );
+  const processedContent = micromark(contentWithImagePathsRewritten, {
     extensions: [gfm()],
     htmlExtensions: [gfmHtml()],
   });
-  console.log(fileName, fileName.split("_")[1]);
   const slug = `/posts/${fileName.split("_")[1].replace(/\.md$/, "")}`;
   return {
     fileName,
