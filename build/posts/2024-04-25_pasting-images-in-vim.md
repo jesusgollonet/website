@@ -1,5 +1,5 @@
 ---
-title: 'Pasting images in Vim'
+title: 'Pasting images in Markdown using Vim'
 date: '2024-04-25T10:37:11.344Z'
 draft: false
 ---
