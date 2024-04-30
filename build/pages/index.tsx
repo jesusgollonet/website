@@ -45,12 +45,11 @@ export default function Home() {
         <p>
           If you find any of this interesting, you can read more{" "}
           <Link href="/about">about me</Link>, maybe check out my{" "}
-          <Link href="/diary">diary</Link> or
+          <Link href="/diary">diary</Link> or simply get in touch 👇
         </p>
       </section>
       <section className={styles.homeBody}>
         <h2>Contact</h2>
-        <p>Sounds Interesting? Let&apos;s chat!</p>
         <ul>
           <li>
             <Link href="https://calendly.com/jesusgollonet/hola">
