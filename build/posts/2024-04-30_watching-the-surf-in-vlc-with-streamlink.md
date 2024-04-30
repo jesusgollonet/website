@@ -14,20 +14,22 @@ Mediterranean), which is understandable, given the questionable quality of the s
 But the beach is still a big attraction, and there are plenty of webcams pointed at it.
 
 I've been [ playing with computer vision
-](https://github.com/jesusgollonet/opencv-clip-cutter) lately and want to give some basic wave detection a try.  The first step is capturing streams from beach webcams, but they usually appear in ad ridden user hostile sites.
+](https://github.com/jesusgollonet/opencv-clip-cutter) lately and want to give some basic wave detection a try.  The first step is capturing streams from beach webcams, but they usually appear in sites which are slow and full of ads.
 
 [Streamlink ](https://streamlink.github.io/) 
 is a great tool for that. It allows you to watch streams in VLC and provides a Python API that gives access to the stream data.
 
 If the stream you care about is in a popular platform, like twitch or youtube
-(or many others!) chances are there is [streamlink plugin](https://streamlink.github.io/plugins.html) for it.
-
-Usage in this case is as simple as 
+(or many others!) chances are there is [streamlink plugin](https://streamlink.github.io/plugins.html) for it. Usage in this case is as simple as 
 ```bash
 streamlink https://www.twitch.tv/merewether_slsc best 
 ```
 
 If there is no plugin, you can look for the `m3u8` file in the page source and pass it to streamlink. 
+
+```bash
+streamlink 'https://hd-auth.skylinewebcams.com/live.m3u8?a=rniaof33h8kqu8muddr7t086v3' best 
+```
 
 Some sites do have some protection against this, but it hasn't been too hard to get around it.
 Streamlink allows you to pass cookies and headers to the request, so what I've done to figure out what headers were needed was to copy the curl
