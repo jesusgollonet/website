@@ -54,6 +54,8 @@ streamlink --http-header 'origin=https://www.skylinewebcams.com' 'https://hd-aut
 ![image_2024-04-30-11-25-04](../public/images/image_2024-04-30-11-25-04.png)
 
 
+And I will leave it at that, as I just saw there might be some waves to catch
+today! 🏄
 
 
 
