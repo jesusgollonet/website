@@ -24,23 +24,29 @@ export default function Home() {
       <section className={styles.homeBody}>
         <p>Welcome!</p>
         <p>
-          I&apos;m Jesus Gollonet a Technical Director and Software Engineer
-          based in Malaga, Spain.
+          I&apos;m Jesus Gollonet a Freelance Creative Technologist with a focus
+          on backend and devops{" "}
         </p>
         <h2>Work</h2>
         <p>
-          I have built, managed and delivered major digital campaigns and
-          innovative interactive installations for household brands like Adidas,{" "}
-          Google, HBO, Coca-Cola and many others, working with some of the best
-          creative agencies in the world (Resn, North Kingdom, Wieden + Kennedy,
-          Dogstudio),
+          As a Technical Director, I have built, managed and delivered major
+          digital campaigns and innovative interactive installations for
+          household brands like Adidas, Google, HBO, Coca-Cola and many others,
+          working with some of the best creative agencies in the world (Resn,
+          North Kingdom, Wieden + Kennedy, Dogstudio),
         </p>
         <p>I specialise in</p>
         <ul>
+          <li>Developing creative back-end solutions on a tight schedule</li>
           <li>Leading development projects</li>
-          <li>Architecting scalable solutions</li>
+          <li>Architecting scalable solutions for high end campaigns</li>
           <li>Deploying reliable cloud infrastructure</li>
         </ul>
+        <p>
+          If you find any of this interesting, you can read more{" "}
+          <Link href="/about">about me</Link>, maybe check out my{" "}
+          <Link href="/diary">diary</Link> or
+        </p>
       </section>
       <section className={styles.homeBody}>
         <h2>Contact</h2>
@@ -65,16 +71,13 @@ export default function Home() {
       <section className={styles.contact}>
         <ul>
           <li>
-            <Link href="/about">About</Link>
-          </li>
-          <li>
-            <Link href="/diary">Diary</Link>
-          </li>
-          <li>
             <a href="https://github.com/jesusgollonet">Github</a>
           </li>
           <li>
             <a href="https://twitter.com/jesusgollonet">Twitter</a>
+          </li>
+          <li>
+            <a href="https://mastodon.social/jesusgollonet">Mastodon</a>
           </li>
           <li>
             <a href="https://instagram.com/jesusgollonet">Instagram</a>
