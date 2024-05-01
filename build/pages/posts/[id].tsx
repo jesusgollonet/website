@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import "prismjs/themes/prism-tomorrow.css";
 import Prism from "prismjs";
 import { niceDate } from "../../lib/helpers";
+import { PageType } from "../../lib/types";
 
 export default function Post({
   postData,
@@ -14,7 +15,7 @@ export default function Post({
     Prism.highlightAll();
   }, []);
   return (
-    <Layout>
+    <Layout pageType={PageType.Diary}>
       <h1>{postData.title}</h1>
       <p>
         <time>{niceDate(postData.date)}</time>
