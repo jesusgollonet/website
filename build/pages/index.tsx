@@ -24,16 +24,16 @@ export default function Home() {
       <section className={styles.homeBody}>
         <p>Welcome!</p>
         <p>
-          I&apos;m Jesus Gollonet a Freelance Creative Technologist with a focus
-          on backend and devops{" "}
+          I&apos;m Jesus Gollonet a Freelance Creative Technologist and
+          Technical Director with a focus on backend and devops{" "}
         </p>
         <h2>Work</h2>
         <p>
-          As a Technical Director, I have built, managed and delivered major
-          digital campaigns and innovative interactive installations for
-          household brands like Adidas, Google, HBO, Coca-Cola and many others,
-          working with some of the best creative agencies in the world (Resn,
-          North Kingdom, Wieden + Kennedy, Dogstudio),
+          I have built, managed and delivered major digital campaigns and
+          innovative interactive installations for household brands like Adidas,
+          Google, HBO, Coca-Cola and many others, working with some of the best
+          creative agencies in the world (Resn, North Kingdom, Wieden + Kennedy,
+          Dogstudio),
         </p>
         <p>I specialise in</p>
         <ul>
@@ -45,17 +45,28 @@ export default function Home() {
         <p>
           If you find any of this interesting, you can read more{" "}
           <Link href="/about">about me</Link>, maybe check out my{" "}
-          <Link href="/diary">diary</Link> or simply get in touch 👇
+          <Link href="/diary">diary</Link>, where I share thoughts and ongoing
+          projects. I&apos;m also around pretty much anywhere with the
+          @jesusgollonet handle. ({" "}
+          <Link href="https://github.com/jesusgollonet">Github</Link>,{" "}
+          <Link href="https://twitter.com/jesusgollonet">Twitter</Link>,{" "}
+          <Link href="https://linkedin.com/in/jesusgollonet">LinkedIn</Link>,{" "}
+          <Link href="https://instagram.com/jesusgollonet">Instagram</Link>,{" "}
+          <Link href="https://www.youtube.com/@jesusgollonet">Youtube</Link>,{" "}
+          <Link href="https://mastodon.social/@jesusgollonet">Mastodon</Link>)
         </p>
       </section>
       <section className={styles.homeBody}>
         <h2>Contact</h2>
+        <p>
+          If you want to talk about a project, ask for advice, or just say hi,
+          you can get in touch 👇
+        </p>
         <ul>
           <li>
             <Link href="https://calendly.com/jesusgollonet/hola">
-              Book a free 30 minute meeting
+              Book a 30 minute meeting
             </Link>{" "}
-            (no strings attached!)
           </li>
           <li>
             <Link href="mailto:me@jesusgollonet.com">Email me</Link>{" "}
@@ -67,26 +78,6 @@ export default function Home() {
           </li>
         </ul>
       </section>
-      <section className={styles.contact}>
-        <ul>
-          <li>
-            <a href="https://github.com/jesusgollonet">Github</a>
-          </li>
-          <li>
-            <a href="https://twitter.com/jesusgollonet">Twitter</a>
-          </li>
-          <li>
-            <a href="https://mastodon.social/jesusgollonet">Mastodon</a>
-          </li>
-          <li>
-            <a href="https://instagram.com/jesusgollonet">Instagram</a>
-          </li>
-          <li>
-            <a href="https://www.linkedin.com/in/jesusgollonet/">LinkedIn</a>
-          </li>
-        </ul>
-      </section>
-      <footer className={styles.footer}></footer>
     </Layout>
   );
 }
