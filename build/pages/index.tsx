@@ -2,9 +2,10 @@ import Head from "next/head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import Layout from "../components/layout";
+import { PageType } from "../lib/types";
 export default function Home() {
   return (
-    <Layout home>
+    <Layout pageType={PageType.Home}>
       <Head>
         <link rel="icon" href="/favicon.ico" />
       </Head>
