@@ -59,7 +59,7 @@ seems like a great opportunity to continue with it.
 ### References 
 
 - [Workshop Slides]( https://hackmd.io/@GMgEoX9mQWKh09CQ-JktgA/rkrfZgOzR)
-- [Iroh Worshop Source](https://github.com/n0-computer/iroh-workshop-jonthebeach ) https://hackmd.io/@GMgEoX9mQWKh09CQ-JktgA/BkwrZ6lfC
+- [Iroh Worshop Source](https://github.com/n0-computer/iroh-workshop-jonthebeach) 
 
 
 ## [Build Your own RAG With Mustafa Esra](https://jonthebeach.com/workshops/datastax/)
