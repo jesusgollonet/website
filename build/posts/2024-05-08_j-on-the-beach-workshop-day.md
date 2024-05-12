@@ -47,7 +47,7 @@ pragmatism explictly when motivating the workshop.
 
 He spent a good portion of the workshop explaining their technical philosophy, 
 and the underlying networking concepts. I went home with a bunch of networking
-items to explore further (QUICK, Nat hole punching, ALPN, ...). 
+items to explore further (QUIC, Nat hole punching, ALPN, ...). 
 
 Given that most of the participants (me included) were not very familiar with
 rust (In my case I had also just broke my vim rust setup by installing [ Coc Rust Analyzer](https://github.com/fannheyward/coc-rust-analyzer) 😢), the hands on part was more like a walkthrough of the code, but the
