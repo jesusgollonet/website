@@ -59,7 +59,7 @@ jobs:
           aws s3 sync . s3://${{ env.BUCKET_NAME }}/
       - name: Clear cloudfront cache 
         run: |
-          aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID }} --paths "/* /posts/*" 
+          aws cloudfront create-invalidation --distribution-id ${{ env.DISTRIBUTION_ID }} --paths "/*" "/posts/*" 
 
   health-check:
     needs: upload
