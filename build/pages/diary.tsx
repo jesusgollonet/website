@@ -1,4 +1,5 @@
 import Layout from "../components/layout";
+import JGHead from "../components/jg-head";
 import styles from "../components/bloglist.module.css";
 import Link from "next/link";
 import { niceDate } from "../lib/helpers";
@@ -16,6 +17,8 @@ export async function getStaticProps() {
 export default function Diary({ allPostsData }: { allPostsData: PostFile[] }) {
   return (
     <Layout>
+      <JGHead />
+
       <h1>Diary</h1>
       {
         <section>

@@ -1,4 +1,4 @@
-import Head from "next/head";
+import JGHead from "../components/jg-head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import Layout from "../components/layout";
@@ -6,10 +6,7 @@ import { PageType } from "../lib/types";
 export default function Home() {
   return (
     <Layout pageType={PageType.Home}>
-      <Head>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
+      <JGHead />
       <main className={styles.main}>
         <header className={styles.header}>
           <img

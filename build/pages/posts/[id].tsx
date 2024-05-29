@@ -1,5 +1,6 @@
 import { getAllPostIds, getPostData, PostFile } from "../../lib/posts";
 import Layout from "../../components/layout";
+import JGHead from "../../components/jg-head";
 import { useEffect } from "react";
 import "prismjs/themes/prism-tomorrow.css";
 import Prism from "prismjs";
@@ -16,6 +17,7 @@ export default function Post({
   }, []);
   return (
     <Layout pageType={PageType.Diary}>
+      <JGHead />
       <h1>{postData.title}</h1>
       <p>
         <time>{niceDate(postData.date)}</time>
