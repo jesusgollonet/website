@@ -4,7 +4,7 @@ export default function JGHead() {
   return (
     <Head>
       <title>
-        Jesus Gollonet | Freelance Creative Technologist & Technical Director{" "}
+        Jesus Gollonet | Freelance Creative Technologist & Technical Director
       </title>
       <meta
         name="description"
