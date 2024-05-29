@@ -24,7 +24,7 @@ export default function JGHead() {
         content="https://jesusgollonet.com/images/card.jpg"
       />
       {/* twitter card*/}
-      <meta name="twitter:card" content="summary" />
+      <meta name="twitter:card" content="summary_large_image" />
       <meta name="twitter:site" content="@jesusgollonet" />
       <meta name="twitter:creator" content="@jesusgollonet" />
       <meta
