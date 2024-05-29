@@ -19,12 +19,14 @@ export const openEditor = async (postTitle?: string) => {
   const postContent = await editor({
     message: "Create a new post",
     default: postMetadata(postTitle || "untitled", new Date().toISOString()),
-      postfix: ".md",
+    postfix: ".md",
   });
   const parsedPost = matter(postContent);
   // TODO: validate post
   const { title, date } = parsedPost.data;
-  const fileTitle = title.toLowerCase().replace(/\s/g, "-");
+  // remove special chars from title. replace spaces with hyphens
+  // if there are multiple spaces, replace with single hyphen
+  const fileTitle = title.replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s+/g, "-");
   const fileDate = date.split("T")[0];
   const postFilename = `${fileDate}_${fileTitle}.md`;
   // check for defaults
