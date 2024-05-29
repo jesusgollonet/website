@@ -1,3 +1,3 @@
 export default {
-  trailingSlash: true,
+  trailingSlash: false,
 };
