@@ -13,16 +13,9 @@ export default function Layout({
     <div className={styles.container}>
       <div>{children}</div>
 
-      {pageType === PageType.Diary && (
-        <div className={styles.backToHome}>
-          <Link href="/diary">← Diary</Link>
-        </div>
-      )}
-      {pageType === PageType.Other && (
-        <div className={styles.backToHome}>
-          <Link href="/">← Home</Link>
-        </div>
-      )}
+      <div className={styles.backToHome}>
+        <Link href="/">← Home</Link>
+      </div>
     </div>
   );
 }

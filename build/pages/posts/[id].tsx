@@ -1,6 +1,7 @@
 import { getAllPostIds, getPostData, PostFile } from "../../lib/posts";
 import Layout from "../../components/layout";
 import JGHead from "../../components/jg-head";
+import PostFooter from "../../components/post-footer";
 import { useEffect } from "react";
 import "prismjs/themes/prism-tomorrow.css";
 import Prism from "prismjs";
@@ -27,6 +28,7 @@ export default function Post({
           __html: postData.contentHtml,
         }}
       />
+      <PostFooter />
     </Layout>
   );
 }

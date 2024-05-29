@@ -55,7 +55,9 @@ export default function Home() {
         </p>
       </section>
       <section className={styles.homeBody}>
-        <h2>Contact</h2>
+        {/* add anchor to h2 */}
+
+        <h2> Contact</h2>
         <p>
           If you want to talk about a project, ask for advice, or just say hi,
           you can get in touch 👇
