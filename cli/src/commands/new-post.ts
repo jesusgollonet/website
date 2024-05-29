@@ -19,6 +19,7 @@ export const openEditor = async (postTitle?: string) => {
   const postContent = await editor({
     message: "Create a new post",
     default: postMetadata(postTitle || "untitled", new Date().toISOString()),
+      postfix: ".md",
   });
   const parsedPost = matter(postContent);
   // TODO: validate post
