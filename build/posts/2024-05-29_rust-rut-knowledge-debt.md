@@ -5,11 +5,16 @@ draft: false
 ---
 
 Yesterday, this [framework reflecting on where and when to adopt coding
-assistants](https://it20.info/2024/5/a-framework-to-adopt-generative-ai-assistants-for-builders/) caught my attention. 
+assistants](https://it20.info/2024/5/a-framework-to-adopt-generative-ai-assistants-for-builders/) caught my attention.
+The full article is worth a read, here's the graph that summarizes it:
 
 ![coding-assistant-framework](../public/images/coding-assistant-framework.png)
 
-It caught my attention because I have scars.
+The quick summary is that the further a given task is from your skill level, the
+more risk you're taking by delegating to a coding assistant. That doesn't mean
+you should not do it, just that you need to take that risk into account.
+
+Anyway, It caught my attention because I have scars.
 
 At the beginning of the year I started developing an app using Rust. I had 0
 previous experience with the language, but I have been interested for years and,
@@ -20,7 +25,8 @@ During the initial weeks I was able to progress fairly quickly. Sure I sometimes
 got in a loop of copy / paste from ChatGPT => editor and then compiler error message => ChatGPT, 
 but I always ended up making it work... 
 
-Until I didn't. Close to easter I was wrapping up an initial release of the project.  There was a feature that required a small refactor using threading and then I got into the classic  loop but this time I kept spinning circles for hours, with ChatGPT suggesting progressively gnarlier looking type signatures until it gave up and got back to its initial suggestion.
+Until I didn't. Close to easter I was wrapping up an initial release of the project. 
+There was a feature that required a small refactor using threading and then I got into the classic  loop but this time I kept spinning circles for hours, with ChatGPT suggesting progressively gnarlier looking type signatures until it gave up and got back to its initial suggestion.
 
 The reality is that I had a barely functional understanding of concurrency and the Rust 
 borrow checker, so if ChatGPT couldn't help, I was out of luck. 
