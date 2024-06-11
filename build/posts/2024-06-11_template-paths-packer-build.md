@@ -1,10 +1,10 @@
 ---
-title: 'TIL: Template paths in packer build'
+title: 'Template paths in packer build'
 date: '2024-06-11T09:24:36.492Z'
 draft: false
 ---
 
-In order to create an image with [ packer ](https://www.packer.io/), you need to define a template that
+In order to create an image with [packer](https://www.packer.io/), you need to define a template that
 configures your image. Here' a simple example:
 
 ```hcl
@@ -109,9 +109,8 @@ that once the script is ran my shell goes back to the original directory:
 (cd image && packer build template.pkr.hcl)
 ```
 
-While writing this I learned that you can also solve it by using [ HCL path
-variables
-](https://developer.hashicorp.com/packer/docs/templates/hcl_templates/path-variables).
+While writing this I learned that you can also solve it by using [HCL path
+variables](https://developer.hashicorp.com/packer/docs/templates/hcl_templates/path-variables).
 Specifically, you can use the `path.root` variable to reference the directory
 where the template is.
 
