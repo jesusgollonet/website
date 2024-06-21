@@ -4,7 +4,7 @@ date: '2024-06-21T08:49:23.025Z'
 draft: false
 ---
 
-I just got confirmed for the Summer 2 batch at the Recurse Center starging in
+I just got confirmed for the Summer 2 batch at the [Recurse Center](https://www.recurse.com/) starting in
 July 1st and I'm through the moon.
 
 I have been wanting to attend for the longest time (I have tweets from as far
