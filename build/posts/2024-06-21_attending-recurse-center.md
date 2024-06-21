@@ -54,7 +54,8 @@ some of the projects I have in mind.
 
 I have been working in creative digital agencies for almost all my career. I
 love that work, but I have always been curious about working in a more product
-focused role. 
+focused role. The recurse center offers a great opportunity to explore that
+angle. 
 
 ## Logistics
 
