@@ -7,11 +7,11 @@ draft: false
 I just got confirmed for the Summer 2 batch at the Recurse Center starging in
 July 1st and I'm through the moon.
 
-I have been wanting to attend for the longest time (I have tweets from 2017) but
-always had other commitments. Back in May I decided it was the perfect time, got
-my application together and after a couple of lovely interviews (the last one was
-a pair programming interview which I did at 9pm from a family resort on not much
-sleep after a 4 hour drive) I got in!
+I have been wanting to attend for the longest time (I have tweets from as far
+back asw 2017) but always had other commitments. Back in May I decided it was
+the perfect time, got my application together and after a couple of lovely
+interviews (the last one was a pair programming interview which I did at 9pm
+from a family resort on not much sleep after a 4 hour drive) I got in!
 
 ## What I'll be working on
 
@@ -60,7 +60,8 @@ focused role.
 
 I will be joining remotely from Spain. While I know attending in person in New
 York would multiply the experience, I have been working remotely and across
-timezones long enough to know how to make the most of it. My wife will be taking
-care of the kids in the afternoon / evenings so I can focus on the program ❤️.
+timezones long enough to know how to make the most of it. Kids are on summer
+holidays but my wife will be taking care of them in the afternoon /
+evenings so I can focus on the program ❤️.
 
 Can't wait to get started in a week!
