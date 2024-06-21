@@ -8,7 +8,7 @@ I just got confirmed for the Summer 2 batch at the Recurse Center starging in
 July 1st and I'm through the moon.
 
 I have been wanting to attend for the longest time (I have tweets from as far
-back asw 2017) but always had other commitments. Back in May I decided it was
+back as 2017) but always had other commitments. Back in May I decided it was
 the perfect time, got my application together and after a couple of lovely
 interviews (the last one was a pair programming interview which I did at 9pm
 from a family resort on not much sleep after a 4 hour drive) I got in!
