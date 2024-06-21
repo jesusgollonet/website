@@ -22,8 +22,10 @@ I have a few projects in mind that I want to work on:
 
 ![recurse-clip-cutter](../public/images/recurse-clip-cutter.png) 
 
-But just after getting access to the recurse platform, first thing I see is an
-intro to supercollider (which I was really into in early 10s) and an algorave for tomorrow, so  I'm fully open to whatever comes my way.
+That said, just after getting access to the recurse platform, first thing I see
+is an intro to [supercollider](https://supercollider.github.io/) (which I was
+really into in early 10s) and an algorave for tomorrow, so this is going to be
+tough. I'm fully open to whatever comes my way.
 
 ## Why I'm attending
 
@@ -36,7 +38,7 @@ has been more on the management and communication side, and when I was coding, I
 was doing that more on the ops side, favoring serverless / managed solutions as
 much as possible. There is nothing wrong with that approach and I will continue
 to push for that, but that's closer to architecture, and it's making me lose a
-building edge.
+building edge, which I miss.
 
 ### More Community!  
 
