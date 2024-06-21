@@ -15,12 +15,12 @@ from a family resort on not much sleep after a 4 hour drive) I got in!
 
 ## What I'll be working on
 
+![recurse-clip-cutter](../public/images/recurse-clip-cutter.png) 
+
 I have a few projects in mind that I want to work on:
 - Finishing the [opencv clip cutter](https://github.com/jesusgollonet/opencv-clip-cutter), potentially looking into posture analysis for bmx and skate tricks  
 - Looking into [webcam wave analysis](https://jesusgollonet.com/posts/watching-the-surf-in-vlc-with-streamlink/)
 - Finishing my [blog cli tool](https://github.com/jesusgollonet/website/tree/main/cli)
-
-![recurse-clip-cutter](../public/images/recurse-clip-cutter.png) 
 
 That said, just after getting access to the recurse platform, first thing I see
 is an intro to [supercollider](https://supercollider.github.io/) (which I was
