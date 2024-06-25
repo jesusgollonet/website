@@ -18,7 +18,9 @@ export default function Post({
   }, []);
   return (
     <Layout pageType={PageType.Diary}>
-      <JGHead />
+      <JGHead
+        image={`/images/social/${postData.slug.replace("/posts/", "")}.png`}
+      />
       <h1>{postData.title}</h1>
       <p>
         <time>{niceDate(postData.date)}</time>
