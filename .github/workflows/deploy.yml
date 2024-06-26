@@ -33,6 +33,7 @@ jobs:
 
       - run: cd build && yarn install
       - run: ./bin/build 
+      - run: cd build && yarn generate-social-previews
       - name: Upload output file
         uses: actions/upload-artifact@v3
         with:
