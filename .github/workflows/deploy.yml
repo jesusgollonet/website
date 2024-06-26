@@ -31,9 +31,13 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-nextjs-${{ hashFiles('**/package-lock.json') }}-
 
-      - run: cd build && yarn install
+      - run: | 
+          cd build 
+          yarn install
       - run: ./bin/build 
-      - run: cd build && yarn generate-social-previews
+      - run: |
+          cd build
+          npx ts-node-esm scripts/generate-social-previews.ts
       - name: Upload output file
         uses: actions/upload-artifact@v3
         with:
