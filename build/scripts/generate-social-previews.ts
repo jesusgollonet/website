@@ -1,5 +1,4 @@
 import { chromium } from "playwright";
-import { readdir } from "node:fs/promises";
 import { ChildProcess, spawn } from "node:child_process";
 
 const runDevServer = (): Promise<ChildProcess> => {
@@ -8,12 +7,8 @@ const runDevServer = (): Promise<ChildProcess> => {
       stdio: ["pipe", "pipe", "inherit"],
     });
     devServer.stdout.on("data", (data) => {
-      console.log(`stdout: ${data}`);
       if (data.includes("Available on:")) {
-        console.log("ready but lets wait 5 more seconds");
-        setTimeout(() => {
-          resolve(devServer);
-        }, 5000);
+        resolve(devServer);
       }
     });
     devServer.on("close", (code) => {
@@ -24,6 +19,8 @@ const runDevServer = (): Promise<ChildProcess> => {
 
 (async () => {
   const devServer = await runDevServer();
+
+  // make sure server is properly killed
   process.on("SIGINT", () => {
     console.log("SIGINT received");
     devServer.kill();
@@ -36,25 +33,39 @@ const runDevServer = (): Promise<ChildProcess> => {
     console.log("exit received");
     devServer.kill();
   });
+
   console.log("Dev server is running");
 
-  const pageUrlPaths = ["attending-recurse-center", "resuming-exercise"];
-  for (const p of pageUrlPaths) {
+  const browser = await chromium.launch();
+
+  const context = await browser.newContext();
+  const page = await context.newPage();
+  await page.goto("http://localhost:8080/diary");
+  const linkSelector = "a.diaryLink";
+  console.log(linkSelector);
+
+  const diaryPages = await page.$$eval(linkSelector, (els) =>
+    els.map((el) => el.getAttribute("href")),
+  );
+  console.log("diaryPages", diaryPages);
+
+  for (const p of diaryPages) {
+    if (!p) {
+      return;
+    }
     const browser = await chromium.launch();
     // width: 1200, height: 630
     const context = await browser.newContext();
     const page = await context.newPage();
-    const pageUrl = `http://localhost:8080/posts/${p}/`;
-    console.log(pageUrl);
+    const pageUrl = `http://localhost:8080${p}`;
     page.setViewportSize({ width: 700, height: 300 });
     await page.goto(pageUrl, { waitUntil: "networkidle" });
-    console.log("before screenshot");
-    await page.screenshot({ path: `out/images/social/${p}.png` });
-    console.log("screenshot taken");
+    const urlParts = p.split("/");
+    const fileName = urlParts[urlParts.length - 2];
+    console.log("fileName", fileName);
+    await page.screenshot({ path: `out/images/social/${fileName}.png` });
     await browser.close();
   }
-  console.log("weredone, kill");
   devServer.kill();
   process.exit(0);
-  console.log("killed");
 })();
