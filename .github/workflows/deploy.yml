@@ -35,6 +35,9 @@ jobs:
           cd build 
           yarn install
       - run: ./bin/build 
+      - run: | 
+          cd build
+          npx playwright install
       - run: |
           cd build
           node --loader ts-node/esm scripts/generate-social-previews.ts
