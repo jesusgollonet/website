@@ -37,7 +37,7 @@ jobs:
       - run: ./bin/build 
       - run: |
           cd build
-          npx ts-node-esm scripts/generate-social-previews.ts
+          node --loader ts-node/esm scripts/generate-social-previews.ts
       - name: Upload output file
         uses: actions/upload-artifact@v3
         with:
