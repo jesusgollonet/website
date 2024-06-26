@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "next dev",
+    "serve-out": "http-server out",
     "generate-social-previews": "ts-node-esm scripts/generate-social-previews.ts",
     "build": "next build && next export",
     "start": "next start"
@@ -30,6 +31,7 @@
     "eslint": "8.38.0",
     "eslint-config-next": "13.3.0",
     "eslint-config-prettier": "^8.8.0",
+    "http-server": "^14.1.1",
     "jest": "^27.5.1",
     "playwright": "^1.45.0",
     "ts-node": "^10.9.2",
