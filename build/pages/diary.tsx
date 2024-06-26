@@ -36,7 +36,9 @@ export default function Diary({ allPostsData }: { allPostsData: PostFile[] }) {
 function DiaryLine({ p }: { p: PostFile }) {
   return (
     <li className={styles.post} key={p.fileName}>
-      <Link href={p.slug}>{p.title}</Link>{" "}
+      <Link className="diaryLink" href={p.slug}>
+        {p.title}
+      </Link>{" "}
       <time dateTime={p.date}>
         <span className={styles.long}>{niceDate(p.date, "long")}</span>
         <span className={styles.short}>{niceDate(p.date, "short")}</span>
