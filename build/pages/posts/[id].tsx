@@ -1,4 +1,4 @@
-import { getAllPostIds, getPostData, PostFile } from "../../lib/posts";
+import { getAllPostIds, getPostData } from "../../lib/posts";
 import Layout from "../../components/layout";
 import JGHead from "../../components/jg-head";
 import PostFooter from "../../components/post-footer";
@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import "prismjs/themes/prism-tomorrow.css";
 import Prism from "prismjs";
 import { niceDate } from "../../lib/helpers";
-import { PageType } from "../../lib/types";
+import { PageType, PostFile } from "../../lib/types";
 
 export default function Post({
   postData,
