@@ -1,0 +1,826 @@
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jesus Gollonet Diary | Feed]]></title><description><![CDATA[Jesus Gollonet Diary | Feed]]></description><link>https://jesusgollonet.com</link><generator>RSS for Node</generator><lastBuildDate>Thu, 27 Jun 2024 14:41:26 GMT</lastBuildDate><atom:link href="https://jesusgollonet.com/diary/feed.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 27 Jun 2024 14:41:26 GMT</pubDate><item><title><![CDATA[I'm attending the recurse center!]]></title><description><![CDATA[<p>I just got confirmed for the Summer 2 batch at the <a href="https://www.recurse.com/">Recurse Center</a> starting in
+July 1st and I'm through the moon.</p>
+<p>I have been wanting to attend for the longest time (I have tweets from as far
+back as 2017) but always had other commitments. Back in May I decided it was
+the perfect time, got my application together and after a couple of lovely
+interviews (the last one was a pair programming interview which I did at 9pm
+from a family resort on not much sleep after a 4 hour drive) I got in!</p>
+<h2>What I'll be working on</h2>
+<p><img src="/images/recurse-clip-cutter.png" alt="recurse-clip-cutter" /></p>
+<p>I have a few projects in mind that I want to work on:</p>
+<ul>
+<li>Finishing the <a href="https://github.com/jesusgollonet/opencv-clip-cutter">opencv clip cutter</a>, potentially looking into posture analysis for bmx and skate tricks</li>
+<li>Looking into <a href="https://jesusgollonet.com/posts/watching-the-surf-in-vlc-with-streamlink/">webcam wave analysis</a></li>
+<li>Finishing my <a href="https://github.com/jesusgollonet/website/tree/main/cli">blog cli tool</a></li>
+</ul>
+<p>That said, just after getting access to the recurse platform, first thing I see
+is an intro to <a href="https://supercollider.github.io/">supercollider</a> (which I was
+really into in early 10s) and an algorave for tomorrow, so this is going to be
+tough. I'm fully open to whatever comes my way.</p>
+<h2>Why I'm attending</h2>
+<p>There are a few reasons why I'm attending the recurse center:</p>
+<h3>More Programming!</h3>
+<p>In the last few years I've gotten a bit far from hands on programming. My work
+has been more on the management and communication side, and when I was coding, I
+was doing that more on the ops side, favoring serverless / managed solutions as
+much as possible. There is nothing wrong with that approach and I will continue
+to push for that, but that's closer to architecture, and it's making me lose a
+building edge, which I miss.</p>
+<h3>More Community!</h3>
+<p>For the longest time, whenever I saw a blog post with an interesting deep dive
+into some technical problem, I knew chances were high it came from a recurse
+center alum. I want to hang out with those people!</p>
+<h3>Accountability</h3>
+<p>Related to community, having a group of people that can see what you're working
+on is the best motivator to push yourself. I really want that in order to finish
+some of the projects I have in mind.</p>
+<h3>Work prospects :)</h3>
+<p>I have been working in creative digital agencies for almost all my career. I
+love that work, but I have always been curious about working in a more product
+focused role. The recurse center offers a great opportunity to explore that
+angle.</p>
+<h2>Logistics</h2>
+<p>I will be joining remotely from Spain. While I know attending in person in New
+York would multiply the experience, I have been working remotely and across
+timezones long enough to know how to make the most of it. Kids are on summer
+holidays but my wife will be taking care of them in the afternoon /
+evenings so I can focus on the program ❤️.</p>
+<p>Can't wait to get started in a week!</p>
+]]></description><link>https://jesusgollonet.com/posts/attending-recurse-center</link><guid isPermaLink="true">https://jesusgollonet.com/posts/attending-recurse-center</guid><pubDate>Fri, 21 Jun 2024 08:49:23 GMT</pubDate></item><item><title><![CDATA[Template paths in packer build]]></title><description><![CDATA[<p>In order to create an image with <a href="https://www.packer.io/">packer</a>, you need to define a template that
+configures your image. Here' a simple example:</p>
+<pre><code class="language-hcl">source &quot;amazon-ebs&quot; &quot;example&quot; {
+  access_key    = var.aws_access_key
+  secret_key    = var.aws_secret_key
+  region        = var.region
+  source_ami    = &quot;ami-0c55b159cbfafe1f0&quot;  # Amazon Linux 2 AMI
+  instance_type = &quot;t2.micro&quot;
+  ssh_username  = &quot;ec2-user&quot;
+  ami_name      = &quot;packer-example {{timestamp}}&quot;
+}
+
+build {
+  sources = [&quot;source.amazon-ebs.example&quot;]
+
+  provisioner &quot;shell&quot; {
+    script = &quot;provision.sh&quot;
+  }
+}
+
+</code></pre>
+<p>This template references a file called <code>provision.sh</code>. This is useful to do
+additional configuration on the image before it's created. For the sake of
+example here's what a provision shell file could look like:</p>
+<pre><code class="language-bash">#!/bin/bash
+echo &quot;Hello, World!&quot; &gt; /tmp/hello.txt
+sudo yum update -y
+sudo yum install -y httpd
+sudo systemctl enable httpd
+sudo systemctl start httpd
+</code></pre>
+<p>Let's say we have both files under the same directory:</p>
+<pre><code class="language-bash">.
+├── provision.sh
+└── template.pkr.hcl
+
+</code></pre>
+<p>In order to create an image you need to run the <code>build</code> command.  When running
+it, you need to inform packer how to find the template. Assuming you're running
+<code>packer build</code> in the directory you have your template, you can do that in 2
+ways:</p>
+<pre><code class="language-bash">packer build template.pkr.hcl
+</code></pre>
+<p>or</p>
+<pre><code class="language-bash">packer build . 
+</code></pre>
+<p>where <code>.</code> is the current directory.</p>
+<p>This is all well and simple, but things start getting a bit confusing when you
+start nesting directories.</p>
+<p>Let's say you have the following directory structure:</p>
+<pre><code class="language-bash">.
+├── image
+│   ├── provision.sh
+│   └── template.pkr.hcl
+
+</code></pre>
+<p>if you now run the command from the parent directory:</p>
+<pre><code class="language-bash">% packer build image/template.pkr.hcl
+Error: Failed preparing provisioner-block &quot;shell&quot; &quot;&quot;
+
+  on image/template.pkr.hcl line 44:
+    (source code not available)
+
+    1 error(s) occurred:
+
+    * Bad script 'provision.sh': stat provision.sh: no such file or directory
+</code></pre>
+<p>Packer can't find the provision script. This is because packer is looking for
+the <code>provision.sh</code> file in the directory where you're running the command, not
+where the template is.</p>
+<p>You could be tempted to fix this by modifying the path to the provision script
+so that it's relative to wherever you're running your command from, but that
+makes your script less portable by imbuing it with your current structure.</p>
+<p>My usual hacky way to fix this is to simply <code>cd</code> into the directory where the
+packer image is before running the command. I do that between parentheses so
+that once the script is ran my shell goes back to the original directory:</p>
+<pre><code class="language-bash">(cd image &amp;&amp; packer build template.pkr.hcl)
+</code></pre>
+<p>While writing this I learned that you can also solve it by using <a href="https://developer.hashicorp.com/packer/docs/templates/hcl_templates/path-variables">HCL path
+variables</a>.
+Specifically, you can use the <code>path.root</code> variable to reference the directory
+where the template is.</p>
+<pre><code class="language-hcl">provisioner &quot;shell&quot; {
+    scripts = [
+      &quot;${path.root}/provision.sh&quot;
+    ]
+}
+</code></pre>
+<p>Honestly, while this could seem more elegant, it seems less clear to me. Unless
+you know what <code>path.root</code> is, it's not immediately clear what it's doing.</p>
+<p>Even reading the documentation:</p>
+<blockquote>
+<p>path.root: the directory of the input HCL file or the input folder.</p>
+</blockquote>
+<p>it still takes me a few reads to understand what it is.</p>
+<p>So yep, I'm happy I found a more official way to solve this issue, but I will humbly
+stick to my hacky way, as I suspect it looks clearer to a bigger percentage of devs.</p>
+]]></description><link>https://jesusgollonet.com/posts/template-paths-packer-build</link><guid isPermaLink="true">https://jesusgollonet.com/posts/template-paths-packer-build</guid><pubDate>Tue, 11 Jun 2024 09:24:36 GMT</pubDate></item><item><title><![CDATA[A Rust rut. Coding assistants and knowlege debt]]></title><description><![CDATA[<p>Yesterday, this <a href="https://it20.info/2024/5/a-framework-to-adopt-generative-ai-assistants-for-builders/">framework reflecting on where and when to adopt coding
+assistants</a> caught my attention.
+The full article is worth a read, here's the graph that summarizes it:</p>
+<p><img src="/images/coding-assistant-framework.png" alt="coding-assistant-framework" /></p>
+<p>The quick summary is that the further a given task is from your skill level, the
+more risk you're taking by delegating to a coding assistant. That doesn't mean
+you should not do it, just that you need to take that risk into account.</p>
+<p>Anyway, It caught my attention because I have scars.</p>
+<p>At the beginning of the year I started developing an app using Rust. I had 0
+previous experience with the language, but I have been interested for years and,
+hey, we have ChatGPT and copilot! Learning curves are a relic of the past,
+right?</p>
+<p>During the initial weeks I was able to progress fairly quickly. Sure I sometimes
+got in a loop of copy / paste from ChatGPT =&gt; editor and then compiler error message =&gt; ChatGPT,
+but I always ended up making it work...</p>
+<p>Until I didn't. Close to easter I was wrapping up an initial release of the project.
+There was a feature that required a small refactor using threading and then I got into the classic  loop but this time I kept spinning circles for hours, with ChatGPT suggesting progressively gnarlier looking type signatures until it gave up and got back to its initial suggestion.</p>
+<p>The reality is that I had a barely functional understanding of concurrency and the Rust
+borrow checker, so if ChatGPT couldn't help, I was out of luck.</p>
+<p>I had to spend a significant portion of easter paying off the knowledge debt I had incurred, or
+in framework terms, my risk line got really long, and I got burned.</p>
+<p><img src="/images/danger-zone.png" alt="danger-zone" /></p>
+<p>LLMs can get you really far really fast, but you always need to keep your risk in check.</p>
+<p>This is similar to the classic <a href="https://en.wikipedia.org/wiki/Circle_of_competence">circle of competence</a> advice for investing:</p>
+<blockquote>
+<p>Limit the investments you make in areas where you have little knowledge or experience.</p>
+</blockquote>
+<p><img src="/images/circle-of-competence.png" alt="circle-of-competence" /></p>
+<p>The other takeaway I found insightful is in the 'green area' of the graph.</p>
+<p><img src="/images/green-area.png" alt="green-area" /></p>
+<p>You need to stay relatively close to your knowledge frontier in order to apply
+assistants effectively. Tasks that are right below your competence level (the boost zone) are often great to delegate, as they might be within your means but can often be tedious to do.</p>
+<p>But the most fun area is the learning zone, where something is right above your competence level and you can use the assistant to pull you up. A tricky thing here is that it requires being aware of what your actual competence is, which
+might sometimes be a fun exercise for your ego.</p>
+<p>Funnily enough this is exactly how I got out of my Rust rut. I kept going back
+to basics until I found where I stood, then started building back up.</p>
+<p>P.S.: <a href="https://x.com/jesusgollonet/status/1795473331908436133">I kept thinking about the
+graph</a> and came to the conclusion that a single line would make it
+clearer.</p>
+<p><img src="/images/single-line-twitter-me.png" alt="single-line-twitter-me" /></p>
+<p>And <a href="https://x.com/mreferre/status/1795712647905820706">ben11kehoe had exactly the same idea.
+</a></p>
+<p><img src="/images/single-line-ben-kehoe.png" alt="single-line-ben-kehoe" /></p>
+<p>So yep, be careful out there.</p>
+]]></description><link>https://jesusgollonet.com/posts/rust-rut-knowledge-debt</link><guid isPermaLink="true">https://jesusgollonet.com/posts/rust-rut-knowledge-debt</guid><pubDate>Wed, 29 May 2024 11:51:00 GMT</pubDate></item><item><title><![CDATA[J On The Beach: Workshops]]></title><description><![CDATA[<p>Just wrapped up the first day of of <a href="https://jonthebeach.com"> J On The Beach </a>, a conference that takes place in my
+hometown (8 years and counting) but I had never attended before.</p>
+<p>The main question coming into day 1 was to test how bad an idea was to take 3
+different workshops on 3 different topics which I have little experience with.
+I did survive, and finished the day with more energy that I started, so I
+guess <del>curb</del> boost your enthusiasm.</p>
+<p>These are the 3 I attended:</p>
+<h2><a href="https://jonthebeach.com/workshops/containers/">Container Internals By Sean Scott</a></h2>
+<p>I don't do any fancy things with Docker, but I love low-level
+unixy stuff, so I thought I would check this one out. I did learn quite a few
+things. My favorite ones were:</p>
+<ul>
+<li>a tangible understanding of a union / merge / overlay filesystem and how containers
+leverage its layers to provide an isolated environment, showing how files can be
+shadowed by files in the upper layers. Sean demonstrated that by mounting a
+filesystem with a few different layers.</li>
+<li><code>docker history</code> it will show you everything that has happened in the build
+process (and why it's a good idea to include a step to build a new image out of
+your finished image, so you minimize the risk of exposing sensitive information)</li>
+</ul>
+<h3>References</h3>
+<ul>
+<li><a href="https://github.com/oraclesean/jotb">Workshop Slides and Lab</a></li>
+</ul>
+<p>Here are some materials I used to prep for the workshop. These formed the basis
+of the material covered</p>
+<ul>
+<li><a href="https://medium.oraclesean.com/visual-docker-introduction-f83baf4c0798">Visual Docker: Introduction</a></li>
+<li><a href="https://medium.oraclesean.com/visual-docker-images-and-containers-1efb52d02d3c">Visual Docker: Images and Containers</a></li>
+<li><a href="https://medium.oraclesean.com/visual-docker-images-are-immutable-1af06b242777">Visual Docker: Images are Immutable</a></li>
+</ul>
+<h2><a href="https://jonthebeach.com/workshops/p2p-chat/">P2P Chat By Rüdiger Klaehn</a></h2>
+<p>As much as decentralization and p2p has been co-opted by <em>some sector</em> of tech (i won't mention any
+key term for fear of getting more spambots), it's still an interesting and
+valuable technology. I loved seeing how Rüdiger claimed that type of
+pragmatism explictly when motivating the workshop.</p>
+<p>He spent a good portion of the workshop explaining their technical philosophy,
+and the underlying networking concepts. I went home with a bunch of networking
+items to explore further (QUIC, Nat hole punching, ALPN, ...).</p>
+<p>Given that most of the participants (me included) were not very familiar with
+rust (In my case I had also just broke my vim rust setup by installing <a href="https://github.com/fannheyward/coc-rust-analyzer"> Coc Rust Analyzer</a> 😢), the hands on part was more like a walkthrough of the code, but the
+incremental demos were super helpful to understanding the concepts.</p>
+<p>I've been using rust in the last few months and as hard as it sometimes is, this
+seems like a great opportunity to continue with it.</p>
+<h3>References</h3>
+<ul>
+<li><a href="https://hackmd.io/@GMgEoX9mQWKh09CQ-JktgA/rkrfZgOzR">Workshop Slides</a></li>
+<li><a href="https://github.com/n0-computer/iroh-workshop-jonthebeach">Iroh Worshop Source</a></li>
+</ul>
+<h2><a href="https://jonthebeach.com/workshops/datastax/">Build Your own RAG With Mustafa Esra</a></h2>
+<p>This was the more enterprisey / vendor-centric one, but I have been curious about AI Agents,
+Langchain and Vector DBs for quite a while. Luckily it started with a good half
+hour of theory. I still don't fully get how meaning is captured/derived from embeddings,
+but I know a little bit more.</p>
+<p>The workshop leveraged managed services for everything, which intiially bummed
+me but it's amazing how much you can accomplish without touching a line of code.
+I particularly loved <a href="https://streamlit.io/">Streamlit</a>, which I had never heard of before.</p>
+<h3>References</h3>
+<p>I checked this tutorial just before the workshop, and it helped with context.</p>
+<ul>
+<li><a href="https://docs.datastax.com/en/ragstack/docs/quickstart.html">ragstack tutoral</a></li>
+<li><a href="https://github.com/michelderu/ragstack-astradb">source for the workshop</a></li>
+</ul>
+<h2>That's it!</h2>
+<p>It's been quite interesting to experience the different types of workshops, but
+this is going to be it for now. Let's see what the full conference has to offer.</p>
+]]></description><link>https://jesusgollonet.com/posts/j-on-the-beach-workshop-day</link><guid isPermaLink="true">https://jesusgollonet.com/posts/j-on-the-beach-workshop-day</guid><pubDate>Wed, 08 May 2024 15:33:28 GMT</pubDate></item><item><title><![CDATA[Watching the Surf in VLC with Streamlink]]></title><description><![CDATA[<p>A few days ago I saw this video about <a href="https://www.surfline.com/">Surfline</a>'s <a href="https://www.youtube.com/watch?v=xecRZIM6Vlg">LOTUS Surf Forecasting System</a>.
+They have hundreds of webcams around the world, and they analyze the streams to understand and predict the quality of the waves.</p>
+<p><a href="https://www.youtube.com/watch?v=xecRZIM6Vlg"><img src="/images/surfline-lotus.png" alt="surfline-lotus" /></a></p>
+<p>Surfline does not seem to have any webcams where I live (Southern
+Mediterranean), which is understandable, given the questionable quality of the surf.
+But the beach is still a big attraction, and there are plenty of webcams pointed at it.</p>
+<p>I've been <a href="https://github.com/jesusgollonet/opencv-clip-cutter"> playing with computer vision
+</a> lately and want to give some basic wave detection a try.  The first step is capturing streams from beach webcams, but they usually appear in sites which are slow and full of ads.</p>
+<p><a href="https://streamlink.github.io/">Streamlink </a>
+is a great tool for that. It allows you to watch streams in VLC and provides a Python API that gives access to the stream data.</p>
+<p>If the stream you care about is in a popular platform, like twitch or youtube
+(or many others!) chances are there is <a href="https://streamlink.github.io/plugins.html">streamlink plugin</a> for it. Usage in this case is as simple as</p>
+<pre><code class="language-bash">streamlink https://www.twitch.tv/merewether_slsc best 
+</code></pre>
+<p>If there is no plugin, you can look for the <code>m3u8</code> file in the page source and pass it to streamlink.</p>
+<pre><code class="language-bash">streamlink 'https://hd-auth.skylinewebcams.com/live.m3u8?a=rniaof33h8kqu8muddr7t086v3' best 
+</code></pre>
+<p>Some sites do have some protection against this, but it hasn't been too hard to get around it.
+Streamlink allows you to pass cookies and headers to the request, so what I've done to figure out what headers were needed was to copy the curl
+request from the network panel and tweak them so they have the correct streamlink format for the <code>--http-header</code> option.</p>
+<p><img src="/images/image_2024-04-30-11-22-11.png" alt="image_2024-04-30-11-22-11" /></p>
+<p>In the couple of sites I tried, it has been enough to simply pass the origin
+header to streamlink, so from</p>
+<pre><code class="language-bash">curl 'https://hd-auth.skylinewebcams.com/live.m3u8?a=rniaof33h8kqu8muddr7t086v3'
+...
+      -H 'origin: https://www.skylinewebcams.com' \
+...
+</code></pre>
+<p>to</p>
+<pre><code class="language-bash">streamlink --http-header 'origin=https://www.skylinewebcams.com' 'https://hd-auth.skylinewebcams.com/live.m3u8?a=rniaof33h8kqu8muddr7t086v3' best 
+</code></pre>
+<p><img src="/images/image_2024-04-30-11-25-04.png" alt="image_2024-04-30-11-25-04" /></p>
+<p>And I will leave it at that, as I just saw there might be some waves to catch
+today! 🏄</p>
+]]></description><link>https://jesusgollonet.com/posts/watching-the-surf-in-vlc-with-streamlink</link><guid isPermaLink="true">https://jesusgollonet.com/posts/watching-the-surf-in-vlc-with-streamlink</guid><pubDate>Tue, 30 Apr 2024 08:08:39 GMT</pubDate></item><item><title><![CDATA[Pasting images in Markdown using Vim]]></title><description><![CDATA[<p>This blog is handcrafted with markdown files in vim. Up until now, posting
+images was a prohibitive dance of putting the image on a certain folder and
+figuring out the relative path, posting it into markdown and then adjusting a
+few times until I got it right.</p>
+<p>Which is the reason why I never posted any.</p>
+<p>Yesterday I implemented <a href="img-paste.vim">https://github.com/img-paste-devs/img-paste.vim</a> <sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup>
+and now I can paste images directly.</p>
+<p>If you see the below image, it works!</p>
+<p><img src="/images/image_2024-04-25-13-52-54.png" alt="image_2024-04-25-13-52-54" /></p>
+<h2>Demo</h2>
+<p>Now the steps to add an image to a post are:</p>
+<ul>
+<li>Copy the image to the clipboard: I usually use <code>Cmd+Ctrl+Shift+4</code> on a mac</li>
+<li>Go to the markdown file in vim</li>
+<li>Press <code>&lt;Leader&gt;p</code> to paste the image (my leader key is comma, so in my case, <code>,p</code>)</li>
+</ul>
+<p>This will create a png file in the directory you specify, and add the right
+markdown syntax to the file.</p>
+<p>Here is a quick video explaining how it works:</p>
+<p><a href="http://www.youtube.com/watch?v=QAdq7jXObEo"><img src="http://img.youtube.com/vi/QAdq7jXObEo/0.jpg" alt="A video of how i paste and preview images in markdown using vim" /></a></p>
+<h2>Some Notes</h2>
+<p>Instructions on the plugin page are clear. Here are a couple of adjustments I
+had to make to match to my workflow</p>
+<h3>Correct the image path</h3>
+<p>By default, the plugin stores the image in an <code>img</code> subdirectory inside the same folder
+as the markdown file. In my case I wanted to move it to my /public/images folder at the root of my
+site.</p>
+<pre><code class="language-vim">let g:mdip_imgdir = '../public/images'
+</code></pre>
+<p>I have added that to <a href="https://github.com/jesusgollonet/website/blob/develop/.vimrc.local">a <code>.vimrc.local</code> file In the root of the project</a>, since this
+configuration is specific to this project.</p>
+<h3>Rewrite URLs</h3>
+<p>The above variable creates a url that is relative to the markdown file, which is
+perfect for when you're previewing the markdown file with an external tool or
+withing github.</p>
+<p>But in Next.js (which is what I use for this website), the /public folder is served as
+the root of the website (so /public/images is just /images).</p>
+<p>To solve this, I added <a href="https://github.com/jesusgollonet/website/blob/7f6047d94e824fc9c3087b986c830a11de339c01/build/lib/posts.ts#L25C1-L31C5">a simple regex that rewrites the links when rendering</a></p>
+<h3>Further</h3>
+<p>Here's a few improvements I'm thinking of:</p>
+<ul>
+<li>The obvious next step is to add the ability to make it work with image paths to
+avoid having to only do it through the clipboard.</li>
+<li>More in general, I would love to be able to paste a url and get the markdown
+tags automatically, ideally being smart enough to know if it's a url, a local
+file or even a youtube embed (TIL <a href="https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet#videos"> there's no good way to embed youtube videos </a>)</li>
+</ul>
+<p>And that's it. If you have comments questions or suggestions please let me know!
+<a href="https://twitter.com/jesusgollonet">@jesusollonet</a> on twitter (or pretty much
+anywhere)  or email me at here.</p>
+<section data-footnotes="" class="footnotes"><h2 id="footnote-label" class="sr-only">Footnotes</h2>
+<ol>
+<li id="user-content-fn-1">
+<p>Oh god I had to add the markup to this link manually!! Next one. <a href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
+</li>
+</ol>
+</section>]]></description><link>https://jesusgollonet.com/posts/pasting-images-in-vim</link><guid isPermaLink="true">https://jesusgollonet.com/posts/pasting-images-in-vim</guid><pubDate>Thu, 25 Apr 2024 10:37:11 GMT</pubDate></item><item><title><![CDATA[roam calendar]]></title><description><![CDATA[<p>Back in 2021 I was using roam heavily.</p>
+<ul>
+<li>09:13 spent a good half an hour creating a script to generate roam [[2024]] with [[ChatGPT]]
+<ul>
+<li>conversation <a href="https://chat.openai.com/share/706e3725-e3a0-49fd-8495-afd6e35ae44d">https://chat.openai.com/share/706e3725-e3a0-49fd-8495-afd6e35ae44d</a></li>
+<li>maybe i would like to archive conversations <a href="https://simonwillison.net/2023/Mar/27/ai-enhanced-development/">https://simonwillison.net/2023/Mar/27/ai-enhanced-development/</a></li>
+</ul>
+</li>
+</ul>
+]]></description><link>https://jesusgollonet.com/posts/roam-calendar</link><guid isPermaLink="true">https://jesusgollonet.com/posts/roam-calendar</guid><pubDate>Fri, 05 Jan 2024 09:01:25 GMT</pubDate></item><item><title><![CDATA[gh cli zen workflow]]></title><description><![CDATA[<p>As I have started getting back into the rhythm of coding more or less daily, I have been paying
+attention to my workflow. My favorite piece on the topic is Simon Willison's masterful
+<a href="https://simonwillison.net/2022/Jan/12/how-i-build-a-feature/"> How I build a feature </a>, which provides a detailed guide on building software including everything from tests to documentation and publishing.
+While I'm very far from such heights, I have been almost invariably applying his first point:</p>
+<blockquote>
+<p>Everything starts with an issue</p>
+</blockquote>
+<p>I'm mostly applying this to personal projects, but even then using github issues
+has proven extremely helpful:</p>
+<ul>
+<li>They serve as TODO list for me. Especially handy when applied on projects that
+I pick up every few weeks/months.
+e.g:</li>
+</ul>
+<pre><code class="language-bash">gh issue list
+
+ID   TITLE                                                               LABELS  UPDATED
+#50  content: add /now page                                                      about 26 days ago
+#49  cli: prompt save or discard post after editing                              about 2 months ago
+#48  cli: check if server is running and optionally start                        about 3 months ago
+#47  investigate how to share lib/posts between cli and website                  about 3 months ago
+#46  fe: add syntax highlighting to inline code blocks                           about 3 months ago
+#45  fe: break down diary page into components                                   about 3 months ago
+#39  cli: load configuration from entrypoint instead of inside new-post          about 4 months ago
+#33  cli: list out features + mvp                                                about 4 months ago
+#21  Simple web editor                                                           about 10 months ago
+</code></pre>
+<ul>
+<li>I can add extra context in the form of comments (e.g: when finding relevant
+links for a given topic).</li>
+<li>They add a fun touch of gamification to my work.</li>
+</ul>
+<p>In parallel, I have been using the <a href="https://cli.github.com"> gh cli </a> more and
+more, and have stumbled upon a workflow that I find almost soothing in its
+assemply line quality. The steps are pretty obvious. For every feature (or problem, bug, investigation...), I:</p>
+<ul>
+<li>create a new issue</li>
+<li>work on issue, and eventually fix it.</li>
+<li>create pr</li>
+<li>merge pr</li>
+</ul>
+<p>Each of the steps maps perfectly to a gh command:</p>
+<ol>
+<li>
+<p>Create an issue in github:</p>
+<pre><code class="language-bash">gh issue create -t 'Fix scroll in the homepage'
+</code></pre>
+</li>
+<li>
+<p>Start working on it</p>
+<pre><code class="language-bash">gh issue develop &lt;issue number&gt; -c
+</code></pre>
+<p>This is my favorite one. The <code>develop</code> command creates a branch named like the issue id and title. E.g: (e.g: <code>12-fix-scroll-in-the-homepage</code>). You can get the issue number using <code>gh issue list</code>. The <code>-c</code> flag means checkout the branch.</p>
+<p>Commit, push, commit, push... done?</p>
+</li>
+<li>
+<p>When the issue is ready, I'll create a PR. I will confess this part is superfluous when working on my own. I don't add any extra details to the PR, and seldomly review the changes, but I still do it in order to instill good practices for team settings.</p>
+<pre><code class="language-bash">gh pr create -t &quot;my pr title&quot;
+</code></pre>
+</li>
+<li>
+<p>Then merge I the branch and delete de PR and branch.</p>
+<pre><code class="language-bash">gh pr merge &lt;pr number&gt; -r -d
+</code></pre>
+<p><code>-r</code> is for rebase and <code>-d</code> deletes the branch (local and remote) after merging.</p>
+</li>
+</ol>
+]]></description><link>https://jesusgollonet.com/posts/gh-cli-zen-workflow</link><guid isPermaLink="true">https://jesusgollonet.com/posts/gh-cli-zen-workflow</guid><pubDate>Wed, 06 Dec 2023 22:26:52 GMT</pubDate></item><item><title><![CDATA[Directory specific shell history]]></title><description><![CDATA[<p>I have started a project in Python, which I'm not particularly familiar with. I
+thought it would be useful to include in the git repo relevant shell commands to
+remember what I've done, and then wondered if it was possible to have shell history
+but limited to a specific directory.</p>
+<p>Turns out this is trivial with <a href="https://github.com/ellie/atuin">atuin</a>, which
+records your shell history to a sqlite database and provides additional context.</p>
+<p>Assuming you're in the directory you want to check your history for:</p>
+<pre><code class="language-bash">$ atuin search --cwd $(pwd) term
+</code></pre>
+]]></description><link>https://jesusgollonet.com/posts/directory-specific-shell-history</link><guid isPermaLink="true">https://jesusgollonet.com/posts/directory-specific-shell-history</guid><pubDate>Sat, 01 Jul 2023 12:44:02 GMT</pubDate></item><item><title><![CDATA[Minimally Viable Plan (Strength Training)]]></title><description><![CDATA[<p>For the next 8 weeks, I'm going to follow an extremely minimal strength training
+plan of 4 exercises:</p>
+<ol>
+<li>Pull ups</li>
+<li>Split squats</li>
+<li>Push ups</li>
+<li>Step ups</li>
+</ol>
+<p>I'm going to do 3 sets for each, pairing 1-2 and 3-4. The number of reps is
+still being figured out (I'm 2 weeks in), but anywhere from 5 to 15, depending
+on the exercise. Since I don't have weights at home, I'll increase the rep range
+by 5-10% per week.</p>
+<p>In total I'm aiming to being done in under 25 minutes, including 5 min warmup,
+and if there's any time left I'll do a jump rope finisher.</p>
+<p>This is extremely small and and simple. And even though the exercises are
+reasonably full body, it no doubt leaves stuff on the table. The
+reasons why I still think it's worth comitting to are:</p>
+<ul>
+<li>I still need to make training a habit. I've started many times but there's
+always something that gets me back to the starting line.  This is small enough
+that I can't say no to under almost any circumstance.</li>
+<li>I need to build basic strength before getting into fancier exercises. There's
+no shortage of Skate/Surf specific content on instagram and youtube, but after
+trying a few things, it's clear to me that I need a solid foundation.</li>
+<li>As a fulltime working dad, that also wants to skate and BMX and surf (and many
+other things!), I need to be extremely smart with time management.</li>
+<li>It can't interfere with random bmx/skate sessions throughout the week. There's
+nothing more frustrating than not being able to do your sport because you're too
+sore from training.</li>
+<li>I don't want to rely on a gym. Apart from pull ups. The rest of
+exercises can literally be done anywhere.</li>
+<li>Having fewer exercises and low volume should allow me to focus on movement
+quality.</li>
+<li>Any plan is better than no plan, and this is mine.</li>
+</ul>
+]]></description><link>https://jesusgollonet.com/posts/minimal-training-plan</link><guid isPermaLink="true">https://jesusgollonet.com/posts/minimal-training-plan</guid><pubDate>Mon, 26 Jun 2023 10:33:59 GMT</pubDate></item><item><title><![CDATA[Back to blocked?]]></title><description><![CDATA[<p>I have missed a couple of yoga sessions in the last 4 days. I missed last week's
+weekly post and am late for this week. I was starting to question why even
+write? I don't have much to share...</p>
+<p>Which is what's on my mind, and isn't this about sharing exactly that?</p>
+<p>So that's a post.</p>
+]]></description><link>https://jesusgollonet.com/posts/back-to-blocked</link><guid isPermaLink="true">https://jesusgollonet.com/posts/back-to-blocked</guid><pubDate>Wed, 14 Jun 2023 10:47:56 GMT</pubDate></item><item><title><![CDATA[Shell aliases in vim command mode]]></title><description><![CDATA[<p>I have a bunch of <a href="https://github.com/jesusgollonet/dotfiles/blob/master/zsh/aliases"> alliases in my shell
+</a>. When
+coding in vim, I frequently run whatever file I'm working on from vim's command
+mode,</p>
+<pre><code class="language-vim">:!node %
+</code></pre>
+<p>often by just mapping a key combo to run it.</p>
+<pre><code class="language-vim">:map ,r :w\|!node %&lt;CR&gt;
+</code></pre>
+<p>A problem I often run into is that vim's command mode
+doesn't know about my shell aliases. So if I have an alias like this in .zshrc</p>
+<pre><code class="language-bash">alias python=python3
+</code></pre>
+<p>When running <code>:!python %</code> from vim, I get something like</p>
+<pre><code class="language-vim">zsh:1: command not found: python
+
+shell returned 127
+</code></pre>
+<p>My aliases used to be defined in .zshrc, but this file is not sourced when
+running a command from vim's command mode. The solution is to <a href="https://github.com/jesusgollonet/dotfiles/blob/master/zsh/zshenv">move your
+aliases to <code>~/.zshenv</code>
+</a>, which is
+sourced.</p>
+<p>Note there's no need to load ~/.zshenv from ~/.zshrc, as it's part of the <a href="https://zsh.sourceforge.io/Intro/intro_3.html">
+default zsh startup sequence </a>
+and therefore loaded by default.</p>
+]]></description><link>https://jesusgollonet.com/posts/shell-aliases-in-vim-command-mode</link><guid isPermaLink="true">https://jesusgollonet.com/posts/shell-aliases-in-vim-command-mode</guid><pubDate>Tue, 06 Jun 2023 11:50:48 GMT</pubDate></item><item><title><![CDATA[Week 4]]></title><description><![CDATA[<p>Even later than usual. Was thinking of skipping this week, but my Gestalt sense
+didn't let me sleep (good job on labelling the weeklies with successive numbers).</p>
+<p>I have continued to record sessions and have started uploading my quick edits to <a href="https://www.youtube.com/@jesus_gollonet"> youtube </a>.
+So far I've uploaded a couple of raw sessions with empty / non interesting parts
+remmoved, and I love having the ability of checking them whenever / wherever.
+The main goal is to check and help with progression. But I also think video
+editing is a very useful skill to have.</p>
+<p>Regarding that, iMovie is both great and terrible. It's at hand, and you can
+slice clips in no time, but then you want to do simple things like a slight
+rotation to correct horizon and you need to open Keynote (!!!). Have been
+checking out Filmora and it seems very promising.</p>
+<p>I've been thinking about video analysis, I have the feeling it can be
+tremendoussly useful, even without specialized biomechanics knowledge. I haven't
+found a free app to test it out, but thinking about the features (load and
+display a couple of videos side by side, play/pause/skip forward, slow motion,
+draw simple lines on top), it sounds like something so apt for openframeworks it
+could even be a beginner tutorial. I have downloaded xcode and oF for the first
+time in many years. I might give it a try if I can find time.</p>
+<p>20-30 min of Yoga continues to be my only workout other than skate/bike. Last
+Friday was the first time I've skipped since I started, but only because I
+fell asleep on a Yin Yoga session after dinner and drinks at 3am.</p>
+<p>Save, publish, and Yoga. Until next week.</p>
+]]></description><link>https://jesusgollonet.com/posts/week-4</link><guid isPermaLink="true">https://jesusgollonet.com/posts/week-4</guid><pubDate>Thu, 01 Jun 2023 09:18:54 GMT</pubDate></item><item><title><![CDATA[Parents that drive their kids to a skatepark]]></title><description><![CDATA[<p>I had to chuckle at this:</p>
+<blockquote>
+<p>...you really can drive to the skatepark and it’s like a gym</p>
+</blockquote>
+<blockquote>
+<p>...you primarily have skateboarders who come from homes where their parents would drive them to a sporting environment.</p>
+</blockquote>
+<p>From this <a href="https://www.skateism.com/ben-koppl-hates-being-famous-online/">interview with Ben
+Koppl</a>, my
+favorite skater which unsurprisingly seems to be an interesting person. He's
+talking about the changing demographics of skateboarding.</p>
+<p>I feel strongly that treating skateboarding more like a regular sport is a
+great thing (it's the reason why I'm even considering it at 46!), and I'm 100% a
+parent that drives his kids to the skatepark, but I love his point about
+skateboarding starting as a mode of transportation, and a way for kids that have
+nothing else to do or want to avoid their neighbourhood to have a tool to do
+that while pushing their creativity...</p>
+<p>The full interview is interesting, I enjoyed his non-negative take on kids
+perferring short instagram clips vs video parts (which I've often seen mourned
+about in BMX circles), and the early youtube days.</p>
+]]></description><link>https://jesusgollonet.com/posts/parents-that-drive-their-kids-to-a-skatepark</link><guid isPermaLink="true">https://jesusgollonet.com/posts/parents-that-drive-their-kids-to-a-skatepark</guid><pubDate>Thu, 25 May 2023 11:42:06 GMT</pubDate></item><item><title><![CDATA[Week 3]]></title><description><![CDATA[<p>Ok let's get this published on <del>the Monday</del> Tuesday.</p>
+<p>So now I have a problem, whenever I go to a skatepark, I have to choose between
+the skateboard and bike. So far I've been basically splitting the time based on
+what I feel like doing, often switching every 20 minutes. Trying to progress on
+both is going to make it slower but oh well.</p>
+<p>Been early to a public skatepark a couple of mornings, setting up the tripod and
+sessioning some things. I've already spotted a couple of bad habits from that
+(rotated shoulders when ollieing, butt not back enough on manuals on the
+bike...), so plan to do it more.</p>
+<p>I'm also looking for fun ways to put those into mini edits. The idea is similar
+to what I'm doing here. Capture quickly, edit so that it's not super boring and
+always publish. <a href="https://www.instagram.com/p/CsjGAF3Is2L/">Here's one</a></p>
+<p>Inspired by <a href="https://www.instagram.com/p/CsEcOPjNfix/">the daily push flick analysis
+videos</a> I started researching better
+ways to do video analysis, and daydreaming about automating / AI-ing some parts
+of the process. Maybe</p>
+<p>On the workout front, Yoga continues, and I started doing 5 minutes of jump rope
+(which I've stopped for a few days as I hurt my knee on Sunday). I'm listening
+again to the <a href="https://hubermanlab.com/dr-andy-galpin-how-to-assess-improve-all-aspects-of-your-fitness/">Huberman and Andy Galpin Fitness assessment
+episode</a>
+and plan on doing some assessment this week.</p>
+<p>That's mostly it, skating, recording and doing informal analysis, and
+obsessing over fitness.</p>
+<p>Talk soon.</p>
+]]></description><link>https://jesusgollonet.com/posts/week-3</link><guid isPermaLink="true">https://jesusgollonet.com/posts/week-3</guid><pubDate>Mon, 22 May 2023 13:10:29 GMT</pubDate></item><item><title><![CDATA[Week 2]]></title><description><![CDATA[<p>Oh my god. Wednesday!</p>
+<p>Last week was slower in all fronts.</p>
+<p>Finished my 3 weeks of 20 minutes of Yoga a day. Last couple of days it
+got really late and I did Yin Yoga instead. I'm resisting calling it 'cheating',
+as I've invariably found it helpful when I've done it in the past, and I like to
+think of myself as a strong proponent of less Yang more Yin, but yep, that is a
+thought that has been had..</p>
+<p>I have been going back and forth with what to do next, and I still don't have a
+decision. I'm low-key terrified of losing momentum, as it is so hard to return.
+I also want to start doing more, for some definition of more, but always in a
+way that doesn't risk breaking the habit. Continuing Yoga for the moment.</p>
+<p>Had the first couple of sessions on a skateboard. Taking it easy as it's
+significantly tougher on joints and tendons, but I'm glad with where I'm at.
+Managed to drop in on a couple of ramps without giving it 2 seconds, which was
+really encouraging. It's been at least 10, if not 12 years since I last skated,</p>
+<p>Couple of shy starts at Python. Getting past the environment setup/conventions,
+and looking forward to starting the fun part.</p>
+<p>Anyway, Save, publish... here's to a better one.</p>
+]]></description><link>https://jesusgollonet.com/posts/week-2</link><guid isPermaLink="true">https://jesusgollonet.com/posts/week-2</guid><pubDate>Mon, 15 May 2023 14:40:52 GMT</pubDate></item><item><title><![CDATA[Week 1]]></title><description><![CDATA[<p>I'm going to start a weekly recap to keep writing/publishing momentum. This
+is written in haste as a quick capture of things I'm up to so don't expect too
+much.</p>
+<p>I decided to extend the 20 min of daily yoga to 3 weeks, and haven't missed a
+day so far.  Duration is low enough that I don't need any rest days, and even if
+I'm tired I can get myself to do it. I'm also using instagram stories as
+outsourced accountability and that's been working wonders.</p>
+<p>The main impulse I've struggled with controlling is adding more time, more exercises, starting
+cardio... Doing too much too soon is the killer of any fitness initiative so
+I'll keep the commitment to 20 min.</p>
+<p>Interestingly, even with such small time I can already feel some benefits. I was
+at the skatepark early in the week and then over the weekend trying similar
+tricks and the second time I could definitely feel better strength and
+stability. It could well be something else but I wouldn't be surprised if the
+yoga already has an effect.</p>
+<p>I got a tripod and have started recording sessions at the skatepark. Curious to see if it can
+help me progress better, as the few times I've recorded myself in the past have
+demonstrated just how different things feel in your head vs from the outside
+(and you can guess which one is nicer).</p>
+<p>I also got a skateboard! That used to be my main thing growing up, and I re-picked it
+up ocassionally in BCN (late twenties) and Amsterdam (mid thirties). I hadn't
+considered it in the last few years due to some knee and ankle issues, but a friend lent me one for 10
+minutes a few days ago and I could feel way more confident than last time I
+tried 2 years ago, so got a super cheap second-hand complete and plan to
+take it slowly.</p>
+<p>Damn it's Tuesday already, so here's a list of a few other things I'm up to:</p>
+<ul>
+<li>Using <a href="https://www.instagram.com/jesusgollonet/"> instagram as a raw visual diary </a>, and deliberately capturing stuff I used to be shy/embarrassed about.</li>
+<li>Starging to feel a bit more comfortable with fakie on the BMX (and recording!)</li>
+<li>Cooking quite a bit (and recording!)</li>
+<li>After getting burned by <a href="https://twitter.com/jesusgollonet/status/1652386580387045376">a stupid typescript rabbithole</a> I <a href="https://github.com/jesusgollonet/website/blob/main/build/posts/2023-04-30_a-typescript-rabbit-hole.md">shelved a blog entry</a>
+and haven't writen anything here, which is one reason why I'm starting this
+weekly series.</li>
+<li>After a few mindblowing experiences with ChatGPT I've finally tarted to dive
+properly into AI. The <a href="https://www.deeplearning.ai/courses/#short-courses">prompt engineering
+course</a> is proving super
+valuable.</li>
+<li>Relatedly, it seems like the <a href="https://twitter.com/jesusgollonet/status/1654536311661797384"> time finally came
+</a> for me to get
+into Python. A lot of the material on openAI seems to have decent Typescript or
+js support but the native tongue is definitely Python, so there we go.</li>
+</ul>
+<p>And there's more. Seems like there's a lot of momentum in many areas, so let's
+see how long we can keep it.</p>
+<p>Talk soon!</p>
+]]></description><link>https://jesusgollonet.com/posts/week-1</link><guid isPermaLink="true">https://jesusgollonet.com/posts/week-1</guid><pubDate>Sun, 07 May 2023 12:11:48 GMT</pubDate></item><item><title><![CDATA[A typescript rabbit hole]]></title><description><![CDATA[<p>Preface: I'm still inside the hole. There's no wisdom to be gained for
+continuing. This is just a stake in the ground to come back to.</p>
+<p>All I wanted was to add footnotes.</p>
+<p>I use <a href="https://github.com/remarkjs/remark">remark</a> to parse markdown for the
+entries of this blog and I wanted to add a footnote. The plugin for supporting
+github flavored markdown (and therefore footnotes) was throwing a typescript
+error I didn't understand, so I created an empty project to figure out what was
+going on.</p>
+<p>A few iterations later, having switched over to micromark as a simpler alternative. I
+boiled my minimal example down to this *:</p>
+<pre><code class="language-typescript">import {micromark} from 'micromark'
+console.log(micromark('hello'))
+</code></pre>
+<p>Compiling and running (<code>tsc index.ts &amp;&amp; node index.js</code>) throws an error :</p>
+<p>ReferenceError: exports is not defined in <strong>ES module scope</strong>. This file is being treated as an ES module because it has a '.js' file extension and 'package.json' contains &quot;type&quot;: &quot;module&quot;. To treat it as a CommonJS script, rename it to use the '.cjs' file extension.</p>
+<p>Ok so <a href="https://github.com/micromark/micromark#install">micromark is ESM only</a>,
+which means the source files already use import/export syntax. According to (my
+reading of) the typescript docs for <a href="https://www.typescriptlang.org/docs/handbook/esm-node.html">Ecmascript modules in
+Node.js</a>, I should
+be able to use it just by adding 'type:module' to my package.json,
+and module:nodenext to my tsconfig.json<code>, but I have tried that, and a thousand combinations of </code>module<code>, </code>moduleResolution<code>, </code>esModuleInterop`, and typescript refuses to ever compile anytyhing with ESM syntax.</p>
+<p>It's always the same <code>require</code> call importing <code>micromark</code>:</p>
+<pre><code class="language-javascript">&quot;use strict&quot;;
+exports.__esModule = true;
+var micromark_1 = require(&quot;micromark&quot;);
+console.log((0, micromark_1.micromark)(&quot; # Hello, world!&quot;));
+</code></pre>
+<p>I've given up for the moment. but here's a few references that have been helpful
+in providing some context / understanding of the problem (and a bit of comfort
+that something is messed up and it's not just that I'm an idiot):</p>
+<ul>
+<li>
+<p><a href="https://stackoverflow.com/questions/70545129/compile-a-package-that-depends-on-esm-only-library-into-a-commonjs-package">An epic long Stack Overflow answer to compile an ESM dependency into a CommonJS project</a></p>
+</li>
+<li>
+<p><a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c">A gist about Pure ESM packages</a></p>
+</li>
+<li>
+<p><a href="https://2ality.com/2021/06/typescript-esm-nodejs.html">Typescript and native ESM in Node.js</a></p>
+</li>
+</ul>
+<p>If you are frustrated that you got here and there's indeed no solution, I guess
+now you know how I feel.</p>
+<p>* Funnily enough, syntax highlighting is also a plugin away, that's why code
+looks so bad in this entry.</p>
+<p>** Even more funny. You see? I still can't do footnotes!</p>
+]]></description><link>https://jesusgollonet.com/posts/a-typescript-rabbit-hole</link><guid isPermaLink="true">https://jesusgollonet.com/posts/a-typescript-rabbit-hole</guid><pubDate>Sun, 30 Apr 2023 13:08:14 GMT</pubDate></item><item><title><![CDATA[Resuming exercise]]></title><description><![CDATA[<p>The hardest part of exercising is getting back to it once you inevitably fall off
+the wagon.</p>
+<p>I started the year on a good streak of almost 2 months doing
+reasonably regular exercise, including 2 to 3 days a week of strength and
+at least one of low HR cardio. But then I got a new job, a stressful first
+project and some other life events. So it's been a couple of months off again.</p>
+<p>I have not completely stopped moving. I've been hitting the skatepark <a href="https://www.instagram.com/p/CrftUXQIhgZ/">on
+a BMX with my kids</a> almost every week, but as I'm learning, the consistency
+and focus of an actual workout is the key to improving, especially well into your 40s <sup><a href="#user-content-fn-1" id="user-content-fnref-1" data-footnote-ref="" aria-describedby="footnote-label">1</a></sup>.</p>
+<p>There's the part where you need to get motivated enough to start again, but even
+harder is the part where you need to re-adjust your expectations. You
+were able to do X pull-ups, run Y kilometers, and now it's less.</p>
+<p>So I've started with low expectations. 20 minutes of yoga every day for a week.
+I need to work on a bit of low back pain and just get mobility in order, then
+I'll get back to strength and cardio.</p>
+<p>This is day 3. 🤞</p>
+<section data-footnotes="" class="footnotes"><h2 id="footnote-label" class="sr-only">Footnotes</h2>
+<ol>
+<li id="user-content-fn-1">
+<p>Beth Lewis said something in <a href="https://www.youtube.com/watch?v=t48iqNwS6PY">The Art of Stability</a> that stuck with me:</p>
+<blockquote>
+<p>Don't let your sport get in the way of your training.</p>
+</blockquote>
+<a href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a>
+</li>
+</ol>
+</section>]]></description><link>https://jesusgollonet.com/posts/resuming-exercise</link><guid isPermaLink="true">https://jesusgollonet.com/posts/resuming-exercise</guid><pubDate>Wed, 26 Apr 2023 11:43:29 GMT</pubDate></item><item><title><![CDATA[👋 Hello!]]></title><description><![CDATA[<p>I have been meaning to get back to writing in public for many years, but I always get blocked at different stages:</p>
+<p>What engine do I use? Do I host myself or do I go for a managed option? Should I keep it just professional or is it ok to get personal? Single blog for all my interests or a few thematic ones? And &quot;who would even care&quot;? etc.
+When the urge comes back, I start making decisions but then I run out of time
+and let it sleep for another few months.</p>
+<p>And it's been <em>checks notes</em> 8 years since <a href="https://github.com/jesusgollonet/software-over-the-rainbow/blob/master/build/source/_posts/2015-04-21-this-undefined-es6-arrow-functions.markdown">I last published an
+entry</a>
+but more like 12 years since the last time I blogged
+with any regularity (here's <a href="https://github.com/jesusgollonet/software-over-the-rainbow/tree/master/build/source/_posts">the archives of my old blog</a> ).</p>
+<p>I've had some periods of activity on <a href="https://twitter.com/jesusgollonet">Twitter</a> and <a href="https://www.instagram.com/jesusgollonet/">Instagram</a> (I'm currently loving it!) and even tried <a href="https://dev.to/jesusgollonet">a different platform</a>,  but I'd like to have a place where I can explore freely.</p>
+<p>I'm not getting blocked this time. I'm not even going to edit this one before
+publishing. Wait what was the way to deploy this again?</p>
+<p>If you're reading this, I managed to figure it out :)</p>
+]]></description><link>https://jesusgollonet.com/posts/hello!</link><guid isPermaLink="true">https://jesusgollonet.com/posts/hello!</guid><pubDate>Tue, 25 Apr 2023 12:05:11 GMT</pubDate></item><item><title><![CDATA[a vim toggle]]></title><description><![CDATA[<p>I open and close vim many times in my daily work. As a spoiled vim user, I try
+to do anything I do often with as few keystrokes as possible, ideally one.  So
+I've mapped a key (F12) to &quot;toggle&quot; vim. In this post I share the <del>few pieces
+put together with duct-tape</del> configuration I use along with some notes about
+zsh and unix job control</p>
+<p><em><strong>video embed</strong></em></p>
+<p>I've included a <a href="">gist with the configuration</a> if you just want to set it up,
+otherwise here's a bit of explanation which touches on some learnings about zsh
+and unix jobs:</p>
+<ol>
+<li><a href="#bind-a-key-in-zsh-to-open-vim">opening vim with a single key (zsh)</a>:</li>
+<li><a href="#closing-vim-with-a-key-shortcut">bind the same key within vim to suspend</a></li>
+<li><a href="#closing-vim-with-a-key-shortcut">foreground a suspended process</a></li>
+<li><a href="#is-vim-already-running">check if vim is running in the current terminal</a></li>
+</ol>
+<h2>The elements</h2>
+<h3>1. Bind a key in zsh to open vim</h3>
+<p>To bind a key to a command in zsh, use <code>bindkey</code>. Here's what mapping F12 to
+open vim looks like:</p>
+<pre><code class="language-zsh">
+bindkey -s '^[[24~’ ‘vi .\n’ 
+
+</code></pre>
+<p>The <code>-s</code> switch maps &quot;each <em>in-string</em> to each <em>out-string</em>&quot; (<a href=""><code>man zshzle</code></a>).In our case, the <em>in-string</em> is the key we press (F12) and the
+<em>out-string</em> is the command we want to execute.</p>
+<p>But, but...</p>
+<h4>What is <code>^[[24~</code>?</h4>
+<p>The way your terminal understands the key you are pressing is by receiving an
+<em>escape code</em>. Different keys will send different escape codes and it can vary
+across terminals.  In my case,  <code>^[[24~</code> stands for <code>F12</code>, <code>^[[23~</code> is <code>F11</code>...
+Check the note at the end to find out the escape code for a given key on your
+keyboard.</p>
+<h4>Why is there an <code>\n</code> after <code>vi .</code>?</h4>
+<p>It's a newline. <code>bindkey</code> is only substituing the escape code it receives with
+the string that you pass in, and newline is the way the terminal understands
+that it needs to execute what you just typed. So you can understand <code>vi .\n</code> as
+telling zsh &quot;Type 'vi .' and execute it&quot;. Try leaving it out  you'll see that
+your command is written but never executed.</p>
+<p>We can now open vim with a shortcut. In the next step we'll see how to &quot;close&quot;
+it.</p>
+<h3>2. Minimize vim with a key shortcut</h3>
+<p>When I'm editing text I often want to return to a terminal, run something and
+quickly get back to where I was. If I ran <code>:q</code> to actually close vim , reopening
+would have to reinitialize it, and I would lose my state. What I want is to just
+hide or minimize temporarily.</p>
+<p>Any Unix program running on a terminal can be suspended by pressing <code>ctrl Z</code> ,
+which more or less means temporarily close and hide. The system that controls
+that is called Job Control (TODO: add reference). If you try that in vim sure
+enough, you'll go back to the terminal in which you launched it.</p>
+<p>The mechanism to map a command to a key in vim is conceptually the same as in
+zsh, just with different syntax. Here's what we'll use:</p>
+<pre><code class="language-vimscript">
+map &lt;F12&gt; &lt;C-z&gt;
+
+</code></pre>
+<p>So for now we can open vim and hide it. But we have a problem. If we press
+F12 again from the terminal we're going to run <code>vi .</code>, but that launches a completely
+new instance. We want to reopen the one we minimized. That's the next step
+below:</p>
+<h3>3. Unsuspend the process, or how to reopen the vim we just closed.</h3>
+<p>The way to foreground a suspended process is to run <code>fg</code>.  If we want to reuse
+the F12 shortcut we need a way to know if vim is already running in the current
+terminal and conditionally execute open or foreground based on that.</p>
+<h4>Is vim already running?</h4>
+<p>There are multiple way to go about this. Since we've talked about <code>Ctrl Z</code> and
+<code>fg</code> we can stay within the Jobs Control API and take a look at the  <code>jobs</code>
+command. Running it in a terminal will give us a list of the suspended jobs.</p>
+<p>Here's the output I get If I suspend my current vim session</p>
+<pre><code class="language-bash">
+% jobs
+[1]  + suspended  /usr/local/bin/vim first.md
+
+</code></pre>
+<p>In order to find out if vim is suspended in the current terminal what we'll do
+is to grep the string &quot;vim&quot; out of the jobs output.</p>
+<pre><code class="language-bash">
+jobs | grep &quot;vim&quot;
+
+</code></pre>
+<p>That command will exit with a 0 (success!) if vim is found and otherwise return a non-zero
+exit code. We just then need to conditionally open vim or foreground it based on
+that.</p>
+<h4>open or foreground vim</h4>
+<p>Now we can wrap this check inside a function and conditionally open vi or or
+foreground it depending on the result of the command.</p>
+<pre><code class="language-bash">
+open_or_foreground_vim(){
+    if jobs | grep -q &quot;vim&quot;; then
+        fg %?vim
+    else
+        vi .
+    fi
+}
+
+</code></pre>
+<p>A couple of notes about this function:</p>
+<ul>
+<li>In the conditional we're only interested in whether grep found a match or not,
+and not where. I added the <code>-q</code> switch to grep so that it doesn't show any
+output</li>
+<li><code>fg %?vim</code> is a neat trick I just learned from <a href="https://medium.com/@copyconstruct/bash-job-control-4a36da3e4aa7">this article on Job Control
+from Cindy Sridharan</a>:<code>%?vim</code> — Invokes
+a job that contains the string vim.</li>
+</ul>
+<p>Add that function to your <code>.zshrc</code> file. Aaand...</p>
+<h3>Rebind your original key to execute this function</h3>
+<p>Last piece of the puzzle is to change your bindkey to execute our new function
+instead of the original <code>vi .</code></p>
+<pre><code class="language-bash">
+bindkey -s '^[[24~' 'open_or_foreground_vim\n'
+
+</code></pre>
+<h2>How to find out the escape code for a given key</h2>
+<p>press <code>ctrl v</code> on your terminal and then the letter you want the escape code for.</p>
+<h2>References</h2>
+<p>(from the typically inscrutable <a href="http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#index-zle_002c-builtin-commands"><code>man zshzle</code></a>).</p>
+]]></description><link>https://jesusgollonet.com/posts/vim-toggle</link><guid isPermaLink="true">https://jesusgollonet.com/posts/vim-toggle</guid><pubDate>Wed, 31 Mar 2021 07:57:50 GMT</pubDate></item></channel></rss>
