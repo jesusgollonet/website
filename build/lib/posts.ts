@@ -3,15 +3,7 @@ import path from "path";
 import matter from "gray-matter";
 import { micromark } from "micromark";
 import { gfm, gfmHtml } from "micromark-extension-gfm";
-
-export interface PostFile {
-  fileName: string;
-  title: string;
-  slug: string;
-  date: string;
-  draft: boolean;
-  contentHtml: string;
-}
+import { PostFile } from "./types";
 
 const postsDirectory = path.join(process.cwd(), "posts");
 // given a post file, it returns a {id, frontMatter, contentHtml} object
