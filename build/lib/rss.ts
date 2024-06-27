@@ -19,5 +19,6 @@ export default async function generateRssFeed(posts: PostFile[]) {
       description: post.contentHtml,
     });
   });
+  console.log("generateRssFeed.feed.xml()");
   await writeFile("./public/diary/feed.xml", feed.xml());
 }

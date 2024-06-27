@@ -80,8 +80,13 @@ export async function getPostData(postTitleId: string): Promise<PostFile> {
   }
 }
 
-export async function getSortedPostsData(): Promise<PostFile[]> {
-  const postsData = await parsePostsDirectory(postsDirectory);
+export async function getSortedPostsData(
+  excludeDrafts: boolean = true,
+): Promise<PostFile[]> {
+  let postsData = await parsePostsDirectory(postsDirectory);
+  if (excludeDrafts) {
+    postsData = postsData.filter((p) => p.draft !== true);
+  }
   return postsData.sort((a, b) => {
     return new Date(a.date) >= new Date(b.date) ? -1 : 1;
   });

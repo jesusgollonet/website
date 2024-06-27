@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jesus Gollonet Diary | Feed]]></title><description><![CDATA[Jesus Gollonet Diary | Feed]]></description><link>https://jesusgollonet.com</link><generator>RSS for Node</generator><lastBuildDate>Thu, 27 Jun 2024 14:41:26 GMT</lastBuildDate><atom:link href="https://jesusgollonet.com/diary/feed.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 27 Jun 2024 14:41:26 GMT</pubDate><item><title><![CDATA[I'm attending the recurse center!]]></title><description><![CDATA[<p>I just got confirmed for the Summer 2 batch at the <a href="https://www.recurse.com/">Recurse Center</a> starting in
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jesus Gollonet Diary | Feed]]></title><description><![CDATA[Jesus Gollonet Diary | Feed]]></description><link>https://jesusgollonet.com</link><generator>RSS for Node</generator><lastBuildDate>Thu, 27 Jun 2024 15:19:14 GMT</lastBuildDate><atom:link href="https://jesusgollonet.com/diary/feed.xml" rel="self" type="application/rss+xml"/><pubDate>Thu, 27 Jun 2024 15:19:14 GMT</pubDate><item><title><![CDATA[I'm attending the recurse center!]]></title><description><![CDATA[<p>I just got confirmed for the Summer 2 batch at the <a href="https://www.recurse.com/">Recurse Center</a> starting in
 July 1st and I'm through the moon.</p>
 <p>I have been wanting to attend for the longest time (I have tweets from as far
 back as 2017) but always had other commitments. Back in May I decided it was
@@ -343,16 +343,7 @@ anywhere)  or email me at here.</p>
 <p>Oh god I had to add the markup to this link manually!! Next one. <a href="#user-content-fnref-1" data-footnote-backref="" aria-label="Back to reference 1" class="data-footnote-backref">↩</a></p>
 </li>
 </ol>
-</section>]]></description><link>https://jesusgollonet.com/posts/pasting-images-in-vim</link><guid isPermaLink="true">https://jesusgollonet.com/posts/pasting-images-in-vim</guid><pubDate>Thu, 25 Apr 2024 10:37:11 GMT</pubDate></item><item><title><![CDATA[roam calendar]]></title><description><![CDATA[<p>Back in 2021 I was using roam heavily.</p>
-<ul>
-<li>09:13 spent a good half an hour creating a script to generate roam [[2024]] with [[ChatGPT]]
-<ul>
-<li>conversation <a href="https://chat.openai.com/share/706e3725-e3a0-49fd-8495-afd6e35ae44d">https://chat.openai.com/share/706e3725-e3a0-49fd-8495-afd6e35ae44d</a></li>
-<li>maybe i would like to archive conversations <a href="https://simonwillison.net/2023/Mar/27/ai-enhanced-development/">https://simonwillison.net/2023/Mar/27/ai-enhanced-development/</a></li>
-</ul>
-</li>
-</ul>
-]]></description><link>https://jesusgollonet.com/posts/roam-calendar</link><guid isPermaLink="true">https://jesusgollonet.com/posts/roam-calendar</guid><pubDate>Fri, 05 Jan 2024 09:01:25 GMT</pubDate></item><item><title><![CDATA[gh cli zen workflow]]></title><description><![CDATA[<p>As I have started getting back into the rhythm of coding more or less daily, I have been paying
+</section>]]></description><link>https://jesusgollonet.com/posts/pasting-images-in-vim</link><guid isPermaLink="true">https://jesusgollonet.com/posts/pasting-images-in-vim</guid><pubDate>Thu, 25 Apr 2024 10:37:11 GMT</pubDate></item><item><title><![CDATA[gh cli zen workflow]]></title><description><![CDATA[<p>As I have started getting back into the rhythm of coding more or less daily, I have been paying
 attention to my workflow. My favorite piece on the topic is Simon Willison's masterful
 <a href="https://simonwillison.net/2022/Jan/12/how-i-build-a-feature/"> How I build a feature </a>, which provides a detailed guide on building software including everything from tests to documentation and publishing.
 While I'm very far from such heights, I have been almost invariably applying his first point:</p>
@@ -623,53 +614,7 @@ js support but the native tongue is definitely Python, so there we go.</li>
 <p>And there's more. Seems like there's a lot of momentum in many areas, so let's
 see how long we can keep it.</p>
 <p>Talk soon!</p>
-]]></description><link>https://jesusgollonet.com/posts/week-1</link><guid isPermaLink="true">https://jesusgollonet.com/posts/week-1</guid><pubDate>Sun, 07 May 2023 12:11:48 GMT</pubDate></item><item><title><![CDATA[A typescript rabbit hole]]></title><description><![CDATA[<p>Preface: I'm still inside the hole. There's no wisdom to be gained for
-continuing. This is just a stake in the ground to come back to.</p>
-<p>All I wanted was to add footnotes.</p>
-<p>I use <a href="https://github.com/remarkjs/remark">remark</a> to parse markdown for the
-entries of this blog and I wanted to add a footnote. The plugin for supporting
-github flavored markdown (and therefore footnotes) was throwing a typescript
-error I didn't understand, so I created an empty project to figure out what was
-going on.</p>
-<p>A few iterations later, having switched over to micromark as a simpler alternative. I
-boiled my minimal example down to this *:</p>
-<pre><code class="language-typescript">import {micromark} from 'micromark'
-console.log(micromark('hello'))
-</code></pre>
-<p>Compiling and running (<code>tsc index.ts &amp;&amp; node index.js</code>) throws an error :</p>
-<p>ReferenceError: exports is not defined in <strong>ES module scope</strong>. This file is being treated as an ES module because it has a '.js' file extension and 'package.json' contains &quot;type&quot;: &quot;module&quot;. To treat it as a CommonJS script, rename it to use the '.cjs' file extension.</p>
-<p>Ok so <a href="https://github.com/micromark/micromark#install">micromark is ESM only</a>,
-which means the source files already use import/export syntax. According to (my
-reading of) the typescript docs for <a href="https://www.typescriptlang.org/docs/handbook/esm-node.html">Ecmascript modules in
-Node.js</a>, I should
-be able to use it just by adding 'type:module' to my package.json,
-and module:nodenext to my tsconfig.json<code>, but I have tried that, and a thousand combinations of </code>module<code>, </code>moduleResolution<code>, </code>esModuleInterop`, and typescript refuses to ever compile anytyhing with ESM syntax.</p>
-<p>It's always the same <code>require</code> call importing <code>micromark</code>:</p>
-<pre><code class="language-javascript">&quot;use strict&quot;;
-exports.__esModule = true;
-var micromark_1 = require(&quot;micromark&quot;);
-console.log((0, micromark_1.micromark)(&quot; # Hello, world!&quot;));
-</code></pre>
-<p>I've given up for the moment. but here's a few references that have been helpful
-in providing some context / understanding of the problem (and a bit of comfort
-that something is messed up and it's not just that I'm an idiot):</p>
-<ul>
-<li>
-<p><a href="https://stackoverflow.com/questions/70545129/compile-a-package-that-depends-on-esm-only-library-into-a-commonjs-package">An epic long Stack Overflow answer to compile an ESM dependency into a CommonJS project</a></p>
-</li>
-<li>
-<p><a href="https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c">A gist about Pure ESM packages</a></p>
-</li>
-<li>
-<p><a href="https://2ality.com/2021/06/typescript-esm-nodejs.html">Typescript and native ESM in Node.js</a></p>
-</li>
-</ul>
-<p>If you are frustrated that you got here and there's indeed no solution, I guess
-now you know how I feel.</p>
-<p>* Funnily enough, syntax highlighting is also a plugin away, that's why code
-looks so bad in this entry.</p>
-<p>** Even more funny. You see? I still can't do footnotes!</p>
-]]></description><link>https://jesusgollonet.com/posts/a-typescript-rabbit-hole</link><guid isPermaLink="true">https://jesusgollonet.com/posts/a-typescript-rabbit-hole</guid><pubDate>Sun, 30 Apr 2023 13:08:14 GMT</pubDate></item><item><title><![CDATA[Resuming exercise]]></title><description><![CDATA[<p>The hardest part of exercising is getting back to it once you inevitably fall off
+]]></description><link>https://jesusgollonet.com/posts/week-1</link><guid isPermaLink="true">https://jesusgollonet.com/posts/week-1</guid><pubDate>Sun, 07 May 2023 12:11:48 GMT</pubDate></item><item><title><![CDATA[Resuming exercise]]></title><description><![CDATA[<p>The hardest part of exercising is getting back to it once you inevitably fall off
 the wagon.</p>
 <p>I started the year on a good streak of almost 2 months doing
 reasonably regular exercise, including 2 to 3 days a week of strength and
@@ -707,120 +652,4 @@ with any regularity (here's <a href="https://github.com/jesusgollonet/software-o
 <p>I'm not getting blocked this time. I'm not even going to edit this one before
 publishing. Wait what was the way to deploy this again?</p>
 <p>If you're reading this, I managed to figure it out :)</p>
-]]></description><link>https://jesusgollonet.com/posts/hello!</link><guid isPermaLink="true">https://jesusgollonet.com/posts/hello!</guid><pubDate>Tue, 25 Apr 2023 12:05:11 GMT</pubDate></item><item><title><![CDATA[a vim toggle]]></title><description><![CDATA[<p>I open and close vim many times in my daily work. As a spoiled vim user, I try
-to do anything I do often with as few keystrokes as possible, ideally one.  So
-I've mapped a key (F12) to &quot;toggle&quot; vim. In this post I share the <del>few pieces
-put together with duct-tape</del> configuration I use along with some notes about
-zsh and unix job control</p>
-<p><em><strong>video embed</strong></em></p>
-<p>I've included a <a href="">gist with the configuration</a> if you just want to set it up,
-otherwise here's a bit of explanation which touches on some learnings about zsh
-and unix jobs:</p>
-<ol>
-<li><a href="#bind-a-key-in-zsh-to-open-vim">opening vim with a single key (zsh)</a>:</li>
-<li><a href="#closing-vim-with-a-key-shortcut">bind the same key within vim to suspend</a></li>
-<li><a href="#closing-vim-with-a-key-shortcut">foreground a suspended process</a></li>
-<li><a href="#is-vim-already-running">check if vim is running in the current terminal</a></li>
-</ol>
-<h2>The elements</h2>
-<h3>1. Bind a key in zsh to open vim</h3>
-<p>To bind a key to a command in zsh, use <code>bindkey</code>. Here's what mapping F12 to
-open vim looks like:</p>
-<pre><code class="language-zsh">
-bindkey -s '^[[24~’ ‘vi .\n’ 
-
-</code></pre>
-<p>The <code>-s</code> switch maps &quot;each <em>in-string</em> to each <em>out-string</em>&quot; (<a href=""><code>man zshzle</code></a>).In our case, the <em>in-string</em> is the key we press (F12) and the
-<em>out-string</em> is the command we want to execute.</p>
-<p>But, but...</p>
-<h4>What is <code>^[[24~</code>?</h4>
-<p>The way your terminal understands the key you are pressing is by receiving an
-<em>escape code</em>. Different keys will send different escape codes and it can vary
-across terminals.  In my case,  <code>^[[24~</code> stands for <code>F12</code>, <code>^[[23~</code> is <code>F11</code>...
-Check the note at the end to find out the escape code for a given key on your
-keyboard.</p>
-<h4>Why is there an <code>\n</code> after <code>vi .</code>?</h4>
-<p>It's a newline. <code>bindkey</code> is only substituing the escape code it receives with
-the string that you pass in, and newline is the way the terminal understands
-that it needs to execute what you just typed. So you can understand <code>vi .\n</code> as
-telling zsh &quot;Type 'vi .' and execute it&quot;. Try leaving it out  you'll see that
-your command is written but never executed.</p>
-<p>We can now open vim with a shortcut. In the next step we'll see how to &quot;close&quot;
-it.</p>
-<h3>2. Minimize vim with a key shortcut</h3>
-<p>When I'm editing text I often want to return to a terminal, run something and
-quickly get back to where I was. If I ran <code>:q</code> to actually close vim , reopening
-would have to reinitialize it, and I would lose my state. What I want is to just
-hide or minimize temporarily.</p>
-<p>Any Unix program running on a terminal can be suspended by pressing <code>ctrl Z</code> ,
-which more or less means temporarily close and hide. The system that controls
-that is called Job Control (TODO: add reference). If you try that in vim sure
-enough, you'll go back to the terminal in which you launched it.</p>
-<p>The mechanism to map a command to a key in vim is conceptually the same as in
-zsh, just with different syntax. Here's what we'll use:</p>
-<pre><code class="language-vimscript">
-map &lt;F12&gt; &lt;C-z&gt;
-
-</code></pre>
-<p>So for now we can open vim and hide it. But we have a problem. If we press
-F12 again from the terminal we're going to run <code>vi .</code>, but that launches a completely
-new instance. We want to reopen the one we minimized. That's the next step
-below:</p>
-<h3>3. Unsuspend the process, or how to reopen the vim we just closed.</h3>
-<p>The way to foreground a suspended process is to run <code>fg</code>.  If we want to reuse
-the F12 shortcut we need a way to know if vim is already running in the current
-terminal and conditionally execute open or foreground based on that.</p>
-<h4>Is vim already running?</h4>
-<p>There are multiple way to go about this. Since we've talked about <code>Ctrl Z</code> and
-<code>fg</code> we can stay within the Jobs Control API and take a look at the  <code>jobs</code>
-command. Running it in a terminal will give us a list of the suspended jobs.</p>
-<p>Here's the output I get If I suspend my current vim session</p>
-<pre><code class="language-bash">
-% jobs
-[1]  + suspended  /usr/local/bin/vim first.md
-
-</code></pre>
-<p>In order to find out if vim is suspended in the current terminal what we'll do
-is to grep the string &quot;vim&quot; out of the jobs output.</p>
-<pre><code class="language-bash">
-jobs | grep &quot;vim&quot;
-
-</code></pre>
-<p>That command will exit with a 0 (success!) if vim is found and otherwise return a non-zero
-exit code. We just then need to conditionally open vim or foreground it based on
-that.</p>
-<h4>open or foreground vim</h4>
-<p>Now we can wrap this check inside a function and conditionally open vi or or
-foreground it depending on the result of the command.</p>
-<pre><code class="language-bash">
-open_or_foreground_vim(){
-    if jobs | grep -q &quot;vim&quot;; then
-        fg %?vim
-    else
-        vi .
-    fi
-}
-
-</code></pre>
-<p>A couple of notes about this function:</p>
-<ul>
-<li>In the conditional we're only interested in whether grep found a match or not,
-and not where. I added the <code>-q</code> switch to grep so that it doesn't show any
-output</li>
-<li><code>fg %?vim</code> is a neat trick I just learned from <a href="https://medium.com/@copyconstruct/bash-job-control-4a36da3e4aa7">this article on Job Control
-from Cindy Sridharan</a>:<code>%?vim</code> — Invokes
-a job that contains the string vim.</li>
-</ul>
-<p>Add that function to your <code>.zshrc</code> file. Aaand...</p>
-<h3>Rebind your original key to execute this function</h3>
-<p>Last piece of the puzzle is to change your bindkey to execute our new function
-instead of the original <code>vi .</code></p>
-<pre><code class="language-bash">
-bindkey -s '^[[24~' 'open_or_foreground_vim\n'
-
-</code></pre>
-<h2>How to find out the escape code for a given key</h2>
-<p>press <code>ctrl v</code> on your terminal and then the letter you want the escape code for.</p>
-<h2>References</h2>
-<p>(from the typically inscrutable <a href="http://zsh.sourceforge.net/Doc/Release/Zsh-Line-Editor.html#index-zle_002c-builtin-commands"><code>man zshzle</code></a>).</p>
-]]></description><link>https://jesusgollonet.com/posts/vim-toggle</link><guid isPermaLink="true">https://jesusgollonet.com/posts/vim-toggle</guid><pubDate>Wed, 31 Mar 2021 07:57:50 GMT</pubDate></item></channel></rss>
+]]></description><link>https://jesusgollonet.com/posts/hello!</link><guid isPermaLink="true">https://jesusgollonet.com/posts/hello!</guid><pubDate>Tue, 25 Apr 2023 12:05:11 GMT</pubDate></item></channel></rss>
