@@ -15,11 +15,9 @@ export default function JGHead({
       <meta name="description" content={description} key="desc" />
       <meta property="og:title" content={title} />
       <meta property="og:description" content={description} />
-      <meta property="og:image:width" content="1200" />
-      <meta property="og:image:height" content="630" />
       <meta property="og:image" content={image} />
       {/* twitter card*/}
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:card" content="summary" />
       <meta name="twitter:site" content="@jesusgollonet" />
       <meta name="twitter:creator" content="@jesusgollonet" />
       <meta name="twitter:title" content={title} />
