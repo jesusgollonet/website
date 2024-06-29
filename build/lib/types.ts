@@ -11,4 +11,5 @@ export interface PostFile {
   date: string;
   draft: boolean;
   contentHtml: string;
+  summary: string;
 }

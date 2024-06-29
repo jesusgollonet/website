@@ -3,7 +3,6 @@ import { writeFile } from "node:fs/promises";
 import { PostFile } from "./types";
 
 export default async function generateRssFeed(posts: PostFile[]) {
-  console.log("generateRssFeed.name, posts");
   const site_url = "https://jesusgollonet.com";
   const feed = new RSS({
     title: "Jesus Gollonet Diary | Feed",
@@ -19,6 +18,5 @@ export default async function generateRssFeed(posts: PostFile[]) {
       description: post.contentHtml,
     });
   });
-  console.log("generateRssFeed.feed.xml()");
   await writeFile("./public/diary/feed.xml", feed.xml());
 }

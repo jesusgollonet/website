@@ -20,6 +20,7 @@ export default function Post({
     <Layout pageType={PageType.Diary}>
       <JGHead
         title={postData.title + " - Jesus Gollonet Diary"}
+        description={postData.summary}
         image={`/images/social/${postData.slug.replace("/posts/", "")}.png`}
       />
       <h1>{postData.title}</h1>

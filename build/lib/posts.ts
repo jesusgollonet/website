@@ -14,6 +14,7 @@ async function parsePostFile(
   const parsedMatter = matter(fileContents);
   // modify markdown image paths so we get rid of the ../public prefix in the url
   // only do it inside of markdown image tags
+
   const contentWithImagePathsRewritten = parsedMatter.content.replace(
     /!\[.*\]\(.*\)/g,
     (match) => {
@@ -25,6 +26,13 @@ async function parsePostFile(
     extensions: [gfm()],
     htmlExtensions: [gfmHtml()],
   });
+  // convert html to plain text removing all tags, grab first 200 characters and replace newlines with spaces
+  const summary = processedContent
+    .toString()
+    .replace(/<[^>]*>/g, "")
+    .slice(0, 200)
+    .replace(/\n/g, "")
+    .concat("...");
   const slug = `/posts/${fileName.split("_")[1].replace(/\.md$/, "")}`;
   return {
     fileName,
@@ -32,6 +40,7 @@ async function parsePostFile(
     slug,
     date: parsedMatter.data.date,
     draft: parsedMatter.data.draft,
+    summary,
     contentHtml: processedContent.toString(),
   };
 }
@@ -85,6 +94,7 @@ export async function getSortedPostsData(
 ): Promise<PostFile[]> {
   let postsData = await parsePostsDirectory(postsDirectory);
   if (excludeDrafts) {
+    console.log("exlcuding drafts");
     postsData = postsData.filter((p) => p.draft !== true);
   }
   return postsData.sort((a, b) => {
