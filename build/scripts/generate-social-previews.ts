@@ -1,6 +1,9 @@
 import { chromium } from "playwright";
 import { ChildProcess, spawn } from "node:child_process";
 
+const IMG_W = 800;
+const IMG_H = 418;
+
 const runDevServer = (): Promise<ChildProcess> => {
   return new Promise((resolve, reject) => {
     const devServer = spawn("yarn", ["serve-out"], {
@@ -58,7 +61,7 @@ const runDevServer = (): Promise<ChildProcess> => {
     const context = await browser.newContext();
     const page = await context.newPage();
     const pageUrl = `http://localhost:8080${p}`;
-    page.setViewportSize({ width: 700, height: 300 });
+    page.setViewportSize({ width: IMG_W, height: IMG_H });
     await page.goto(pageUrl, { waitUntil: "networkidle" });
     const urlParts = p.split("/");
     const fileName = urlParts[urlParts.length - 2];
