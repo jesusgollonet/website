@@ -1,4 +1,66 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jesus Gollonet Diary | Feed]]></title><description><![CDATA[Jesus Gollonet Diary | Feed]]></description><link>https://jesusgollonet.com</link><generator>RSS for Node</generator><lastBuildDate>Sat, 29 Jun 2024 09:56:41 GMT</lastBuildDate><atom:link href="https://jesusgollonet.com/diary/feed.xml" rel="self" type="application/rss+xml"/><pubDate>Sat, 29 Jun 2024 09:56:41 GMT</pubDate><item><title><![CDATA[I'm attending the recurse center!]]></title><description><![CDATA[<p>I just got confirmed for the Summer 2 batch at the <a href="https://www.recurse.com/">Recurse Center</a> starting in
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jesus Gollonet Diary | Feed]]></title><description><![CDATA[Jesus Gollonet Diary | Feed]]></description><link>https://jesusgollonet.com</link><generator>RSS for Node</generator><lastBuildDate>Mon, 01 Jul 2024 17:48:44 GMT</lastBuildDate><atom:link href="https://jesusgollonet.com/diary/feed.xml" rel="self" type="application/rss+xml"/><pubDate>Mon, 01 Jul 2024 17:48:44 GMT</pubDate><item><title><![CDATA[Recurse week 1 Intentions]]></title><description><![CDATA[<p>It's the First day of my batch today. We <del>haven't had the kickoff meeting yet</del> but
+I'm taking some time to set intentions for the week.</p>
+<p>This week is inevitably dedicated to figuring things out, and I don't think I
+should expect to get a lot of programming done, but I do still want to set some
+goals.</p>
+<ul>
+<li>
+<p>Figure out the shape of my days: I'm 6 hours ahead NY time, so core hours fall
+between 5-11pm. Can I get some work done in the morning? How can I ensure I'm
+productive in the evening? How do other remote recurses do it?</p>
+</li>
+<li>
+<p>Figure out the shape of the full batch. I have some project ideas, but I'm
+going back and forth between depth and breadth. I'm hoping that after intro chats
+and meeting other recurses this week I'll have a better idea of what's possible
+/ realistic.</p>
+</li>
+<li>
+<p>I would still like to get some small project done. A big explicit goal for me is
+to build shipping muscle, meaning once I set out to do something, finish it,
+write about it and present it. I would like to have something small and
+presentable by the end of the week.</p>
+</li>
+</ul>
+<p>A couple of meta concerns I have:</p>
+<ul>
+<li>
+<p>How can i make sure I get a healthy amount of movement in? Given the timezone
+difference, I won't get a lot of time to skate/surf/bmx in the next 6 weeks.
+I've grabbed a jump rope, yoga mat and some resistance bands to make sure I get
+some workouts during the day.</p>
+</li>
+<li>
+<p>What's a good ratio of blogging to coding? I want to use blogging as an
+accountability method, but I know how easy it is to spend way too long on a
+piece of writing...</p>
+</li>
+</ul>
+<p>But previously...</p>
+<p>There are a few things that really struck me last week when perusing the
+platform, wiki, chats on zulip and other resources. The tone really is always
+super friendly, but more than that, very non judgemental. A favorite example was
+a paper reading group meeting. When announcing the meeting, the host said
+something like &quot;please don't skip the meeting because you haven't read the
+paper, maybe even especially if you haven't read the paper&quot;. As a busy father, I
+know the guilty feeling of not being able to keep up with coursework or any non-work
+non-family commitments. The temptation to fall through is high when you don't
+want to admit defeat, but that type of language felt to me extremely inviting:
+We are here to help, not judge.</p>
+<p>I listened to a podcast with Nicolas Bergson-Shilcock, one of the co-founders of
+Recurse, and one thing that struck me is... I've known about Recurse for so long
+that I kinda half forgot the reasons I have always wanted to attend. Of course I
+would consciously think about the fun nerdy blog posts I've found over the
+years, but the thing i forgot about which is what actually put it on my radar
+was the social rules:</p>
+<ul>
+<li>No well-actually's</li>
+<li>No feigning surprise</li>
+<li>No backseat driving</li>
+<li>No subtle -isms</li>
+</ul>
+<p>To understand what they mean you can go to the recurse site</p>
+]]></description><link>https://jesusgollonet.com/posts/recurse-week-1-intentions</link><guid isPermaLink="true">https://jesusgollonet.com/posts/recurse-week-1-intentions</guid><pubDate>Mon, 01 Jul 2024 14:15:30 GMT</pubDate></item><item><title><![CDATA[I'm attending the recurse center!]]></title><description><![CDATA[<p>I just got confirmed for the Summer 2 batch at the <a href="https://www.recurse.com/">Recurse Center</a> starting in
 July 1st and I'm through the moon.</p>
 <p>I have been wanting to attend for the longest time (I have tweets from as far
 back as 2017) but always had other commitments. Back in May I decided it was
