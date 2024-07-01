@@ -29,7 +29,10 @@ const openEditor = async (postTitle) => {
     const { title, date } = parsedPost.data;
     // remove special chars from title. replace spaces with hyphens
     // if there are multiple spaces, replace with single hyphen
-    const fileTitle = title.replace(/[^a-zA-Z0-9\s]/g, "").replace(/\s+/g, "-");
+    const fileTitle = title
+        .replace(/[^a-zA-Z0-9\s]/g, "")
+        .replace(/\s+/g, "-")
+        .toLowerCase();
     const fileDate = date.split("T")[0];
     const postFilename = `${fileDate}_${fileTitle}.md`;
     // check for defaults
