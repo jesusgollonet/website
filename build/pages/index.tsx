@@ -64,8 +64,8 @@ export default function Home() {
         </p>
         <ul>
           <li>
-            <Link href="https://calendly.com/jesusgollonet/hola">
-              Book a 30 minute meeting
+            <Link href="https://cal.com/jesusgollonet/hola">
+              Book a meeting
             </Link>{" "}
           </li>
           <li>
