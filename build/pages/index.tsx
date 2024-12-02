@@ -2,23 +2,13 @@ import JGHead from "../components/jg-head";
 import Link from "next/link";
 import styles from "../styles/Home.module.css";
 import Layout from "../components/layout";
+import Header from "../components/Header";
 import { PageType } from "../lib/types";
 export default function Home() {
   return (
     <Layout pageType={PageType.Home}>
       <JGHead />
-      <main className={styles.main}>
-        <header className={styles.header}>
-          <img
-            src="/images/profile.jpg"
-            height={100}
-            width={100}
-            alt="Jesus Gollonet"
-            className={styles.profile}
-          />
-          <h1>Jesus Gollonet</h1>
-        </header>
-      </main>
+      <Header />
       <section className={styles.homeBody}>
         <p>Welcome!</p>
         <p>
