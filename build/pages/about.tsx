@@ -1,7 +1,5 @@
-import Layout from "../components/layout";
-import JGHead from "../components/jg-head";
-import styles from "../components/layout.module.css";
-import Link from "next/link";
+import Layout from "@/components/layout";
+import JGHead from "@/components/jg-head";
 
 export default function About() {
   return (

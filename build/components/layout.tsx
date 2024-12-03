@@ -1,6 +1,6 @@
 import styles from "./layout.module.css";
 import Link from "next/link";
-import { PageType } from "../lib/types";
+import { PageType } from "@/lib/types";
 
 export default function Layout({
   children,

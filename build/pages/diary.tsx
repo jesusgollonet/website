@@ -1,11 +1,11 @@
-import Layout from "../components/layout";
-import JGHead from "../components/jg-head";
-import styles from "../components/bloglist.module.css";
+import Layout from "@/components/layout";
+import JGHead from "@/components/jg-head";
+import styles from "@/components/bloglist.module.css";
 import Link from "next/link";
-import { niceDate } from "../lib/helpers";
-import { getSortedPostsData } from "../lib/posts";
-import { PostFile } from "../lib/types";
-import generateRssFeed from "../lib/rss";
+import { niceDate } from "@/lib/helpers";
+import { getSortedPostsData } from "@/lib/posts";
+import { PostFile } from "@/lib/types";
+import generateRssFeed from "@/lib/rss";
 
 export async function getStaticProps() {
   const allPostsData = await getSortedPostsData();

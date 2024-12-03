@@ -1,4 +1,4 @@
-import { sum } from "../../lib/posts";
+import { sum } from "@/lib/posts";
 
 describe("first test", () => {
   test("adds 1 + 2 to equal 3", () => {
