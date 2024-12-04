@@ -20,7 +20,7 @@ export default function Projects({ projects }: { projects: ProjectFile[] }) {
         <ul>
           {projects.map((p) => (
             <li key={p.slug}>
-              <Link href={p.slug}>{p.title}</Link>
+              <Link href={`/projects/${p.slug}`}>{p.title}</Link>
             </li>
           ))}
         </ul>

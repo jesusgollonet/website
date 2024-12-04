@@ -10,7 +10,6 @@ import generateRssFeed from "@/lib/rss";
 export async function getStaticProps() {
   const allPostsData = await getSortedPostsData();
   await generateRssFeed(allPostsData);
-
   return {
     props: {
       allPostsData,
