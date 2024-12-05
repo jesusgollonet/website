@@ -1,8 +1,8 @@
 import Layout from "@/components/layout";
-import { listProjects } from "@/lib/projects";
+import { getProjects } from "@/lib/projects";
 
 export async function getStaticPaths() {
-  const projects = await listProjects();
+  const projects = await getProjects();
 
   return {
     paths: projects.map((p) => {
@@ -30,6 +30,9 @@ export default function Project({ title }: { title: string }) {
       <section>
         <h2> {title}</h2>
         <p>This is a project page</p>
+      </section>
+      <section>
+        <h3>Overview</h3>
       </section>
     </Layout>
   );

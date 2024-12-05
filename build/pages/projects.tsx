@@ -1,9 +1,10 @@
 import Layout from "@/components/layout";
-import { listProjects, ProjectFile } from "@/lib/projects";
+import { getProjects, ProjectFile } from "@/lib/projects";
 import Link from "next/link";
 
 export async function getStaticProps() {
-  const projects = await listProjects();
+  const projects = await getProjects();
+
   return {
     props: {
       projects,

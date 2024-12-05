@@ -1,27 +1,45 @@
-import { readdir } from "fs/promises";
+import { readdir, readFile } from "fs/promises";
 import path from "path";
+import yaml from "js-yaml";
 const projectsDirectory = path.join(process.cwd(), "projects");
 
 export interface ProjectFile {
   fileName: string;
   title: string;
+  overview: string;
+  sections: Section[];
   slug: string;
-  content: string;
 }
 
-export async function listProjects(): Promise<ProjectFile[]> {
+export interface Section {
+  title: string;
+  details: string;
+}
+
+export async function getProjects(): Promise<ProjectFile[]> {
   const fileList = await readdir(projectsDirectory);
-  const projects: ProjectFile[] = fileList
-    .filter((f) => f.includes(".yml"))
-    .map((f) => {
+  const filtered = fileList.filter((f) => f.includes(".yml"));
+
+  const projects: ProjectFile[] = await Promise.all(
+    filtered.map(async (f) => {
+      const filePath = path.join(projectsDirectory, f);
+      const fileContents = await readFile(filePath, "utf8");
+      const projectData = yaml.load(fileContents) as ProjectFile;
       return {
         fileName: f,
         title: f.replace(/\.yml/, ""),
         slug: f.replace(/\.yml/, ""),
-        content: "content",
+        overview: projectData.overview,
+        sections: projectData.sections,
       };
-    });
-
-  console.log(fileList);
+    }),
+  );
   return projects;
+}
+
+export async function getProjectData(id: string): Promise<ProjectFile> {
+  const filePath = path.join(projectsDirectory, `${id}.yml`);
+  const fileContents = await readFile(filePath, "utf8");
+  const projectData = yaml.load(fileContents) as ProjectFile;
+  return projectData;
 }

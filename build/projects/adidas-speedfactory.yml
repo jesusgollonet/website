@@ -1,30 +1,29 @@
-project:
-  name: "adidas Speedfactory"
-  year: "2018"
-  client: "AMV BBDO & HP"
-  duration: "6 months"
-  awards:
-    - "FWA of the Day"
-    - "Awwwards Site of the Day"
-  
-  overview: |
-    Led technical development of an innovative web application that transforms audio input 
-    into generative art pieces, supporting both mobile and desktop platforms.
+name: "adidas Speedfactory"
+year: "2018"
+client: "AMV BBDO & HP"
+duration: "6 months"
+awards:
+  - "FWA of the Day"
+  - "Awwwards Site of the Day"
 
-  technical_implementation:
-    - section: "Audio Rendering structure"
-      title: "Audio Processing System"
-      details:
-        - "Defined dynamic audio Processing structure in order to communicate with the Back-end API"
+overview: |
+  Led technical development of an innovative web application that transforms audio input 
+  into generative art pieces, supporting both mobile and desktop platforms.
 
-    - section: "Server Rendering Pipeline"
-      title: "Audio Processing System"
-      details:
-        - "Defined dynamic audio Processing structure in order to communicate with the Back-end API"
+sections:
+  - section: "Audio Rendering structure"
+    title: "Audio Processing System"
+    details:
+      - "Defined dynamic audio Processing structure in order to communicate with the Back-end API"
 
-    - section: "Output Pipeline"
-      title: "High-Resolution Output Pipeline"
-      details:
-        - "Designed client-server architecture for high-resolution image generation"
-        - "Created JSON-based state system for artwork parameters"
-        - "Implemented GPU-accelerated backend rendering"
+  - section: "Server Rendering Pipeline"
+    title: "Audio Processing System"
+    details:
+      - "Defined dynamic audio Processing structure in order to communicate with the Back-end API"
+
+  - section: "Output Pipeline"
+    title: "High-Resolution Output Pipeline"
+    details:
+      - "Designed client-server architecture for high-resolution image generation"
+      - "Created JSON-based state system for artwork parameters"
+      - "Implemented GPU-accelerated backend rendering"
