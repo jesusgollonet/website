@@ -1,5 +1,6 @@
 import Layout from "@/components/layout";
-import { getProjects } from "@/lib/projects";
+import { PageType } from "@/lib/types";
+import { getProjects, getProjectData, type Project } from "@/lib/projects";
 
 export async function getStaticPaths() {
   const projects = await getProjects();
@@ -17,22 +18,28 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({ params }: { params: { id: string } }) {
+  const projectData = await getProjectData(params.id);
   return {
     props: {
-      title: `${params.id}`,
+      ...projectData,
     },
   };
 }
 
-export default function Project({ title }: { title: string }) {
+export default function Project(project: Project) {
+  console.log(project);
   return (
-    <Layout>
+    <Layout pageType={PageType.Projects}>
       <section>
-        <h2> {title}</h2>
-        <p>This is a project page</p>
-      </section>
-      <section>
+        <h2> {project.name}</h2>
         <h3>Overview</h3>
+        <p>{project.overview}</p>
+        {project.sections.map((section) => (
+          <div key={section.title}>
+            <h3>{section.title}</h3>
+            <p>{section.details}</p>
+          </div>
+        ))}
       </section>
     </Layout>
   );

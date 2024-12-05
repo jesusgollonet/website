@@ -3,12 +3,21 @@ import path from "path";
 import yaml from "js-yaml";
 const projectsDirectory = path.join(process.cwd(), "projects");
 
-export interface ProjectFile {
-  fileName: string;
-  title: string;
+export interface Project {
+  name: string;
   overview: string;
   sections: Section[];
   slug: string;
+}
+
+export interface ProjectFile {
+  fileName: string;
+  name: string;
+  year: string;
+  client: string;
+  awards?: string;
+  overview: string;
+  sections: Section[];
 }
 
 export interface Section {
@@ -16,18 +25,16 @@ export interface Section {
   details: string;
 }
 
-export async function getProjects(): Promise<ProjectFile[]> {
+export async function getProjects(): Promise<Project[]> {
   const fileList = await readdir(projectsDirectory);
   const filtered = fileList.filter((f) => f.includes(".yml"));
 
-  const projects: ProjectFile[] = await Promise.all(
+  const projects: Project[] = await Promise.all(
     filtered.map(async (f) => {
-      const filePath = path.join(projectsDirectory, f);
-      const fileContents = await readFile(filePath, "utf8");
-      const projectData = yaml.load(fileContents) as ProjectFile;
+      const projectData = await loadProjectFile(f);
       return {
-        fileName: f,
         title: f.replace(/\.yml/, ""),
+        name: projectData.name,
         slug: f.replace(/\.yml/, ""),
         overview: projectData.overview,
         sections: projectData.sections,
@@ -35,6 +42,13 @@ export async function getProjects(): Promise<ProjectFile[]> {
     }),
   );
   return projects;
+}
+
+async function loadProjectFile(fileName: string): Promise<ProjectFile> {
+  const fullPath = path.join(projectsDirectory, fileName);
+  const fileContents = await readFile(fullPath, "utf8");
+  const projectData = yaml.load(fileContents) as ProjectFile;
+  return projectData;
 }
 
 export async function getProjectData(id: string): Promise<ProjectFile> {

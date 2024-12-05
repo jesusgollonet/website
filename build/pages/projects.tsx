@@ -1,5 +1,5 @@
 import Layout from "@/components/layout";
-import { getProjects, ProjectFile } from "@/lib/projects";
+import { getProjects, Project } from "@/lib/projects";
 import Link from "next/link";
 
 export async function getStaticProps() {
@@ -12,16 +12,15 @@ export async function getStaticProps() {
   };
 }
 
-export default function Projects({ projects }: { projects: ProjectFile[] }) {
+export default function Projects({ projects }: { projects: Project[] }) {
   return (
     <Layout>
       <section>
         <h2> Projects</h2>
-        <p>This is the list of projects</p>
         <ul>
           {projects.map((p) => (
             <li key={p.slug}>
-              <Link href={`/projects/${p.slug}`}>{p.title}</Link>
+              <Link href={`/projects/${p.slug}`}>{p.name}</Link>
             </li>
           ))}
         </ul>
