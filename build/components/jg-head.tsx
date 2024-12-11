@@ -24,6 +24,11 @@ export default function JGHead({
       <meta name="twitter:description" content={description} />
       <meta name="twitter:image" content={image} />
       <link rel="icon" href="/favicon.ico" />
+      <script
+        defer
+        src="https://cloud.umami.is/script.js"
+        data-website-id="fd52c127-5d3a-4aeb-a7c6-14fa463c3ced"
+      ></script>
     </Head>
   );
 }
