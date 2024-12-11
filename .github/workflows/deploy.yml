@@ -33,7 +33,7 @@ jobs:
 
       - run: | 
           cd build 
-          pnpm install
+          npm install
       - run: ./bin/build 
       - run: | 
           cd build
