@@ -1,0 +1,42 @@
+name: HP Sound in Color
+cover: /images/projects/hp-sound-in-color/cover.jpg
+year: 2016
+overview: | 
+  Led technical development and implemented the backend of this
+  web application that transforms audio input into generative art
+  pieces. I created the rendering pipeline that turns them into shareable assets
+  and high resolution posters.
+sections:
+  - title: GPU-accelerated Rendering Environment 
+    details: | 
+        In order to leverage the rendering work on the frontend, I created a server-based rendering environment.
+        using a headless browser on a GPU accelerated AWS instance. This allowed us to reuse the frontend rendering without any modifications 
+  - title: High-Resolution Output Pipeline
+    details: |
+        Designed client-server architecture for high-resolution image generation, as well as created JSON-based state system for artwork parameters
+links: 
+  - title: Site
+    url: https://www.hp.com/soundincolor
+  - title: FWA
+    url: https://www.thefwa.com/cases/hp-sound-in-color
+  - title: Awwwards
+    url: https://www.awwwards.com/sites/hp-sound-in-color
+    
+roles:
+  - Technical Lead
+  - Back-end Developer
+  - Infra planning / setup / maintenance
+  - Technical communication with client
+technologies:
+  - AWS Lambda
+  - Amazon API Gateway
+  - Amazon S3
+  - Amazon SQS
+  - Terraform
+  - Selenium
+  - GPU-accelerated rendering
+agency: Resn
+client: AMV BBDO & HP
+awards:
+  - FWA of the Day
+  - Awwwards Site of the Day

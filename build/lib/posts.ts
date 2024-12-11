@@ -94,7 +94,6 @@ export async function getSortedPostsData(
 ): Promise<PostFile[]> {
   let postsData = await parsePostsDirectory(postsDirectory);
   if (excludeDrafts) {
-    console.log("exlcuding drafts");
     postsData = postsData.filter((p) => p.draft !== true);
   }
   return postsData.sort((a, b) => {

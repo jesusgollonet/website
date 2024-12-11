@@ -1,6 +1,7 @@
 export enum PageType {
   Home = "home",
   Diary = "diary",
+  Projects = "projects",
   Other = "other",
 }
 

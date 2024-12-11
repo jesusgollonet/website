@@ -6,7 +6,7 @@ const IMG_H = 418;
 
 const runDevServer = (): Promise<ChildProcess> => {
   return new Promise((resolve, reject) => {
-    const devServer = spawn("yarn", ["serve-out"], {
+    const devServer = spawn("pnpm", ["serve-out"], {
       stdio: ["pipe", "pipe", "inherit"],
     });
     devServer.stdout.on("data", (data) => {

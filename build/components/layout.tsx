@@ -1,6 +1,6 @@
 import styles from "./layout.module.css";
 import Link from "next/link";
-import { PageType } from "../lib/types";
+import { PageType } from "@/lib/types";
 
 export default function Layout({
   children,
@@ -16,6 +16,11 @@ export default function Layout({
       {pageType === PageType.Diary && (
         <div className={styles.backToHome}>
           <Link href="/diary">← Diary</Link>
+        </div>
+      )}
+      {pageType === PageType.Projects && (
+        <div className={styles.backToHome}>
+          <Link href="/projects">← Projects</Link>
         </div>
       )}
       {pageType === PageType.Other && (
