@@ -1,21 +1,14 @@
 export default function Work() {
   return (
     <section>
-      <h2>Work</h2>
       <p>
-        I have built, managed and delivered major digital campaigns and
-        innovative interactive installations for household brands like Adidas,
-        Google, HBO, Coca-Cola and many others, working with some of the best
-        creative agencies in the world (Resn, North Kingdom, Wieden + Kennedy,
-        Dogstudio),
+        I'm a Creative Technology Lead who bridges creative vision and robust
+        backend systems. I specialize in architecting complex technical
+        solutions that combine high-performance infrastructure with engaging
+        user experiences. Whether it's scaling campaigns for millions of users
+        or building real-time interactive systems, I focus on solving
+        challenging technical problems across different domains.
       </p>
-      <p>I specialise in</p>
-      <ul>
-        <li>Developing creative back-end solutions on a tight schedule</li>
-        <li>Leading development projects</li>
-        <li>Architecting scalable solutions for high end campaigns</li>
-        <li>Deploying reliable cloud infrastructure</li>
-      </ul>
     </section>
   );
 }

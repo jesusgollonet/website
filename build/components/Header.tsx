@@ -11,6 +11,7 @@ export default function Header() {
         className={styles.profile}
       />
       <h1>Jesus Gollonet</h1>
+      <h2>Creative Technology Lead</h2>
     </header>
   );
 }
