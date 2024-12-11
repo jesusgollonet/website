@@ -42,6 +42,7 @@ export async function getProjects(): Promise<Project[]> {
 
       const project: Project = {
         name: projectData.name,
+        year: projectData.year,
         cover: projectData.cover,
         slug: f.replace(/\.yml/, ""),
         overview: projectData.overview,
@@ -52,9 +53,6 @@ export async function getProjects(): Promise<Project[]> {
       }
       if (projectData.technologies) {
         project.technologies = projectData.technologies;
-      }
-      if (projectData.year) {
-        project.year = projectData.year;
       }
       return project;
     }),
