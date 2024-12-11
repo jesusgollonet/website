@@ -1,0 +1,36 @@
+ul.projects {
+  padding: 0;
+  list-style: none;
+  text-align: center;
+}
+
+.projects li {
+  margin-bottom: 0.5em;
+  display: grid;
+  grid-template-columns: auto 2fr;
+}
+.projects li a {
+  text-align: left;
+}
+
+.projects li time {
+  text-align: right;
+  min-width: 7em;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.thumbnailWrapper {
+  margin-bottom: 0.5rem;
+}
+
+.thumbnail {
+  border-radius: 4px;
+  object-fit: cover;
+}
+
+.projectInfo {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}

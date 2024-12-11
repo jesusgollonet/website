@@ -5,19 +5,26 @@ const projectsDirectory = path.join(process.cwd(), "projects");
 
 export interface Project {
   name: string;
+  cover: string;
   overview: string;
   sections: Section[];
+  roles?: string[];
+  technologies?: string[];
+  year: string;
   slug: string;
 }
 
 export interface ProjectFile {
   fileName: string;
+  cover: string;
   name: string;
-  year: string;
   client: string;
-  awards?: string;
   overview: string;
   sections: Section[];
+  awards?: string;
+  year: string;
+  roles?: string[];
+  technologies?: string[];
 }
 
 export interface Section {
@@ -32,16 +39,29 @@ export async function getProjects(): Promise<Project[]> {
   const projects: Project[] = await Promise.all(
     filtered.map(async (f) => {
       const projectData = await loadProjectFile(f);
-      return {
-        title: f.replace(/\.yml/, ""),
+
+      const project: Project = {
         name: projectData.name,
+        cover: projectData.cover,
         slug: f.replace(/\.yml/, ""),
         overview: projectData.overview,
         sections: projectData.sections,
       };
+      if (projectData.roles) {
+        project.roles = projectData.roles;
+      }
+      if (projectData.technologies) {
+        project.technologies = projectData.technologies;
+      }
+      if (projectData.year) {
+        project.year = projectData.year;
+      }
+      return project;
     }),
   );
-  return projects;
+  return projects.sort((a, b) => {
+    return a.year > b.year ? -1 : 1;
+  });
 }
 
 async function loadProjectFile(fileName: string): Promise<ProjectFile> {

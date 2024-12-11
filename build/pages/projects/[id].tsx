@@ -27,19 +27,37 @@ export async function getStaticProps({ params }: { params: { id: string } }) {
 }
 
 export default function Project(project: Project) {
-  console.log(project);
   return (
     <Layout pageType={PageType.Projects}>
       <section>
-        <h2> {project.name}</h2>
-        <h3>Overview</h3>
+        <h2>{project.name}</h2>
         <p>{project.overview}</p>
         {project.sections.map((section) => (
           <div key={section.title}>
-            <h3>{section.title}</h3>
+            <h4>{section.title}</h4>
             <p>{section.details}</p>
           </div>
         ))}
+        {project.roles && project.roles.length > 0 && (
+          <section>
+            <h3>Roles</h3>
+            <ul>
+              {project.roles.map((role) => (
+                <li key={role}>{role}</li>
+              ))}
+            </ul>
+          </section>
+        )}
+        {project.technologies && project.technologies.length > 0 && (
+          <section>
+            <h3>Technologies</h3>
+            <ul>
+              {project.technologies.map((role) => (
+                <li key={role}>{role}</li>
+              ))}
+            </ul>
+          </section>
+        )}
       </section>
     </Layout>
   );
