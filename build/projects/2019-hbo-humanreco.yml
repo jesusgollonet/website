@@ -2,25 +2,26 @@ name: HBO Recommended By Humans
 cover: /images/projects/hbo-recommended-by-humans/cover.png
 year: 2019
 overview: | 
-  Architected social media aggregation system for HBO show recommendations.
-  Created comprehensive backend system including content crawler, AI-powered
-  tagging, and moderation tools.
+  I built a system to collect and display social recommendations for HBO shows. 
+  It had three main parts: a crawler that monitored Twitter for mentions of HBO shows, 
+  an automated tagger that used natural language processing to categorize these mentions, 
+  and a content management system where HBO staff could review and publish the best recommendations.
 sections:
   - title: Twitter Crawler 
     details: | 
-      Developed custom crawler bot utilizing Twitter API to
-      collect and analyze user recommendations for HBO shows, including real-time popularity
-      tracking.
-  - title: High-Resolution Output Pipeline
+      The twitter crawler was consuming the twitter api based on predefined keywords and mentions.
+      It was implemented as a scheduled Lambda function that would then feed the content into an SQS queue.
+  - title: Content Annotation
     details: |
-        Designed client-server architecture for high-resolution image generation, as well as created JSON-based state system for artwork parameters
+      The content from the queue was then processed by an additional lambda function for sentiment analysis, categorization and simple moderation.
+      The results were then stored in a DynamoDB table for further processing.
+  - title: CMS Integration
+    details: |
+      The processed content would then be fed into a Contentful CMS for the HBO team to curate and eventually publish on the site
+
 links: 
-  - title: Site
-    url: https://www.hp.com/soundincolor
-  - title: FWA
-    url: https://www.thefwa.com/cases/hp-sound-in-color
-  - title: Awwwards
-    url: https://www.awwwards.com/sites/hp-sound-in-color
+  - title: Archived site
+    url: https://hbo-humanreco.resn.global/
     
 roles:
   - Technical Lead
@@ -29,14 +30,9 @@ roles:
   - Technical communication with client
 technologies:
   - AWS Lambda
-  - Amazon API Gateway
-  - Amazon S3
   - Amazon SQS
-  - Terraform
-  - Selenium
-  - GPU-accelerated rendering
+  - Serverless Framework
+  - Contentful
 agency: Resn
-client: AMV BBDO & HP
-awards:
-  - FWA of the Day
-  - Awwwards Site of the Day
+client: HBO 
+publish: true

@@ -12,6 +12,7 @@ export interface Project {
   technologies?: string[];
   year: string;
   slug: string;
+  publish?: boolean;
 }
 
 export interface ProjectFile {
@@ -25,6 +26,7 @@ export interface ProjectFile {
   year: string;
   roles?: string[];
   technologies?: string[];
+  publish?: boolean;
 }
 
 export interface Section {
@@ -54,12 +56,17 @@ export async function getProjects(): Promise<Project[]> {
       if (projectData.technologies) {
         project.technologies = projectData.technologies;
       }
+      if (projectData.publish) {
+        project.publish = projectData.publish;
+      }
       return project;
     }),
   );
-  return projects.sort((a, b) => {
-    return a.year > b.year ? -1 : 1;
-  });
+  return projects
+    .filter((p) => p.publish && p.publish === true)
+    .sort((a, b) => {
+      return a.year > b.year ? -1 : 1;
+    });
 }
 
 async function loadProjectFile(fileName: string): Promise<ProjectFile> {
