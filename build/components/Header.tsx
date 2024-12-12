@@ -1,4 +1,5 @@
 import styles from "@/styles/Home.module.css";
+import Link from "next/link";
 
 export default function Header() {
   return (
@@ -11,7 +12,13 @@ export default function Header() {
         className={styles.profile}
       />
       <h1>Jesus Gollonet</h1>
-      <h2>Creative Technology Lead</h2>
+      <h2>
+        Creative Technology Lead{" "}
+        <Link href="/about">
+          {" "}
+          <sup>*</sup>
+        </Link>
+      </h2>
     </header>
   );
 }

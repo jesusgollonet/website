@@ -1,6 +1,7 @@
 import styles from "./layout.module.css";
 import Link from "next/link";
 import { PageType } from "@/lib/types";
+import Navigation from "@/components/Navigation";
 
 export default function Layout({
   children,
@@ -11,6 +12,7 @@ export default function Layout({
 }) {
   return (
     <div className={styles.container}>
+      <Navigation />
       <div>{children}</div>
 
       {pageType === PageType.Diary && (

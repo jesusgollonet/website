@@ -2,15 +2,15 @@ name: HBO Recommended By Humans
 cover: /images/projects/hbo-recommended-by-humans/cover.png
 year: 2019
 overview: | 
-  Led technical development and implemented the backend of this
-  web application that transforms audio input into generative art
-  pieces. I created the rendering pipeline that turns them into shareable assets
-  and high resolution posters.
+  Architected social media aggregation system for HBO show recommendations.
+  Created comprehensive backend system including content crawler, AI-powered
+  tagging, and moderation tools.
 sections:
-  - title: GPU-accelerated Rendering Environment 
+  - title: Twitter Crawler 
     details: | 
-        In order to leverage the rendering work on the frontend, I created a server-based rendering environment.
-        using a headless browser on a GPU accelerated AWS instance. This allowed us to reuse the frontend rendering without any modifications 
+      Developed custom crawler bot utilizing Twitter API to
+      collect and analyze user recommendations for HBO shows, including real-time popularity
+      tracking.
   - title: High-Resolution Output Pipeline
     details: |
         Designed client-server architecture for high-resolution image generation, as well as created JSON-based state system for artwork parameters
