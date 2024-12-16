@@ -49,3 +49,16 @@
   color: #d5b5b5;
   padding-right: 1.5em;
 }
+
+.cta {
+  text-align: center;
+}
+
+.cta a {
+  background-color: #ff6b6b;
+  color: white;
+  border: 1.5px solid #6c63ff;
+  text-align: center;
+  border-radius: 15px;
+  padding: 0.5em 1em;
+}

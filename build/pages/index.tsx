@@ -3,8 +3,9 @@ import Layout from "@/components/layout";
 import Header from "@/components/Header";
 import Intro from "@/components/Intro";
 import Work from "@/components/Work";
-import Social from "@/components/Social";
 import { PageType } from "@/lib/types";
+import styles from "@/styles/Home.module.css";
+import Link from "next/link";
 export default function Home() {
   return (
     <Layout pageType={PageType.Home}>
@@ -12,7 +13,9 @@ export default function Home() {
       <Header />
       <Intro />
       <Work />
-      <Social />
+      <section className={styles.cta}>
+        <Link href="/contact">Get in touch</Link>
+      </section>
     </Layout>
   );
 }
