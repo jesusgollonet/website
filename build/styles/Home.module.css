@@ -55,10 +55,27 @@
 }
 
 .cta a {
+  display: inline-block;
   background-color: #ff6b6b;
   color: white;
   border: 1.5px solid #6c63ff;
   text-align: center;
   border-radius: 15px;
   padding: 0.5em 1em;
+  font-weight: 600;
+  /*transition: all 0.2s ease-in-out;*/
+  transition: all 1.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transform: translateZ(0);
+}
+
+.cta a:hover {
+  background-color: #ff5252;
+  transform: scale(1.05);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  backface-visibility: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
