@@ -1,4 +1,35 @@
-<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jesus Gollonet Diary | Feed]]></title><description><![CDATA[Jesus Gollonet Diary | Feed]]></description><link>https://jesusgollonet.com</link><generator>RSS for Node</generator><lastBuildDate>Mon, 01 Jul 2024 17:48:44 GMT</lastBuildDate><atom:link href="https://jesusgollonet.com/diary/feed.xml" rel="self" type="application/rss+xml"/><pubDate>Mon, 01 Jul 2024 17:48:44 GMT</pubDate><item><title><![CDATA[Recurse week 1 Intentions]]></title><description><![CDATA[<p>It's the First day of my batch today. We <del>haven't had the kickoff meeting yet</del> but
+<?xml version="1.0" encoding="UTF-8"?><rss xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:atom="http://www.w3.org/2005/Atom" version="2.0"><channel><title><![CDATA[Jesus Gollonet Diary | Feed]]></title><description><![CDATA[Jesus Gollonet Diary | Feed]]></description><link>https://jesusgollonet.com</link><generator>RSS for Node</generator><lastBuildDate>Mon, 21 Jul 2025 15:10:56 GMT</lastBuildDate><atom:link href="https://jesusgollonet.com/diary/feed.xml" rel="self" type="application/rss+xml"/><pubDate>Mon, 21 Jul 2025 15:10:56 GMT</pubDate><item><title><![CDATA[A future I was not expecting]]></title><description><![CDATA[<p>Ever since Cursor came out, I started low-key counting the days until I had to
+switch away from vim / tmux. I took as a given that the productivity gains from an AI
+powered editor would be too great to ignore, and started to see my insistence on
+being terminal based as a my own little fun eccentric trait that would finally be gone soon...</p>
+<p>And then agentic coding tools have taken an unexpected turn: The best ones are
+terminal based and unixy. And at least in the case of Claude Code, for the same
+reasons that initially drove me to the terminal:</p>
+<blockquote>
+<p>'So small and so flexible that it fits any workflow'</p>
+</blockquote>
+<blockquote>
+<p>'The thinnest possible layer on top of the model'</p>
+</blockquote>
+<p>Both phrases I've heard from the creator.</p>
+<p>I have been using it heavily in the last month: Initially i trialed it for prototypes and PoCs
+at work, then making progress on personal projects that have been stuck for years in some cases,
+but I can't stop finding new uses:</p>
+<ul>
+<li>Clicking around too much in the AWS console? Wait there's the aws-cli!</li>
+<li>Debugging github actions? gh cli to the rescue</li>
+<li>That thing i dread to do every 3 months where i have to duplicate 12
+page documents and replace a few values? CC can figure out the binary format and
+replace it for me.</li>
+</ul>
+<p>It's unlocking so many venues to explore that I had previously dismissed as too
+tedious or too much work to do I just can't stop. I'm not surprised to hear
+the terms <a href="https://madhavajay.com/agentic-coding-slot-machines-did-we-just-summon-a-genie-addiction/">Slot Machine and Addiction</a>
+and <a href="https://vimeo.com/1098025052">Sleep Problems</a>
+thrown in the same sentence as agentic engineering,</p>
+<p>The double twist is that now the editor matters significantly less, as I'm using
+it less and less. Maybe I can even look at vs-code. I don't really care.</p>
+]]></description><link>https://jesusgollonet.com/posts/a-future-i-was-not-expecting</link><guid isPermaLink="true">https://jesusgollonet.com/posts/a-future-i-was-not-expecting</guid><pubDate>Wed, 16 Jul 2025 09:44:20 GMT</pubDate></item><item><title><![CDATA[Recurse week 1 Intentions]]></title><description><![CDATA[<p>It's the First day of my batch today. We <del>haven't had the kickoff meeting yet</del> but
 I'm taking some time to set intentions for the week.</p>
 <p>This week is inevitably dedicated to figuring things out, and I don't think I
 should expect to get a lot of programming done, but I do still want to set some
@@ -36,30 +67,7 @@ accountability method, but I know how easy it is to spend way too long on a
 piece of writing...</p>
 </li>
 </ul>
-<p>But previously...</p>
-<p>There are a few things that really struck me last week when perusing the
-platform, wiki, chats on zulip and other resources. The tone really is always
-super friendly, but more than that, very non judgemental. A favorite example was
-a paper reading group meeting. When announcing the meeting, the host said
-something like &quot;please don't skip the meeting because you haven't read the
-paper, maybe even especially if you haven't read the paper&quot;. As a busy father, I
-know the guilty feeling of not being able to keep up with coursework or any non-work
-non-family commitments. The temptation to fall through is high when you don't
-want to admit defeat, but that type of language felt to me extremely inviting:
-We are here to help, not judge.</p>
-<p>I listened to a podcast with Nicolas Bergson-Shilcock, one of the co-founders of
-Recurse, and one thing that struck me is... I've known about Recurse for so long
-that I kinda half forgot the reasons I have always wanted to attend. Of course I
-would consciously think about the fun nerdy blog posts I've found over the
-years, but the thing i forgot about which is what actually put it on my radar
-was the social rules:</p>
-<ul>
-<li>No well-actually's</li>
-<li>No feigning surprise</li>
-<li>No backseat driving</li>
-<li>No subtle -isms</li>
-</ul>
-<p>To understand what they mean you can go to the recurse site</p>
+<p>On that note, piece of writing done. Time to get to work.</p>
 ]]></description><link>https://jesusgollonet.com/posts/recurse-week-1-intentions</link><guid isPermaLink="true">https://jesusgollonet.com/posts/recurse-week-1-intentions</guid><pubDate>Mon, 01 Jul 2024 14:15:30 GMT</pubDate></item><item><title><![CDATA[I'm attending the recurse center!]]></title><description><![CDATA[<p>I just got confirmed for the Summer 2 batch at the <a href="https://www.recurse.com/">Recurse Center</a> starting in
 July 1st and I'm through the moon.</p>
 <p>I have been wanting to attend for the longest time (I have tweets from as far
