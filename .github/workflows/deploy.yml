@@ -42,7 +42,7 @@ jobs:
           cd build
           node --loader ts-node/esm scripts/generate-social-previews.ts
       - name: Upload output file
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: out 
           path: build/out/
@@ -52,7 +52,7 @@ jobs:
     steps:
 
       - name: Download artifact 
-        uses: actions/download-artifact@v3
+        uses: actions/download-artifact@v4
         with:
           name: out
       - name: configure aws credentials
